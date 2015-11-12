@@ -1,3 +1,12 @@
-<h1>Welcome to Bob System</h1>
 <a href="/bob/index/index">Bob system</a>
-<h2><?php $this->productType ?></h2>
+<h2><?php echo $this->product_type->name ?></h2>
+<table>
+<tr>
+<th>Name</th>
+</tr>
+	<?php foreach ($this->all_products as $entity): ?>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->name); ?></td>
+</tr>
+	<?php endforeach;?>
+</table>

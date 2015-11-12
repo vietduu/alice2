@@ -35,6 +35,25 @@ class Module implements AutoloaderProviderInterface
         return include __DIR__ . '/config/module.config.php';
     }
 
+ /*   public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Bob\Model\DataMapper\ProductTypeMapper' => function($sm) {
+                    $tableGateway = $sm->get('ProductTypeGateway');
+                    $table = new ProductTypeMapper($tableGateway);
+                    return $table;
+                },
+                'ProductTypeGateway' => function ($sm) {
+                    $adapter = $dm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new ProductType());
+                    return new TableGateway('product_type', $adapter, null, $resultSetPrototype);
+                },
+                ),
+            );
+    }*/
+
     public function onBootstrap(MvcEvent $e)
     {
         // You may not need to do this if you're doing it elsewhere in your

@@ -19,6 +19,12 @@ class ProductTypeMapper
 		$this->tableGateway = $tableGateway;
 	}
 
+	public function fetchAll()
+	{
+		$resultSet = $this->tableGateway->select();
+		return $resultSet;
+	}
+
 	public function saveProductType(ProductType $productType)
 	{
 		$data = array(
@@ -41,15 +47,16 @@ class ProductTypeMapper
 	public function getProductType($id)
 	{
 		$id = (int) $id;
-		$row_set = $this->tableGateway->select(array('id' => $id));
-		$row = $row_set->current();
+		$set = $this->tableGateway->select(array('id' => $id));
+		$row = $set->current();
 		if (!$row){
 			throw new \Exception('Could not find the product type ID$id');
 		}
 		return $row;
 	}
 
-
-
-
+	public function deleteProductType($id)
+	{
+		$this->tableGateway->delete(array('id' => (int) $id));
+	}
 }
