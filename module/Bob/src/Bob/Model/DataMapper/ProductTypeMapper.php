@@ -6,57 +6,19 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
-class ProductTypeMapper
+class ProductTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 {
-	protected $tableGateway;
-
-	/**
-	 * ProductTypeMapper constructor.
-	 * @param $tableGateway
-	 */
-	public function __construct(TableGateway $tableGateway)
+	public function __construct($tableGateway)
 	{
-		$this->tableGateway = $tableGateway;
+		parent::__construct($tableGateway);
 	}
 
-	public function fetchAll()
+	public function getModelData($entity)
 	{
-		$resultSet = $this->tableGateway->select();
-		return $resultSet;
-	}
-
-	public function saveProductType(ProductType $productType)
-	{
-		$data = array(
-			'name' => $productType->name,
+		$this->settype($entity, 'ProductType');
+		return array(
+			'id' => $entity->id,
+			'name' => $entity->name,
 			);
-		$id = (int) $productType->id;
-
-		if (0 == $id)
-		{
-			$this->tableGateway->insert($data);
-		} else {
-			if ($this->getUser($id)){
-			$this->tableGateway->update($data, array('id' => $id));
-		} else {
-			throw new \Exception('Product type ID does not exist');
-			}
-		}
-	}
-
-	public function getProductType($id)
-	{
-		$id = (int) $id;
-		$set = $this->tableGateway->select(array('id' => $id));
-		$row = $set->current();
-		if (!$row){
-			throw new \Exception('Could not find the product type ID$id');
-		}
-		return $row;
-	}
-
-	public function deleteProductType($id)
-	{
-		$this->tableGateway->delete(array('id' => (int) $id));
 	}
 }
