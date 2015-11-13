@@ -13,6 +13,7 @@ class IndexController extends AbstractActionController
 			'product_type' => $this->getProductType(1),
 			'all_general_products' => $this->fetchAllGeneralProducts(),
 			'products_by_type_id' => $this->getProductsByProductTypeId(1),
+			'product_info' => $this->getFullInformationByTypeId(1),
 			));
 		return $view;
 	}
@@ -65,5 +66,11 @@ class IndexController extends AbstractActionController
 	{
 		$products = $this->getGeneralProductServiceConfig();
 		return $products->getProductsByProductTypeId($id);
+	}
+
+	public function getFullInformationByTypeId($id)
+	{
+		$product = $this->getGeneralProductServiceConfig();
+		return $product->getFullInformationByTypeId($id);
 	}
 }
