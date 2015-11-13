@@ -22,6 +22,16 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 			);
 	}
 
-	//http://akrabat.com/displaying-the-generated-sql-from-a-zenddbsql-object/
-	//http://webdevnetwork.co.uk/example-of-raw-zend-frameowork-2-sql-query/
+	public function getProductsByProductTypeId($id)
+	{
+		$sql = "SELECT * FROM general_product gp LEFT JOIN product_type pt "
+				. "ON (gp.product_type_fk = pt.id) "
+				. "WHERE pt.id = ?";
+		$params = array(
+			':id' => $id,
+			);
+		$statement = $this->getAdapter()->query($sql);		
+		$result = $statement->execute(array(1));
+		return $result->getResource()->fetchAll();
+	}
 }

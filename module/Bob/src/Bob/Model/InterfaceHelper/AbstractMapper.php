@@ -19,6 +19,10 @@ abstract class AbstractMapper
 		return $this->tableGateway;
 	}
 
+	public function getAdapter(){
+		return $this->tableGateway->getAdapter();
+	}
+
 	public function fetchAll()
 	{
 		$resultSet = $this->getTableGateway()->select();
