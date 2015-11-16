@@ -1,9 +1,11 @@
 <a href="/alice/index/index">Alice system</a>
 <h2><?php echo $this->product_type->name ?></h2>
 
-<div>
-    <?php echo var_dump($this->products_by_type_id); ?>
-</div>
+<?php
+    $this->title = "Trang chủ";
+    $this->headTitle($this->title);
+?>
+
 
 <div>
     <?php echo var_dump($this->product_info); ?>
@@ -20,21 +22,6 @@
 </tr>
 <tr>
     <td><?php echo $this->escapeHtml($entity->sku); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->general_name); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->description_fk); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->product_type_fk); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->invoice_flag); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->invoice_type_fk); ?></td>
 </tr>
     <?php endforeach;?>
 </table>
