@@ -59,6 +59,33 @@ footer .footer-info {
   margin: 0 auto 0 auto;  
 }
 
+.home-floor-layout-container {
+  display: block;
+}
+
+.left-sidebar {
+  background-color: #fff000;
+  float: left;
+  width: 20%;
+}
+
+.right-sidebar {
+  background-color: #ff0000;
+}
+
+.homepage-banner {
+  background-color: #f00000;
+  float: left;
+  width: 60%;
+}
+
+.first-floor .floor-title {
+  background-color: #0000ff;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 20px;
+}
+
 /*.zf-green {
     color: #68b604;
 }
