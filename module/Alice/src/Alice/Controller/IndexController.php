@@ -3,6 +3,7 @@ namespace Alice\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Bob\Helper\ServiceConfigHelper;
+use Bob\Helper\ConcreteServiceConfig;
 
 class IndexController extends AbstractActionController
 {
@@ -14,6 +15,8 @@ class IndexController extends AbstractActionController
 			'all_general_products' => $this->fetchAllGeneralProducts(),
 			'products_by_type_id' => $this->getProductsByProductTypeId(1),
 			'product_info' => $this->getFullInformationByTypeId(1),
+			'all_invoice_types' => $this->fetchAllInvoiceTypes(),
+			'products_by_invoice_type' => $this->getProductInformationByInvoiceId(1),
 			));
 		return $view;
 	}
@@ -27,50 +30,47 @@ class IndexController extends AbstractActionController
 
 	public function getProductType($id)
 	{
-		$productTypeMapper = $this->getProductTypeServiceConfig();
+		$productTypeMapper = ConcreteServiceConfig::getProductTypeServiceConfig($this);
 		
 		$_id = (int) $id;
 		return $productTypeMapper->getById($_id);
 	}
 
-
-	private function getProductTypeServiceConfig(){
-		return ServiceConfigHelper::getServiceConfig($this,
-			'Bob\Model\DataObject\ProductType',
-			'product_type',
-			'Bob\Model\DataMapper\ProductTypeMapper');
-	}
-
 	public function fetchAllProductTypes()
 	{
-		$products = $this->getProductTypeServiceConfig();
+		$products = ConcreteServiceConfig::getProductTypeServiceConfig($this);
 		return $products->fetchAll();
 	}
 
-	private function getGeneralProductServiceConfig()
-	{
-		return ServiceConfigHelper::getServiceConfig($this,
-			'Bob\Model\DataObject\GeneralProduct',
-			'general_product',
-			'Bob\Model\DataMapper\GeneralProductMapper'
-			);
-	}
+
 
 	public function fetchAllGeneralProducts()
 	{
-		$general_products = $this->getGeneralProductServiceConfig();
+		$general_products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $general_products->fetchAll();
 	}
 
 	public function getProductsByProductTypeId($id)
 	{
-		$products = $this->getGeneralProductServiceConfig();
+		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $products->getProductsByProductTypeId($id);
 	}
 
 	public function getFullInformationByTypeId($id)
 	{
-		$product = $this->getGeneralProductServiceConfig();
+		$product = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $product->getFullInformationByTypeId($id);
+	}
+
+	public function fetchAllInvoiceTypes()
+	{
+		$invoice_types = ConcreteServiceConfig::getInvoiceTypeServiceConfig($this);
+		return $invoice_types->fetchAll();
+	}
+
+	public function getProductInformationByInvoiceId($id)
+	{
+		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
+		return $products->getProductInformationByInvoiceTypeId($id);
 	}
 }

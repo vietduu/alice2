@@ -36,8 +36,9 @@ abstract class AbstractMapper
 		$row = $set->current();
 		if (!$row){
 			throw new \Exception('Could not find the product type ID$id');
-		}
-		return $row;
+		}	
+
+		return (array)$row;
 	}
 
 	public function deleteById($id)
@@ -47,6 +48,8 @@ abstract class AbstractMapper
 
 
 	public abstract function getModelData($entity);
+
+	public abstract function getModelObject();
 
 	public function save($entity)
 	{

@@ -1,5 +1,6 @@
 <?php
 namespace Bob\Model\DataMapper;
+use Bob\Model\DataObject\GeneralProduct;
 
 class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 {
@@ -22,6 +23,11 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 			);
 	}
 
+	public function getModelObject()
+	{
+		return GeneralProduct::class;
+	}
+
 	public function getProductsByProductTypeId($id)
 	{
 		$sql = "SELECT * FROM general_product gp LEFT JOIN product_type pt "
@@ -37,13 +43,26 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 	public function getFullInformationByTypeId($id)
 	{
-		$sql = $sql = "SELECT * FROM general_product gp LEFT JOIN product_type pt "
+		$sql = "SELECT * FROM general_product gp LEFT JOIN product_type pt "
 				. "ON (gp.product_type_fk = pt.id) "
 				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
 				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
 				. "WHERE gp.general_id = ?";
 		$statement = $this->getAdapter()->query($sql);
-		$result = $statement->execute(array(4));
+		$result = $statement->execute(array($id));
+		return $result->getResource()->fetchAll();
+	}
+
+	public function getProductInformationByInvoiceTypeId($id)
+	{
+		$sql = "SELECT * FROM general_product gp LEFT JOIN invoice_type it "
+				. "ON (gp.product_type_fk = it.invoice_type_id) "
+				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
+				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
+				. "WHERE gp.invoice_flag = 1 AND it.invoice_type_id = " . $id;
+		$statement = $this->getAdapter()->query($sql);
+		$result = $statement->execute();
+
 		return $result->getResource()->fetchAll();
 	}
 }

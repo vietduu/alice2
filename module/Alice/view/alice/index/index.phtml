@@ -18,29 +18,21 @@
 </div>
 
 <div class="main-content">
-    <div class="first-floor">
+    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
+    <div class="floor">
+        <div class="floor-separater"></div>
         <div class="floor-title">
-            Hóa đơn VAT
+            <?php echo $this->escapeHtml($invoice_type_entity->invoice_type_name); ?>
+        </div>
+        <div class="product-list">
+            <?php echo var_dump($this->products_by_invoice_type); ?>
+            <?php foreach ($this->products_by_invoice_type as $pite): ?>
+                <div class="product-card">
+                    <div class="product-name"><?php echo $pite['general_name']; ?></div>
+                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath($pite['source']); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-    Main content
+<?php endforeach; ?>
 </div>
-
-<div>
-    <?php echo var_dump($this->product_info); ?>
-</div>
-
-
-<table>
-<tr>
-<th>Name</th>
-</tr>
-    <?php foreach ($this->all_general_products as $entity): ?>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->general_product_id); ?></td>
-</tr>
-<tr>
-    <td><?php echo $this->escapeHtml($entity->sku); ?></td>
-</tr>
-    <?php endforeach;?>
-</table>

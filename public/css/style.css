@@ -16,7 +16,7 @@ body {
 header {
   padding: 0;
   background-color: #000033;
-  min-height: 85px;
+  min-height: 0px;
   display: block;
   color: #ffffff;
 }
@@ -24,16 +24,19 @@ header {
 header div {
   width: 1200px;
   margin: 0 auto 0 auto;
-  padding: 20px 0px 0px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 header img {
-  padding-right: 30px;
+  padding-right: 20px;
 }
 
 header .header-title {
   display: inline-block;
   font-size: 20px;
+  font-weight: 400px;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 footer {
@@ -61,6 +64,7 @@ footer .footer-info {
 
 .home-floor-layout-container {
   display: block;
+  margin-top: 15px;
 }
 
 .left-sidebar {
@@ -79,11 +83,20 @@ footer .footer-info {
   width: 60%;
 }
 
-.first-floor .floor-title {
-  background-color: #0000ff;
-  color: #ffffff;
+.floor .floor-separater {
+
+}
+
+.floor .floor-title {
+  background-color: rgba(0,0,0,.05);
+  color: #000000;
   padding: 10px;
-  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  border-top: solid 3px #003366;
 }
 
 /*.zf-green {
