@@ -16,7 +16,7 @@ class IndexController extends AbstractActionController
 			'products_by_type_id' => $this->getProductsByProductTypeId(1),
 			'product_info' => $this->getFullInformationByTypeId(1),
 			'all_invoice_types' => $this->fetchAllInvoiceTypes(),
-			'products_by_invoice_type' => $this->getProductInformationByInvoiceId(1),
+			'products_by_invoice_type' => $this->getProductInformationByInvoiceId(2),
 			));
 		return $view;
 	}

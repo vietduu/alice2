@@ -56,7 +56,7 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 	public function getProductInformationByInvoiceTypeId($id)
 	{
 		$sql = "SELECT * FROM general_product gp LEFT JOIN invoice_type it "
-				. "ON (gp.product_type_fk = it.invoice_type_id) "
+				. "ON (gp.invoice_type_fk = it.invoice_type_id) "
 				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
 				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
 				. "WHERE gp.invoice_flag = 1 AND it.invoice_type_id = " . $id;

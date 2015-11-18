@@ -115,11 +115,11 @@ footer .footer-info {
   cursor: pointer;
   float: left;
   display: table-cell;
-  margin-bottom: 10px;
+  margin: 10px 16px;
   padding: 2px;
   text-align: center;
-  width: 258px;
-  height: 320px;
+  width: 260px;
+  height: 340px;
   position: relative;
 }
 
