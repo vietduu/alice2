@@ -42,10 +42,11 @@ header .header-title {
 footer {
   background-color: #000033;
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
   color: #ffffff;
   line-height: 20px;
   padding: 5px;
+  clear: both;
 }
 
 footer div{
@@ -83,6 +84,12 @@ footer .footer-info {
   width: 60%;
 }
 
+.floor {
+  display: block;
+  float: left;
+  width: 1200px;
+}
+
 .floor .floor-separater {
 
 }
@@ -97,6 +104,36 @@ footer .footer-info {
   font-size: 13px;
   font-weight: 700;
   border-top: solid 3px #003366;
+  display: block;
+}
+
+/*
+ * product card property
+ */
+.product-card {
+  border: 2px solid #003366;
+  cursor: pointer;
+  float: left;
+  display: table-cell;
+  margin-bottom: 10px;
+  padding: 2px;
+  text-align: center;
+}
+
+.product-name-big {
+  font-weight: 700;
+  font-size: 15px;
+  color: #4c4849;
+  line-height: 1.5pt;
+}
+
+.button-order {
+  background-color: #003366;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 0;
+  margin-top: 15px;
 }
 
 /*.zf-green {
