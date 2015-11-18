@@ -25,10 +25,9 @@
             <?php echo $this->escapeHtml($invoice_type_entity->invoice_type_name); ?>
         </div>
         <div class="product-list">
-            <?php echo var_dump($this->products_by_invoice_type); ?>
             <?php foreach ($this->products_by_invoice_type as $pite): ?>
                 <div class="product-card">
-                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath($pite['source']); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
+                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath('/img/kiendong_logo.png'); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
                     <div class="product-name">
                         <span class="product-name-big" title="<?php echo $pite['general_name']; ?>"><?php echo $pite['general_name']; ?></span>
                     </div>

@@ -118,6 +118,9 @@ footer .footer-info {
   margin-bottom: 10px;
   padding: 2px;
   text-align: center;
+  width: 258px;
+  height: 320px;
+  position: relative;
 }
 
 .product-name-big {
@@ -133,7 +136,10 @@ footer .footer-info {
   text-transform: uppercase;
   text-align: center;
   padding: 8px 0;
-  margin-top: 15px;
+  display: block;
+  width: 98.5%;
+  position: absolute;
+  bottom: 2px;
 }
 
 /*.zf-green {
