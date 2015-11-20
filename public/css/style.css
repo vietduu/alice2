@@ -104,17 +104,18 @@ footer .footer-info {
 
 .right-sidebar span {
   display: block;
-  line-height: 2.5pt;
+  line-height: 6.0pt;
   padding: 10px 0;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 .right-sidebar .sidebar-title {
   text-transform: uppercase;
   background-color: #C0C0C0;
   border-left: solid 2px #003366;
-  margin-left: 0px;
+  padding-left: 10px;
 }
+
 
 .homepage-banner {
   background-color: #f00000;
