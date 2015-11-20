@@ -10,7 +10,7 @@ class IndexController extends AbstractActionController
 	public function indexAction()
 	{
 		$view = new ViewModel(array(
-			'all_products' => $this->fetchAllProductTypes(),
+			'all_product_types' => $this->fetchAllProductTypes(),
 			'product_type' => $this->getProductType(1),
 			'all_general_products' => $this->fetchAllGeneralProducts(),
 			'products_by_type_id' => $this->getProductsByProductTypeId(1),

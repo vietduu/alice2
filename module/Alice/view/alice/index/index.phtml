@@ -5,7 +5,13 @@
 
 <div class="home-floor-layout-container">
 <div class="left-sidebar">
-    Left side
+    <ul>
+    <?php foreach ($this->all_product_types as $ptype): ?>
+        <li>
+            <a class="category-tree" href="<?php echo $this->url('home'); ?>"><?php echo $this->escapeHtml($ptype->name); ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
 </div>
 
 <div class="homepage-banner">
@@ -13,7 +19,8 @@
 </div>
 
 <div class="right-sidebar">
-    Right side
+    <span class="sidebar-title"> Hotline:</span>
+    <span>0907 164 787</span>
 </div>
 </div>
 
