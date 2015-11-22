@@ -6,4 +6,8 @@ $(document).ready(function(){
 		$(this).children("a.category-tree").css("text-decoration", "none");
 		$(this).children("a.category-tree").css("color","#000");
 	});
+
+	$(".homepage-banner").css("width", "62%");
+	$("header .header-navigation").css("line-height", $("header").css("height"));
+	$("header .header-title").css("line-height", $("header").css("height"));
 });

@@ -19,6 +19,7 @@ header {
   min-height: 0px;
   display: block;
   color: #ffffff;
+  position: relative;
 }
 
 header div {
@@ -37,6 +38,22 @@ header .header-title {
   font-weight: 400px;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+}
+
+
+header .header-navigation {
+  text-transform: uppercase;
+  list-style-type: none;
+  float: right;
+  vertical-align: middle;
+}
+
+
+
+header .header-navigation li {
+  float: left;
+  margin: auto 25px;
+  font-weight: 700;
 }
 
 footer {
@@ -58,6 +75,11 @@ footer .footer-info {
   text-align: center;
 }
 
+ul {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
 .container{
   width: 1200px;
   margin: 0 auto 0 auto;  
@@ -72,7 +94,8 @@ footer .footer-info {
   text-transform: uppercase;
   float: left;
   display: block;
-  width: 20%;
+  width: 15%;
+  border-right: solid 1px #C0C0C0;
 }
 
 .left-sidebar ul {
@@ -96,23 +119,23 @@ footer .footer-info {
   padding-left: 20px;
 }
 
-.right-sidebar {
+.ups {
   float: right;
   width: 20%;
   border-left: solid 1px #C0C0C0;
 }
 
-.right-sidebar span {
+.ups span {
   display: block;
-  line-height: 6.0pt;
+  line-height: 12.0pt;
   padding: 10px 0;
   padding-left: 10px;
 }
 
-.right-sidebar .sidebar-title {
+.ups .ups-title {
   text-transform: uppercase;
-  background-color: #C0C0C0;
-  border-left: solid 2px #003366;
+  background-color: rgba(0,0,0,0.06);
+  border-left: solid 3px #003366;
   padding-left: 10px;
 }
 
@@ -120,7 +143,6 @@ footer .footer-info {
 .homepage-banner {
   background-color: #f00000;
   float: left;
-  width: 60%;
 }
 
 .floor {
@@ -180,6 +202,7 @@ footer .footer-info {
   position: absolute;
   bottom: 2px;
 }
+
 
 /*.zf-green {
     color: #68b604;
