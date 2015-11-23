@@ -52,6 +52,16 @@ return array(
                     ),
                 ),
             ),
+            'product' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/product/[:id]',
+                    'defaults' => array(
+                        'controller' => 'Alice\Controller\Index',
+                        'action'    => 'product',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(

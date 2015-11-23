@@ -8,6 +8,6 @@ $(document).ready(function(){
 	});
 
 	$(".homepage-banner").css("width", "62%");
-	$("header .header-navigation").css("line-height", $("header").css("height"));
-	$("header .header-title").css("line-height", $("header").css("height"));
+//	$(".header-navigation").css("line-height", $("header").css("height"));
+//	$(".header-title").css("line-height", $("header").css("height"));
 });

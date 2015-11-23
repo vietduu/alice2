@@ -37,7 +37,11 @@
                         <span class="product-name-big" title="<?php echo $pite['general_name']; ?>"><?php echo $pite['general_name']; ?></span>
                     </div>
                     <div class="button-order">
-                        <span class="button-order-text">Đặt hàng</span>
+                        <span class="button-order-text"><a href="<?php echo $this->url('product', array(
+                            'controller' => 'index',
+                            'action' => 'product',
+                            'id' => $pite['general_id']
+                        )); ?>">Chi tiết</a></span>
                     </div>
                 </div>
             <?php endif; ?>

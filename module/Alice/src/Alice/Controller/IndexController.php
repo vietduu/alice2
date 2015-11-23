@@ -21,11 +21,22 @@ class IndexController extends AbstractActionController
 		return $view;
 	}
 
-	public function registerAction()
+	public function productAction()
 	{
 		$view = new ViewModel();
-		$view->setTemplate('bob/pet/index');
+		$request = $this->getRequest();
+		$product_id = (int)$this->params()->fromRoute('product',4);
+		$view->product_id = $product_id;
+		$product_info = $this->getProductById($product_id);
+		$view->currentProduct = $product_info;
 		return $view;
+	}
+
+	public function getProductById($id)
+	{
+		$productById = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
+		$_id = (int) $id;
+		return $productById->getById($_id);
 	}
 
 	public function getProductType($id)

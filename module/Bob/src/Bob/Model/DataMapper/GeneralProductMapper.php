@@ -66,4 +66,16 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 		return $result->getResource()->fetchAll();
 	}
+
+	public function getById($id)
+	{
+		$id = (int) $id;
+		$set = $this->getTableGateway()->select(array('general_id' => $id));
+		$row = $set->current();
+		if (!$row){
+			throw new \Exception('Could not find the product type ID$id');
+		}	
+
+		return (array)$row;
+	}
 }

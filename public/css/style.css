@@ -16,7 +16,7 @@ body {
 header {
   padding: 0;
   background-color: #000033;
-  min-height: 0px;
+  height: 80px;
   display: block;
   color: #ffffff;
   position: relative;
@@ -28,16 +28,23 @@ header div {
   padding: 10px 0px 10px 0px;
 }
 
+header .header-logo {
+  float: left;
+  display: block;
+}
+
 header img {
+  width: 60px;
   padding-right: 20px;
 }
 
 header .header-title {
-  display: inline-block;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 400px;
+  float: left;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+  line-height: 60px;
 }
 
 
@@ -45,15 +52,21 @@ header .header-navigation {
   text-transform: uppercase;
   list-style-type: none;
   float: right;
-  vertical-align: middle;
+  line-height: 60px;
 }
 
 
 
 header .header-navigation li {
   float: left;
-  margin: auto 25px;
+  margin: auto 40px;
   font-weight: 700;
+  font-size: 14px;
+}
+
+header a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 footer {
@@ -201,6 +214,11 @@ ul {
   width: 98.5%;
   position: absolute;
   bottom: 2px;
+}
+
+.button-order a {
+  text-decoration: none;
+  color: #fff;
 }
 
 
