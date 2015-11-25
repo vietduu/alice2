@@ -1,11 +1,12 @@
 <?php
 namespace Alice\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Router\Http\Query;
 use Zend\View\Model\ViewModel;
 use Bob\Helper\ServiceConfigHelper;
 use Bob\Helper\ConcreteServiceConfig;
 
-class IndexController extends AbstractActionController
+class ProductController extends AbstractActionController
 {
 	public function indexAction()
 	{
@@ -25,7 +26,7 @@ class IndexController extends AbstractActionController
 	{
 		$view = new ViewModel();
 		$request = $this->getRequest();
-		$product_id = (int)$this->params()->fromRoute('id');
+		$product_id = (int)$request->getQuery('id');
 		$view->product_id = $product_id;
 		$product_info = $this->getProductById($product_id);
 		$view->currentProduct = $product_info;

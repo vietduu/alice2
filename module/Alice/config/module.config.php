@@ -38,43 +38,35 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'product' => array(
+           /*       'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action][/:id]]',
+                            'route'    => '/[:controller[/:action]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id'         => '[0-9]+',
                             ),
                             'defaults' => array(
-                                'controller' => 'Alice\Controller\IndexController',
-                                'action'     => 'product',
-                                'id'         => 1
+                            ),
+                        ),
+                    ),*/
+                    'product' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/product[/:id]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Alice\Controller',
+                                'controller'    => 'Index',
+                                'action'    => 'product',
                             ),
                         ),
                     ),
                 ),
             ),
-  /*        'product' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/product?id=[:id]',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Alice\Controller',
-                        'controller' => 'Index',
-                        'action'    => 'product',
-                        'id' => 4,
-                    ),
-                    'constraints' => array(
-                        'key' => '[a-z0-9]+',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'query' => array('type' => 'query'),
-                ),
-            ),*/
         ),
     ),
     'service_manager' => array(
@@ -109,7 +101,7 @@ return array(
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
-            'product' => __DIR__ . '/../view/product.phtml',
+//            'alice/index/product' => __DIR__ . '/../view/alice/index/product.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/header' => __DIR__ . '/../view/cms/header.phtml',
@@ -127,4 +119,12 @@ return array(
             ),
         ),
     ),
+    'navigation' => [
+        'default' => [
+            'home' => [
+                'label' => 'Home',
+                'route' => 'home'
+            ],
+        ],
+    ],
 );
