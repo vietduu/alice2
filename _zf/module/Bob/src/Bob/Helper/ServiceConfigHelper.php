@@ -1,7 +1,6 @@
 <?php
 namespace Bob\Helper;
 
-
 class ServiceConfigHelper
 {
 	public static function getServiceConfig($owner, $modelName, $table, $mapper)
