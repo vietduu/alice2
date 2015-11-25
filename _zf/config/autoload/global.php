@@ -27,6 +27,9 @@ return array(
     				=> 'Zend\Db\Adapter\AdapterServiceFactory',
     		),
     	),
+    'view_manager' => array(
+        'base_path' => 'public/',
+    ),
 );
 
 /*'Zend\Db\Adapter\Adapter' => function ($sm)

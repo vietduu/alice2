@@ -21,21 +21,6 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'alice' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/alice',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Alice\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
                 'may_terminate' => true,
                 'child_routes' => array(
            /*       'default' => array(
@@ -53,7 +38,7 @@ return array(
                     'product' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/product[/:id]',
+                            'route' => '[:action[/:id]]',
                             'constraints' => array(
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '[0-9]+',
@@ -64,6 +49,21 @@ return array(
                                 'action'    => 'product',
                             ),
                         ),
+                    ),
+                ),
+            ),
+            // The following is a route to simplify getting started creating
+            // new controllers and actions without needing to create a new
+            // module. Simply drop new controllers in, and you can access them
+            // using the path /application/:controller/:action
+            'alice' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Alice\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
                     ),
                 ),
             ),
@@ -102,12 +102,14 @@ return array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
 //            'alice/index/product' => __DIR__ . '/../view/alice/index/product.phtml',
+//            'base_path' => '/path/',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/header' => __DIR__ . '/../view/cms/header.phtml',
             'cms/footer' => __DIR__ . '/../view/cms/footer.phtml',
             'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
         ),
+//        'base_path' => 'public/',
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
