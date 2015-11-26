@@ -28,7 +28,10 @@ return array(
     		),
     	),
     'view_manager' => array(
-        'base_path' => 'public/',
+        'scheme' => 'https',
+        'port' => null,
+        'host' => 'localhost',
+        'base_path' => '/alice2/public/',
     ),
 );
 
