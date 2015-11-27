@@ -27,17 +27,17 @@ class IndexController extends AbstractActionController
 		$request = $this->getRequest();
 		$product_id = (int)$this->params()->fromRoute('id');
 		$view->product_id = $product_id;
-		$product_info = $this->getProductById($product_id);
+		$product_info = $this->getFullInformationById($product_id);
 		$view->currentProduct = $product_info;
 
 		return $view;
 	}
 
-	public function getProductById($id)
+	public function getFullInformationById($id)
 	{
 		$productById = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		$_id = (int) $id;
-		return $productById->getById($_id);
+		return $productById->getFullInformationById($_id);
 	}
 
 	public function getProductType($id)

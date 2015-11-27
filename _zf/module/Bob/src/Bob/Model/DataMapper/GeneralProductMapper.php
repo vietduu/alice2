@@ -47,7 +47,7 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 				. "ON (gp.product_type_fk = pt.id) "
 				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
 				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
-				. "WHERE gp.general_id = ?";
+				. "WHERE pt.id = ?";
 		$statement = $this->getAdapter()->query($sql);
 		$result = $statement->execute(array($id));
 		return $result->getResource()->fetchAll();
@@ -77,5 +77,18 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		}	
 
 		return (array)$row;
+	}
+
+	public function getFullInformationById($id)
+	{
+		$sql = "SELECT * FROM general_product gp "
+				. "LEFT JOIN product_type pt ON (gp.product_type_fk = pt.id) "
+				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
+				. "LEFT JOIN invoice_type it ON (it.invoice_type_id = gp.invoice_type_fk) "
+				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
+				. "WHERE gp.general_id = ?";
+		$statement = $this->getAdapter()->query($sql);
+		$result = $statement->execute(array($id));
+		return $result->getResource()->fetchAll();
 	}
 }

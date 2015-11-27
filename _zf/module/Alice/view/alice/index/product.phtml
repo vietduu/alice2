@@ -1,9 +1,42 @@
 <?php
-    $this->title = "Sản phẩm";
+	$product = $this->currentProduct[0];
+    $this->title = $product['general_name'];
     $this->headTitle($this->title);
 ?>
 
 <div>
-	<?php echo var_dump($this->product_id); ?>
-	<?php echo $this->currentProduct['general_name']; ?>
+<!--	<?php echo var_dump($product); ?> -->
+
+	<div class="product-detail-page">
+	<div class="header-breadcrumb">
+	<ul>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->escapeHtml($this->basePath().'/'.$product['product_type_url']); ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a>
+
+			</span>
+		</li>
+		<?php if (1 == $product['invoice_flag']): ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->escapeHtml($this->basePath().'/'.$product['product_type_url'].'/'.$product['invoice_type_url']); ?>" title="<?php echo $product['invoice_type_name']; ?>"><?php echo $product['invoice_type_name']; ?></a>
+			</span>
+		</li>
+		<?php endif; ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<?php echo $product['general_name']; ?>
+			</span>
+		</li>
+	</ul>
+
+	</div>
+	<div class="product-info">
+		<h1 id="product-title"><?php echo $product['general_name']; ?></h1>
+	</div>
+	<div class="product-description-wrapper">
+		<span class="product-description-title">Thông tin sản phẩm <?php echo $product['general_name']; ?></span>
+	</div>
+
+	</div>
 </div>

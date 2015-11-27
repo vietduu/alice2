@@ -193,7 +193,7 @@ ul {
   padding: 2px;
   text-align: center;
   width: 260px;
-  height: 440px;
+  height: 340px;
   position: relative;
 }
 
@@ -201,9 +201,7 @@ ul {
   font-weight: 700;
   font-size: 15px;
   color: #4c4849;
-  line-height: 15pt;
-  position: relative;
-  top: 7px;
+  line-height: 1.5pt;
 }
 
 .button-order {
@@ -223,57 +221,6 @@ ul {
   color: #fff;
 }
 
-
-/*
- * header-breadcrumb css
- */
-.header-breadcrumb {
-  line-height: 36px;
-  display: inline-block;
-  font-weight: 400;
-  font-size: 15px;
-}
-
-.header-breadcrumb ul {
-  list-style-type: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-padding-start: 0;
-}
-
-.header-breadcrumb ul li {
-  float: left;
-  display: block;
-  margin-right: 30px;
-}
-
-.header-breadcrumb ul li a {
-  color: #199cb7;
-  text-decoration: none;
-}
-
-#product-title {
-    line-height: 26px;
-    font-size: 24px;
-    font-weight: normal;
-}
-
-.product-info {
-  height: 600px;
-  padding: 15px;
-}
-
-.product-description-wrapper {
-  height: 300px;
-  border-top: solid #000 2px;
-  padding: 15px;
-}
-
-.product-description-title {
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 700;
-}
 
 /*.zf-green {
     color: #68b604;
