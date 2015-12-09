@@ -51,6 +51,36 @@ $(document).ready(function(){
 		alert("a");
 		$(document).not($("#product-thumbnail")).click(closePopup());
 	}
+
+
+	/*
+	 * scroll the homepage banner
+	 */
+/*	var numberOfBanner = $(".homepage-banner img").length;
+	
+	for (var i = 0; i < numberOfBanner; i++){
+		$(".homepage-banner img").click(function(){
+			$(".homepage-banner img").next().css("display", "block");
+			$(".homepage-banner img").css("display", "none");
+		});
+
+		if (numberOfBanner == i){
+			i = 0;
+		}
+	}*/
+	var currentBanner = $("#first-banner");
+	
+	currentBanner.click(function(){
+		if (!currentBanner.next().length){
+			currentBanner.css("display","none");
+			currentBanner = $("#first-banner");
+			currentBanner.css("display","block");
+		}
+	});
+
+	currentBanner.css("display","none");
+	currentBanner = currentBanner.next();
+
 });
 
 function openPopup() {
