@@ -154,14 +154,8 @@ ul {
 
 
 .homepage-banner {
+  background-color: #f00000;
   float: left;
-  position: relative;
-}
-
-.homepage-banner img {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .floor {
@@ -199,7 +193,7 @@ ul {
   padding: 2px;
   text-align: center;
   width: 260px;
-  height: 440px;
+  height: 340px;
   position: relative;
 }
 
@@ -207,9 +201,7 @@ ul {
   font-weight: 700;
   font-size: 15px;
   color: #4c4849;
-  line-height: 15pt;
-  position: relative;
-  top: 7px;
+  line-height: 1.5pt;
 }
 
 .button-order {
@@ -230,84 +222,35 @@ ul {
 }
 
 
-/*
- * header-breadcrumb css
- */
-.header-breadcrumb {
-  line-height: 36px;
-  display: inline-block;
-  font-weight: 400;
-  font-size: 15px;
+/*.zf-green {
+    color: #68b604;
 }
 
-.header-breadcrumb ul {
-  list-style-type: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-padding-start: 0;
+.btn-success {
+  background-color: #57a900;
+  background-image: -moz-linear-gradient(top, #70d900, #57a900);
+  background-image: -ms-linear-gradient(top, #70d900, #57a900);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+  background-image: -o-linear-gradient(top, #70d900, #57a900);
+  background-image: linear-gradient(top, #70d900, #57a900);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
 }
 
-.header-breadcrumb ul li {
-  float: left;
-  display: block;
-  margin-right: 30px;
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  background-color: #57a900;
 }
 
-.header-breadcrumb ul li a {
-  color: #199cb7;
-  text-decoration: none;
+.btn-success:active, .btn-success.active {
+  background-color: #57a900;
 }
 
-#product-title {
-    line-height: 26px;
-    font-size: 24px;
-    font-weight: normal;
-}
-
-.product-info {
-  padding: 15px;
-}
-
-.product-description-wrapper {
-  border-top: solid #000 2px;
-  padding: 15px;
-}
-
-.product-description-title {
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.product-description-content table {
-  margin: 15px 0 40px 0;
-  float: left;
-}
-
-.product-description-content td {
-  padding: 15px 40px 15px 15px;
-  margin-right: 20px;
-}
-
-.product-imagebox-layout {
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.product-imagebox-layout #product-image {
-  margin: 10px auto;
-  cursor: zoom-in;
-}
-
-
-#product-thumbnail {
-width:100%;
-height:100%;
-opacity:1;
-display:none;
-position:fixed;
-background-color:rgba(0,0,0,0.8);
-overflow:visible;
-text-align: center;
-vertical-align: center;
-}
+div.container a.brand {
+    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
+    margin-left: 0;
+    padding: 8px 20px 12px 40px;
+}*/

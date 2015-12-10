@@ -1,0 +1,54 @@
+<?php
+    $this->title = "Trang chủ";
+    $this->headTitle($this->title);
+?>
+
+<div class="home-floor-layout-container">
+<div class="left-sidebar">
+    <ul>
+    <?php foreach ($this->all_product_types as $ptype): ?>
+        <li>
+            <a class="category-tree" href="<?php echo $this->url('home'); ?>"><?php echo $this->escapeHtml($ptype->name); ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+
+<div class="homepage-banner">
+    <img id="first-banner" src="<?php echo $this->basePath('/img/homepage_banner_5.jpg'); ?>" title="homepage banner" alt="homepage banner" />
+    <img src="<?php echo $this->basePath('/img/homepage_banner_4.jpg'); ?>" title="homepage banner" alt="homepage banner" />
+    <img src="<?php echo $this->basePath('/img/homepage_banner_3.jpg'); ?>" title="homepage banner" alt="homepage banner" />
+</div>
+
+<?php echo $this->partial('cms/ups'); ?>
+</div>
+
+<div class="main-content">
+    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
+    <div class="floor">
+        <div class="floor-separater"></div>
+        <div class="floor-title">
+            <?php echo $this->escapeHtml($invoice_type_entity->invoice_type_name); ?>
+        </div>
+        <div class="product-list">
+            <?php foreach ($this->products_by_invoice_type as $pite): ?>
+                <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
+                <div class="product-card">
+                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath('/img/invoice/1mauden250x357.jpg'); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
+                    <div class="product-name">
+                        <span class="product-name-big" title="<?php echo $pite['general_name']; ?>"><?php echo $pite['general_name']; ?></span>
+                    </div>
+                    <div class="button-order">
+                        <span class="button-order-text"><a id="detail-link" href="<?php echo $this->url('home/product', array(
+                            'controller' => 'index',
+                            'action' => 'product',
+                            'id' => $pite['general_id']
+                        ),null,true); ?>">Chi tiết</a></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>

@@ -1,0 +1,68 @@
+<?php
+	$product = $this->currentProduct[0];
+    $this->title = $product['general_name'];
+    $this->headTitle($this->title);
+?>
+
+<div>
+	<div class="product-detail-page">
+	<div class="header-breadcrumb">
+	<ul>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->escapeHtml($this->basePath().'/'.$product['product_type_url']); ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a>
+
+			</span>
+		</li>
+		<?php if (1 == $product['invoice_flag']): ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->escapeHtml($this->basePath().'/'.$product['product_type_url'].'/'.$product['invoice_type_url']); ?>" title="<?php echo $product['invoice_type_name']; ?>"><?php echo $product['invoice_type_name']; ?></a>
+			</span>
+		</li>
+		<?php endif; ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<?php echo $product['general_name']; ?>
+			</span>
+		</li>
+	</ul>
+	</div>
+	
+	<div class="product-info">
+		<h1 id="product-title"><?php echo $product['general_name']; ?></h1>
+	</div>
+
+	<div class="product-imagebox-layout" id="imagebox">
+		<span id="product-thumbnail" style="display:none">
+			<img src="<?php echo $this->basePath('/img/invoice/1mauden.jpg'); ?>" title="<?php echo $product['title']; ?>" alt="<?php echo $product['alt_tag']; ?>"/>
+		</span>
+		<span id="product-image">
+			<img src="<?php echo $this->basePath('/img/invoice/1mauden.jpg'); ?>" title="<?php echo $product['title']; ?>" alt="<?php echo $product['alt_tag']; ?>" width="30%" />
+		</span>
+	</div>
+
+	<div class="product-description-wrapper">
+		<span class="product-description-title">Thông tin sản phẩm <?php echo $product['general_name']; ?></span>
+		<div class="product-description-content">
+		<table>
+			<tbody>
+		<?php 
+			$descriptionContent = trim($product['description_content'],".");
+			$contentExploder = explode(".",$descriptionContent); 
+			foreach ($contentExploder as $contentEntity):
+				$contentSeparater = explode(":",trim($contentEntity)); ?>
+				<tr>
+					<?php foreach ($contentSeparater as $specificationColumn): ?>
+						<td>
+							<?php echo trim($specificationColumn); ?>
+						</td>
+					<?php endforeach; ?>
+				</tr>
+		<?php endforeach; ?>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	</div>
+</div>
