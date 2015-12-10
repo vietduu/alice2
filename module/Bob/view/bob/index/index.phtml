@@ -1,12 +1,36 @@
 <a href="/bob/index/index">Bob system</a>
 <h2><?php echo $this->product_type->name ?></h2>
+
+<div>
+	<?php echo var_dump($this->products_by_type_id); ?>
+</div>
+
+
 <table>
 <tr>
 <th>Name</th>
 </tr>
-	<?php foreach ($this->all_products as $entity): ?>
+	<?php foreach ($this->all_general_products as $entity): ?>
 <tr>
-	<td><?php echo $this->escapeHtml($entity->name); ?></td>
+	<td><?php echo $this->escapeHtml($entity->general_product_id); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->sku); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->general_name); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->description_fk); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->product_type_fk); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->invoice_flag); ?></td>
+</tr>
+<tr>
+	<td><?php echo $this->escapeHtml($entity->invoice_type_fk); ?></td>
 </tr>
 	<?php endforeach;?>
 </table>

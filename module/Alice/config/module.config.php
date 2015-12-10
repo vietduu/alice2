@@ -52,6 +52,16 @@ return array(
                     ),
                 ),
             ),
+            'product' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/product/[:id]',
+                    'defaults' => array(
+                        'controller' => 'Alice\Controller\Index',
+                        'action'    => 'product',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -89,6 +99,9 @@ return array(
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'cms/header' => __DIR__ . '/../view/cms/header.phtml',
+            'cms/footer' => __DIR__ . '/../view/cms/footer.phtml',
+            'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

@@ -1,44 +1,52 @@
-<div class="jumbotron">
-    <h1><?php echo sprintf($this->translate('Welcome to %sZend Framework 2%s'), '<span class="zf-green">', '</span>') ?></h1>
-    <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZF2 Skeleton Application%s. You are currently running Zend Framework version %s. This skeleton can serve as a simple starting point for you to begin building your application on ZF2.'), '<a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
-    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zf2" target="_blank"><?php echo $this->translate('Fork Zend Framework 2 on GitHub') ?> &raquo;</a></p>
+<?php
+    $this->title = "Trang chủ";
+    $this->headTitle($this->title);
+?>
+
+<div class="home-floor-layout-container">
+<div class="left-sidebar">
+    <ul>
+    <?php foreach ($this->all_product_types as $ptype): ?>
+        <li>
+            <a class="category-tree" href="<?php echo $this->url('home'); ?>"><?php echo $this->escapeHtml($ptype->name); ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
 </div>
 
-<div class="row">
+<div class="homepage-banner">
+    Homepage banner
+</div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Follow Development') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('Zend Framework 2 is under active development. If you are interested in following the development of ZF2, there is a special ZF2 portal on the official Zend Framework website which provides links to the ZF2 %swiki%s, %sdev blog%s, %sissue tracker%s, and much more. This is a great resource for staying up to date with the latest developments!'), '<a href="http://framework.zend.com/wiki/display/ZFDEV2/Home">', '</a>', '<a href="http://framework.zend.com/zf2/blog">', '</a>', '<a href="https://github.com/zendframework/zf2/issues">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="http://framework.zend.com/zf2" target="_blank"><?php echo $this->translate('ZF2 Development Portal') ?> &raquo;</a></p>
-            </div>
+<?php echo $this->partial('cms/ups'); ?>
+</div>
+
+<div class="main-content">
+    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
+    <div class="floor">
+        <div class="floor-separater"></div>
+        <div class="floor-title">
+            <?php echo $this->escapeHtml($invoice_type_entity->invoice_type_name); ?>
+        </div>
+        <div class="product-list">
+            <?php foreach ($this->products_by_invoice_type as $pite): ?>
+                <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
+                <div class="product-card">
+                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath('/img/kiendong_logo.png'); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
+                    <div class="product-name">
+                        <span class="product-name-big" title="<?php echo $pite['general_name']; ?>"><?php echo $pite['general_name']; ?></span>
+                    </div>
+                    <div class="button-order">
+                        <span class="button-order-text"><a href="<?php echo $this->url('product', array(
+                            'controller' => 'index',
+                            'action' => 'product',
+                            'id' => $pite['general_id']
+                        )); ?>">Chi tiết</a></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php endforeach; ?>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Discover Modules') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('The community is working on developing a community site to serve as a repository and gallery for ZF2 modules. The project is available %son GitHub%s. The site is currently live and currently contains a list of some of the modules already available for ZF2.'), '<a href="https://github.com/zendframework/modules.zendframework.com">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="http://modules.zendframework.com/" target="_blank"><?php echo $this->translate('Explore ZF2 Modules') ?> &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Help &amp; Support') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('If you need any help or support while developing with ZF2, you may reach us via IRC: %s#zftalk on Freenode%s. We\'d love to hear any questions or feedback you may have regarding the beta releases. Alternatively, you may subscribe and post questions to the %smailing lists%s.'), '<a href="irc://irc.freenode.net/zftalk">', '</a>', '<a href="http://framework.zend.com/wiki/display/ZFDEV/Mailing+Lists">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="http://webchat.freenode.net?channels=zftalk" target="_blank"><?php echo $this->translate('Ping us on IRC') ?> &raquo;</a></p>
-            </div>
-        </div>
-    </div>
+<?php endforeach; ?>
 </div>

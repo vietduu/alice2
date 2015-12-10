@@ -1,12 +1,12 @@
 <?php
 namespace Bob\Model\DataMapper;
 
-use Bob\Model\DataObject\ProductType;
+use Bob\Model\DataObject\InvoiceType;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
-class ProductTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
+class InvoiceTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 {
 	public function __construct($tableGateway)
 	{
@@ -15,15 +15,15 @@ class ProductTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 	public function getModelData($entity)
 	{
-		$this->settype($entity, 'ProductType');
+		$this->settype($entity, 'InvoiceType');
 		return array(
-			'id' => $entity->id,
-			'name' => $entity->name,
+			'invoice_type_id' => $entity->invoice_type_id,
+			'invoice_type_name' => $entity->invoice_type_name,
 			);
 	}
 
 	public function getModelObject()
 	{
-		return ProductType::class;
+		return InvoiceType::class;
 	}
 }

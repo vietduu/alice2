@@ -1,7 +1,7 @@
 <?php
 namespace Bob\Model\DataObject;
 
-class ProductType
+class ProductType implements \Bob\Model\InterfaceHelper\ModelInterface
 {
 	public $id;
 	public $name;
