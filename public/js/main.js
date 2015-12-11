@@ -73,17 +73,37 @@ $(document).ready(function(){
 			i = 0;
 		}
 	}*/
-/*	var currentBanner = $("#first-banner");
+
+//	$(".homepage-banner img").css("display","none");
+
+	var currentBanner;
 	
-	currentBanner.click(function(){
-		if (!currentBanner.next().length){
-			currentBanner.css("display","none");
-			currentBanner = $("#first-banner");
-			currentBanner.css("display","block");
+/*	currentBanner.click(function(){
+		currentBanner.addClass("banner-inactive");
+		currentBanner = currentBanner.siblings().eq(0);
+		currentBanner.removeClass("banner-inactive");
+	});*/
+
+	$("#right-arrow").click(function(){
+		currentBanner = $(".banner-scroll img.active");
+		if (currentBanner.next().length > 0){
+			currentBanner.removeClass("active");
+			currentBanner = currentBanner.next();
+			currentBanner.addClass("active");
 		}
 	});
 
-	currentBanner.css("display","none");
-	currentBanner = currentBanner.next();*/
+	$("#left-arrow").click(function(){
+		currentBanner = $(".banner-scroll img.active");
+		if (currentBanner.prev().length > 0){
+			currentBanner.removeClass("active");
+			currentBanner = currentBanner.prev();
+			currentBanner.addClass("active");
+		}
+	});
+
+
+//	currentBanner.css("display","none");
+//	currentBanner = currentBanner.next();
 
 });

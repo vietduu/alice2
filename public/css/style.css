@@ -159,9 +159,31 @@ ul {
 }
 
 .homepage-banner img {
+  clear: both;
   position: absolute;
+  display: none;
   top: 0;
-  left: 0;
+}
+
+.banner-scroll img.active {
+  display: block;
+}
+
+.homepage-banner #left-arrow {
+  position: absolute;
+  top: 210px;
+  z-index: 1;
+  left: 0;  
+  cursor: pointer;
+}
+
+
+.homepage-banner #right-arrow {
+  position: absolute;
+  top: 210px;
+  z-index: 1;
+  left: 740px;
+  cursor: pointer;
 }
 
 .floor {
@@ -311,3 +333,4 @@ overflow:visible;
 text-align: center;
 vertical-align: center;
 }
+
