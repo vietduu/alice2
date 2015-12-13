@@ -27,8 +27,12 @@ class IndexController extends AbstractActionController
 		$request = $this->getRequest();
 		$product_id = (int)$this->params()->fromQuery('id');
 		$view->product_id = $product_id;
+		
 		$product_info = $this->getFullInformationById($product_id);
 		$view->currentProduct = $product_info;
+
+		$images = $this->getImagesFromProductId($product_id);
+		$view->images = $images;
 
 		return $view;
 	}
@@ -84,5 +88,11 @@ class IndexController extends AbstractActionController
 	{
 		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $products->getProductInformationByInvoiceTypeId($id);
+	}
+
+	public function getImagesFromProductId($id)
+	{
+		$images = ConcreteServiceConfig::getImagesServiceConfig($this);
+		return $images->getImagesFromProductId($id);
 	}
 }

@@ -15,13 +15,13 @@
 </div>
 
 <div class="homepage-banner">
-    <span id="left-arrow">left arrow</span>
+    <div id="left-arrow"></div>
     <div class="banner-scroll">
     <img class="active" src="<?php echo $this->basePath('/img/homepage_banner_4.jpg'); ?>" title="homepage banner" alt="homepage banner" />
     <img src="<?php echo $this->basePath('/img/homepage_banner_3.jpg'); ?>" title="homepage banner" alt="homepage banner" />
     <img id="first-banner" src="<?php echo $this->basePath('/img/homepage_banner_5.jpg'); ?>" title="homepage banner" alt="homepage banner" />
     </div>
-    <span id="right-arrow">right arrow</span>
+    <div id="right-arrow"></div>
 </div>
 
 <?php echo $this->partial('cms/ups'); ?>
@@ -38,7 +38,7 @@
             <?php foreach ($this->products_by_invoice_type as $pite): ?>
                 <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
                 <div class="product-card">
-                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath('/img/invoice/1mauden250x357.jpg'); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>"/> </a>
+                    <a class="product-card-img" href="<?php echo $pite['source']; ?>"><img src="<?php echo $this->basePath($pite['source']); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>" width="250px" /> </a>
                     <div class="product-name">
                         <span class="product-name-big" title="<?php echo $pite['general_name']; ?>"><?php echo $pite['general_name']; ?></span>
                     </div>

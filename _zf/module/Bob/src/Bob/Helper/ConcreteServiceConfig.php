@@ -28,4 +28,11 @@ class ConcreteServiceConfig
 			'product_type',
 			'Bob\Model\DataMapper\ProductTypeMapper');
 	}
+
+	public static function getImagesServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\Images',
+			'images',
+			'Bob\Model\DataMapper\ImagesMapper');
+	}
 }

@@ -16,10 +16,6 @@ $(document).ready(function(){
        	return true;
 	});
 
-//	$(".homepage-banner").css("width", "62%");
-//	$(".header-navigation").css("line-height", $("header").css("height"));
-//	$(".header-title").css("line-height", $("header").css("height"));
-
 	var screenHeight = window.innerHeight - 30;
 
 	var ratio = $("#product-image img").width() * 1.0 / $("#product-image img").height();
@@ -61,28 +57,7 @@ $(document).ready(function(){
 	/*
 	 * scroll the homepage banner
 	 */
-/*	var numberOfBanner = $(".homepage-banner img").length;
-	
-	for (var i = 0; i < numberOfBanner; i++){
-		$(".homepage-banner img").click(function(){
-			$(".homepage-banner img").next().css("display", "block");
-			$(".homepage-banner img").css("display", "none");
-		});
-
-		if (numberOfBanner == i){
-			i = 0;
-		}
-	}*/
-
-//	$(".homepage-banner img").css("display","none");
-
 	var currentBanner;
-	
-/*	currentBanner.click(function(){
-		currentBanner.addClass("banner-inactive");
-		currentBanner = currentBanner.siblings().eq(0);
-		currentBanner.removeClass("banner-inactive");
-	});*/
 
 	$("#right-arrow").click(function(){
 		currentBanner = $(".banner-scroll img.active");
@@ -90,6 +65,10 @@ $(document).ready(function(){
 			currentBanner.removeClass("active");
 			currentBanner = currentBanner.next();
 			currentBanner.addClass("active");
+			if (0 == currentBanner.next().length){
+				$(this).addClass("inactive");
+			}
+			$("#left-arrow").removeClass("inactive");
 		}
 	});
 
@@ -99,11 +78,23 @@ $(document).ready(function(){
 			currentBanner.removeClass("active");
 			currentBanner = currentBanner.prev();
 			currentBanner.addClass("active");
+			if (0 == currentBanner.prev().length){
+				$(this).addClass("inactive");
+			}
+			$("#right-arrow").removeClass("inactive");
 		}
 	});
 
+	/*
+	 * image gallery
+	 */
+	$(".gallery-image:first").addClass("selected");
 
-//	currentBanner.css("display","none");
-//	currentBanner = currentBanner.next();
-
+	$(".gallery-image").hover(function(){
+		$(this).siblings().removeClass("selected");
+		$(this).addClass("selected");
+		$("#product-image img").attr("src",$(this).children("img").attr("src"));
+		$("#product-thumbnail img").attr("src",$(this).children("img").attr("src"));
+	});
+	
 });
