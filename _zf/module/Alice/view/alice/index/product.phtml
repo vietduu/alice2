@@ -5,8 +5,7 @@
     $images = $this->images;
 ?>
 
-<div>
-	<div class="product-detail-page">
+<div class="product-detail-page">
 	<div class="header-breadcrumb">
 	<ul>
 		<li>
@@ -30,9 +29,9 @@
 	</ul>
 	</div>
 	
+
 	<div class="product-info">
-		<h1 id="product-title"><?php echo $product['general_name']; ?></h1>
-	</div>
+	<h1 id="product-title"><?php echo $product['general_name']; ?></h1>
 
 	<div class="product-imagebox-layout" id="imagebox">
 		<div id="product-gallery">
@@ -47,7 +46,7 @@
 			<img src="<?php echo $this->basePath($product['source']); ?>" title="<?php echo $product['title']; ?>" alt="<?php echo $product['alt_tag']; ?>"/>
 		</span>
 		<span id="product-image">
-			<img src="<?php echo $this->basePath($product['source']); ?>" title="<?php echo $product['title']; ?>" alt="<?php echo $product['alt_tag']; ?>" width="30%" />
+			<img src="<?php echo $this->basePath($product['source']); ?>" title="<?php echo $product['title']; ?>" alt="<?php echo $product['alt_tag']; ?>" width="350px" />
 		</span>
 	</div>
 
@@ -72,6 +71,8 @@
 			</tbody>
 		</table>
 		</div>
+		
+		<input id="order-button" type="submit" value="Đặt hàng" />
 	</div>
 	</div>
 </div>
