@@ -383,13 +383,13 @@ ul {
 #product-thumbnail {
 width:100%;
 height:100%;
-opacity:1;
 display:none;
 position:fixed;
 background-color:rgba(0,0,0,0.8);
 overflow:visible;
 text-align: center;
 vertical-align: center;
+  z-index: 1;
 }
 
 #order-button {

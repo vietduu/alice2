@@ -8,7 +8,7 @@ $(document).ready(function(){
 	});
 
 	$(".button-order").click(function(){
-		document.getElementById("detail-link").click();
+		$(this).document.getElementById("detail-link").click();
 	});
 
 	$("#detail-link").click(function(e){
@@ -25,11 +25,6 @@ $(document).ready(function(){
 	$("#product-thumbnail img").css("width",
 		$("#product-thumbnail img").css("height") * ratio);
 
-	var height = screenHeight * ratio;
-
-	var screenWidth = window.innerWidth;
-//|| document.documentElement.clientWidth
-//|| document.body.clientWidth;
 	var left = 0;
 	var top = 0;
 
