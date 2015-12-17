@@ -251,13 +251,18 @@ ul {
   position: relative;
 }
 
+.product-card-img img {
+  width: 250px;
+}
+
+
 .product-name-big {
   font-weight: 700;
   font-size: 15px;
   color: #4c4849;
   line-height: 15pt;
   position: relative;
-  top: 7px;
+  padding: 0 5px;
 }
 
 .button-order {

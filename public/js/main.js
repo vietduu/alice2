@@ -91,5 +91,21 @@ $(document).ready(function(){
 		$("#product-image img").attr("src",$(this).children("img").attr("src"));
 		$("#product-thumbnail img").attr("src",$(this).children("img").attr("src"));
 	});
+
+/*	var cardWidth;
+	var cardHeight;
+
+
+	$(".product-card").each(function(){
+		cardWidth = $(this).width() - 10;
+		cardHeight = $(this).height() - 83;
+		if ($(this).find("img").height() * (cardWidth / $(this).find("img").width()) > cardHeight){
+			$(this).find("img").height(cardHeight);
+			$(this).find("img").width((cardHeight/$(this).find("img").height())*$(this).find("img").width());
+		} else {
+			$(this).find("img").width(cardWidth);
+			$(this).find("img").height((cardWidth/$(this).find("img").width())*$(this).find("img").height());
+		}
+	});*/
 	
 });
