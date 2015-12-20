@@ -252,7 +252,8 @@ ul {
 }
 
 .product-card-img img {
-  width: 250px;
+  max-width: 250px;
+  max-height: 358px;
 }
 
 
@@ -266,20 +267,21 @@ ul {
 }
 
 .button-order {
-  background-color: #003366;
-  color: #fff;
   text-transform: uppercase;
   text-align: center;
+  
+}
+
+.button-order a {
+  background-color: #003366;
+  text-decoration: none;
+
+  color: #fff;
   padding: 8px 0;
   display: block;
   width: 98.5%;
   position: absolute;
   bottom: 2px;
-}
-
-.button-order a {
-  text-decoration: none;
-  color: #fff;
 }
 
 

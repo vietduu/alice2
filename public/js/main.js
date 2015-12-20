@@ -7,15 +7,6 @@ $(document).ready(function(){
 		$(this).children("a.category-tree").css("color","#000");
 	});
 
-	$(".button-order").click(function(){
-		$(this).document.getElementById("detail-link").click();
-	});
-
-	$("#detail-link").click(function(e){
-		e.stopPropagation();
-       	return true;
-	});
-
 	var screenHeight = window.innerHeight - 30;
 
 	var ratio = $("#product-image img").width() * 1.0 / $("#product-image img").height();
@@ -92,20 +83,21 @@ $(document).ready(function(){
 		$("#product-thumbnail img").attr("src",$(this).children("img").attr("src"));
 	});
 
-/*	var cardWidth;
-	var cardHeight;
-
-
-	$(".product-card").each(function(){
-		cardWidth = $(this).width() - 10;
-		cardHeight = $(this).height() - 83;
-		if ($(this).find("img").height() * (cardWidth / $(this).find("img").width()) > cardHeight){
-			$(this).find("img").height(cardHeight);
-			$(this).find("img").width((cardHeight/$(this).find("img").height())*$(this).find("img").width());
-		} else {
-			$(this).find("img").width(cardWidth);
-			$(this).find("img").height((cardWidth/$(this).find("img").width())*$(this).find("img").height());
-		}
-	});*/
 	
+	/*
+	 * scale images on homepage automatically
+	 */
+	var cardWidth;
+	var cardHeight;
+	$(".product-card").each(function(){
+		cardWidth = $(this).css("width")-10;
+		cardHeight = $(this).css("height")-83;
+		if ($(this).find("img").height() * (cardWidth / $(this).find("img").width()) > cardHeight){
+			$(this).find("img").css("max-height", cardHeight);
+			$(this).find("img").css("max-width", ((cardHeight/$(this).find("img").height())*$(this).find("img").width()));
+		} else {
+			$(this).find("img").css("max-width", cardWidth);
+			$(this).find("img").css("max-height", ((cardWidth/$(this).find("img").width())*$(this).find("img").height()));
+		}
+	});
 });
