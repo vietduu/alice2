@@ -1,7 +1,8 @@
 <?php
 namespace Bob\Model\DataObject;
+use Bob\Model\InterfaceHelper\ModelInterface;
 
-class UrlReference implements Bob\Model\InterfaceHelper\ModelInterface {
+class UrlReference implements ModelInterface {
 	public $url_id;
 	public $url;
 	public $url_mapper_fk;

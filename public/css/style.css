@@ -41,7 +41,7 @@ header img {
 
 header .header-title {
   font-size: 25px;
-  font-weight: 400px;
+  font-weight: 400;
   float: left;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -395,7 +395,7 @@ position:fixed;
 background-color:rgba(0,0,0,0.8);
 overflow:visible;
 text-align: center;
-vertical-align: center;
+vertical-align: auto;
   z-index: 1;
 }
 
