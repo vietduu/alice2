@@ -1,6 +1,23 @@
 <?php
+    require_once(dirname(dirname(dirname(__FILE__))).'\layout\dictionary.php');
+
     $this->title = "Trang chủ";
     $this->headTitle($this->title);
+    var_dump($dictionary);
+
+
+    $input = " ";
+    reset($dictionary);
+
+    foreach($input as $element){
+        while (($element = current($dictionary)) !== FALSE){
+            if ($element === key($dictionary)){
+                $element = value($dictionary);
+        }
+        next($dictionary);
+    }
+
+    exit(0);
 ?>
 
 <div class="home-floor-layout-container">
@@ -41,6 +58,7 @@
                     <a class="product-card-img" href="<?php echo $this->url('home/product', array(
                             'controller' => 'index',
                             'action' => 'product',
+                            'productname' => str_ireplace(' ', '-', strtolower($pite['general_name'])),
                             'id' => $pite['general_id']
                         )); ?>"><img src="<?php echo $this->basePath($pite['source']); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>" /> </a>
                     <div class="product-name">

@@ -9,6 +9,10 @@
 
 namespace Alice;
 
+use Bob\Model\DataMapper\UrlReferenceMapper;
+use Bob\Helper\UrlRouteFactory;
+use Bob\Helper\UrlRoute;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -23,20 +27,8 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-           /*       'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),*/
                     'product' => array(
-                        'type' => 'Segment',
+                    /*    'type' => 'Segment',
                         'options' => array(
                             'route' => '[:action[?id=:id]]',
                             'constraints' => array(
@@ -48,6 +40,16 @@ return array(
                                 'controller'    => 'Index',
                                 'action'    => 'product',
                             ),
+                        ),*/
+                        'type' => 'Zend\Mvc\Router\Http\Regex',
+                        'options' => array(
+                            'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[a-zA-Z0-9_-]+)\.html',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Alice\Controller',
+                                'controller' => 'Index',
+                                'action' => 'product',
+                            ),
+                            'spec' => '%productname%-%id%.html',
                         ),
                     ),
                 ),
@@ -67,8 +69,17 @@ return array(
                     ),
                 ),
             ),
+
+        //    'url' => array(
+        //        'type' => UrlRoute::class,
+        //    ),
         ),
     ),
+//    'route_manager' => array(
+//        'factories' => array(
+//            UrlRoute::class => UrlRoute::class,
+//        ),
+//    ),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -77,6 +88,9 @@ return array(
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
+    //    'invokables' => array(
+    //        UrlReferenceMapper::class => UrlReferenceMapper::class,
+    //    ),
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -90,7 +104,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Alice\Controller\Index' => Controller\IndexController::class,        ),
+            'Alice\Controller\Index' => Controller\IndexController::class,
+    //        'Alice\Controller\Url' => Controller\UrlController::class,
+        ),
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -99,22 +115,20 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'dictionary' => __DIR__ . '/../view/layout/dictionary.php',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
-//            'alice/index/product' => __DIR__ . '/../view/alice/index/product.phtml',
-//            'base_path' => '/path/',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/header' => __DIR__ . '/../view/cms/header.phtml',
             'cms/footer' => __DIR__ . '/../view/cms/footer.phtml',
             'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
+            'cms/contact' => __DIR__ . '/../view/cms/contact.phtml',
         ),
-//        'base_path' => 'public/',
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
     ),
-    // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(
