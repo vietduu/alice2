@@ -14,7 +14,7 @@ use Bob\Helper\UrlRouteFactory;
 use Bob\Helper\UrlRoute;
 
 return array(
-    'router' => array(
+/*    'router' => array(
         'routes' => array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
@@ -28,19 +28,6 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'product' => array(
-                    /*    'type' => 'Segment',
-                        'options' => array(
-                            'route' => '[:action[?id=:id]]',
-                            'constraints' => array(
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '[0-9]+',
-                            ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Alice\Controller',
-                                'controller'    => 'Index',
-                                'action'    => 'product',
-                            ),
-                        ),*/
                         'type' => 'Zend\Mvc\Router\Http\Regex',
                         'options' => array(
                             'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[a-zA-Z0-9_-]+)\.html',
@@ -54,10 +41,7 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
+           
             'alice' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -69,17 +53,8 @@ return array(
                     ),
                 ),
             ),
-
-        //    'url' => array(
-        //        'type' => UrlRoute::class,
-        //    ),
         ),
-    ),
-//    'route_manager' => array(
-//        'factories' => array(
-//            UrlRoute::class => UrlRoute::class,
-//        ),
-//    ),
+    ),*/
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -88,9 +63,6 @@ return array(
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
-    //    'invokables' => array(
-    //        UrlReferenceMapper::class => UrlReferenceMapper::class,
-    //    ),
     ),
     'translator' => array(
         'locale' => 'en_US',

@@ -12,6 +12,9 @@ namespace Alice;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
+//require_once(dirname(dirname(dirname(__FILE__))).'\layout\dictionary.php');
+require_once(__DIR__ . '\view\layout\dictionary.php');
+
 class Module
 {
     public function onBootstrap(MvcEvent $e)
@@ -23,7 +26,48 @@ class Module
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        $config = include __DIR__ . '/config/module.config.php';
+        $config['router'] = array(
+            'routes' => array(
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        'controller' => 'Alice\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'product' => array(
+                        'type' => 'Zend\Mvc\Router\Http\Regex',
+                        'options' => array(
+                            'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[a-zA-Z0-9_-]+)\.html',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Alice\Controller',
+                                'controller' => 'Index',
+                                'action' => 'product',
+                            ),
+                            'spec' => '%productname%-%id%.html',
+                        ),
+                    ),
+                ),
+            ),
+           
+            'alice' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Alice\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
+        ));
+        return $config;
     }
 
     public function getAutoloaderConfig()
