@@ -16,10 +16,10 @@ class Dictionary
 	'ỳ' => 'y','ý' => 'y','ỷ' => 'y','ỹ' => 'y','ỵ' => 'y');
 
 
-	public function formatUrl($input){
+	public static function formatUrl($input){
 	//	reset(DICTIONARY);
 	//	var_dump($input);
-		$i = 0;
+	/*	$i = 0;
 		while ($i < strlen($input)){
 			while (current($_dictionary) !== FALSE){
             	if ($input[i] === key($_dictionary)){
@@ -28,7 +28,8 @@ class Dictionary
         		}
         		next($_dictionary);
         	}
-            $i++;	
-		}
+            $i++;
+		}*/
+		return $input;
 	}
 }

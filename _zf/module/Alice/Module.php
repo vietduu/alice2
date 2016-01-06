@@ -27,6 +27,7 @@ class Module
     public function getConfig()
     {
         $config = include __DIR__ . '/config/module.config.php';
+        $dictionary = 'Dictionary';
         $config['router'] = array(
             'routes' => array(
             'home' => array(
@@ -49,7 +50,7 @@ class Module
                                 'controller' => 'Index',
                                 'action' => 'product',
                             ),
-                            'spec' => '%productname%-%id%.html',
+                            'spec' => $dictionary::formatUrl('%productname%') . '-%id%.html',
                         ),
                     ),
                 ),
