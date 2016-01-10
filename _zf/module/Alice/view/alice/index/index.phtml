@@ -1,6 +1,8 @@
 <?php
     $this->title = "Trang chủ";
     $this->headTitle($this->title);
+    require_once(dirname(dirname(__DIR__)) . '\layout\dictionary.php');
+    $dictionary = 'Dictionary';
 ?>
 
 <div class="home-floor-layout-container">
@@ -41,7 +43,7 @@
                     <a class="product-card-img" href="<?php echo $this->url('home/product', array(
                             'controller' => 'index',
                             'action' => 'product',
-                            'productname' => str_ireplace(' ', '-', strtolower($pite['general_name'])),
+                            'productname' => $dictionary::formatUrl(str_ireplace(' ', '-', strtolower($pite['general_name']))),
                             'id' => $pite['general_id']
                         )); ?>"><img src="<?php echo $this->basePath($pite['source']); ?>" title="<?php echo $pite['title']; ?>" alt="<?php echo $pite['alt_tag']; ?>" /> </a>
                     <div class="product-name">
@@ -51,6 +53,7 @@
                         <span class="button-order-text"><a id="detail-link" href="<?php echo $this->url('home/product', array(
                             'controller' => 'index',
                             'action' => 'product',
+                            'productname' => $dictionary::formatUrl(str_ireplace(' ', '-', strtolower($pite['general_name']))),
                             'id' => $pite['general_id']
                         )); ?>">Chi tiết</a></span>
                     </div>

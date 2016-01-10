@@ -1,12 +1,8 @@
 <?php
-//	echo(var_dump($this->product_id));
-var_dump(get_html_translation_table(HTML_ENTITIES, ENT_QUOTES | ENT_HTML5));
-exit(0);
 	$product = $this->currentProduct[0];
     $this->title = $product['general_name'];
     $this->headTitle($this->title);
     $images = $this->images;
-
 ?>
 
 <div class="product-detail-page">

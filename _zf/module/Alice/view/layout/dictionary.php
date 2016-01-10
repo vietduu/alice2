@@ -1,7 +1,7 @@
 <?php
 class Dictionary 
 {
-	public static $_dictionary = array('à' => 'a','á' => 'a','ả' => 'a','ã' => 'a','ạ' => 'a',
+	static $_dictionary = array('à' => 'a','á' => 'a','ả' => 'a','ã' => 'a','ạ' => 'a',
 	'ă' => 'a','ằ' => 'a','ắ' => 'a','ẳ' => 'a','ẵ' => 'a','ặ' => 'a',
 	'â' => 'a','ầ' => 'a','ấ' => 'a','ẩ' => 'a','ẫ' => 'a','ậ' => 'a',
 	'đ' => 'd',
@@ -16,20 +16,39 @@ class Dictionary
 	'ỳ' => 'y','ý' => 'y','ỷ' => 'y','ỹ' => 'y','ỵ' => 'y');
 
 
-	public static function formatUrl($input){
-	//	reset(DICTIONARY);
-	//	var_dump($input);
-	/*	$i = 0;
-		while ($i < strlen($input)){
-			while (current($_dictionary) !== FALSE){
-            	if ($input[i] === key($_dictionary)){
-                	$input[i] = value($_dictionary);
-                	break;
-        		}
-        		next($_dictionary);
-        	}
-            $i++;
-		}*/
-		return $input;
+	public static function formatUrl($transferedUrl, $charset = 'UTF-8'){
+	/*	$transferedUrl = iconv("UTF-8","ASCII//TRANSLIT", $input);
+		$transferedUrl = preg_replace("/[^\w\s]+/","", $transferedUrl);
+		$transferedUrl = strtolower(trim($transferedUrl));
+		$transferedUrl = preg_replace("/[\/_+ |-]+/", "-", $transferedUrl);
+		echo $transferedUrl;*/
+
+    $strlen = strlen(utf8_decode($transferedUrl));
+    while($strlen){
+        $array[] = mb_substr($transferedUrl,0,1,$charset);
+        $transferedUrl = mb_substr($transferedUrl, 1, $strlen, $charset);
+        $strlen = mb_strlen($transferedUrl,$charset);
+    }
+
+
+    for($i=0;$i<count($array);$i++){
+        foreach(self::$_dictionary as $_key => $_value) {
+            if ($array[$i] == $_key){
+                $array[$i] = $_value;
+            }
+        }
+    }
+
+	return implode("", $array);
+	}
+
+	public static function explodeWithCharset($input, $charset = 'UTF-8'){
+		$strlen = mb_strlen($input, $charset);
+    	while($strlen){
+        	$array[] = mb_substr($input,0,1,$charset);
+        	$transferedUrl = mb_substr($input, 1, $strlen, $charset);
+        	$strlen = mb_strlen($input, $charset);
+    	}
+    	return $array;
 	}
 }
