@@ -1,23 +1,31 @@
 <header>
-	<div>
-		<ul class="first-navigation">
-			<li><a href="<?php echo $this->url('home') ?>">Catalog</a>
-				<ul class="second-navigation">
-					<li><a href="/">PET</a></li>
-					<li><a href="/">Categories</a></li>
-				</ul>
-			</li>
-			<li><a href="<?php echo $this->url('home') ?>">Content</a>
-				<ul class="second-navigation">
-					<li><a href="/">CMS</a></li>
-				</ul>
-			</li>
-			<li><a href="<?php echo $this->url('home') ?>">System</a>
-				<ul class="second-navigation">
-					<li><a href="/">Configuration</a></li>
-				</ul>
-			</li>
-			<li><a href="<?php echo $this->url('home') ?>">Logout</a></li>
-		</ul>
+	<div id="nav-container">
+		<div id="navigation">
+			<span class="item">
+				<span class="label">Catalog</span>
+				<span class="sub-menu">
+					<a href="/">PET</a>
+					<a href="/">Categories</a>
+				</span>
+			</span>
+
+			<span class="item">
+				<span class="label">Content</span>
+				<span class="sub-menu">
+					<a href="/">CMS</a>
+				</span>
+			</span>
+
+			<span class="item">
+				<span class="label">System</span>
+				<span class="sub-menu">
+					<a href="/">Configuration</a>
+				</span>
+			</span>
+
+			<span class="item">
+				<span class="label">Logout</span>
+			</span>
+		</div>
 	</div>
 </header>

@@ -12,9 +12,18 @@ namespace Bob;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ModuleManager\ModuleManager;
 
 class Module implements AutoloaderProviderInterface
 {
+    public function init(ModuleManager $mm)
+    {
+        $mm->getEventManager()->getSharedManager()->attach(__NAMESPACE__,
+        'dispatch', function($e) {
+            $e->getTarget()->layout('bobadmin/layout');
+        });
+    }
+
     public function getAutoloaderConfig()
     {
         return array(

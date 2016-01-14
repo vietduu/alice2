@@ -11,6 +11,7 @@ namespace Alice;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ModuleManager\ModuleManager;
 
 //require_once(dirname(dirname(dirname(__FILE__))).'\layout\dictionary.php');
 require_once(__DIR__ . '\view\layout\dictionary.php');
@@ -22,6 +23,14 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+    }
+
+    public function init(ModuleManager $mm)
+    {
+        $mm->getEventManager()->getSharedManager()->attach(__NAMESPACE__,
+        'dispatch', function($e) {
+            $e->getTarget()->layout('admin/layout');
+        });
     }
 
     public function getConfig()

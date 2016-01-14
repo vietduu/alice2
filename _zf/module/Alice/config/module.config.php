@@ -87,18 +87,18 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'admin/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'dictionary' => __DIR__ . '/../view/layout/dictionary.php',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
-            'cms/header' => __DIR__ . '/../view/cms/header.phtml',
-            'cms/footer' => __DIR__ . '/../view/cms/footer.phtml',
+            'cms/alice/header' => __DIR__ . '/../view/cms/header.phtml',
+            'cms/alice/footer' => __DIR__ . '/../view/cms/footer.phtml',
             'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
             'cms/contact' => __DIR__ . '/../view/cms/contact.phtml',
         ),
         'template_path_stack' => array(
-            __DIR__ . '/../view',
+            'admin' => __DIR__ . '/../view',
         ),
     ),
     'console' => array(

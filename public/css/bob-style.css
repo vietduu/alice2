@@ -17,41 +17,38 @@ header {
   background-color: #333;
   display: block;
   color: #ffffff;
-  position: relative;
   font-size: 14px;
 }
 
-header li a {
+header span {
   color: #fff;
-  text-decoration: none;
-  display: block;
+  display: inline-block;
   text-align: left;
-  padding: 14px 16px;
-
+  padding: 10px 16px;
 }
 
-header li a:hover {
+header a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 16px;
+}
+
+header a:hover, header span:hover {
   color: #01d4fa;
   background-color: #111;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  -webkit-padding-start: 0px;
+header #nav-container {
+  position: relative;
 }
 
-header ul li {
-  float: left;
-  display: inline-block;
-  width: 200px;
+header .sub-menu {
+  margin: 0px;
+  padding: 0px;
+  display: none;
+  position: absolute;
 }
 
-.first-navigation li {
- 
-}
-
-.second-navigation li {
-
+header .sub-menu a {
+  display: block;
 }
