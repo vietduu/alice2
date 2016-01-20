@@ -21,6 +21,22 @@ class IndexController extends AbstractActionController
 		return $view;
 	}
 
+	public function productAction()
+	{
+		$view = new ViewModel();
+		$request = $this->getRequest();
+		$url = $request->getUri();
+		$params = substr($url, strripos($url,'#')+1);
+		$product_id = substr($params, strripos($params,'.')-1);
+		$view->product_id = $product_id;		
+		$product_info = $this->getFullInformationById($product_id);
+		$view->currentProduct = $product_info;
+		$images = $this->getImagesFromProductId($product_id);
+		$view->images = $images;
+
+		return $view;
+	}
+
 	public function getFullInformationById($id)
 	{
 		$productById = ConcreteServiceConfig::getGeneralProductServiceConfig($this);

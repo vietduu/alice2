@@ -14,47 +14,6 @@ use Bob\Helper\UrlRouteFactory;
 use Bob\Helper\UrlRoute;
 
 return array(
-/*    'router' => array(
-        'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Alice\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'product' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Regex',
-                        'options' => array(
-                            'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[a-zA-Z0-9_-]+)\.html',
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Alice\Controller',
-                                'controller' => 'Index',
-                                'action' => 'product',
-                            ),
-                            'spec' => '%productname%-%id%.html',
-                        ),
-                    ),
-                ),
-            ),
-           
-            'alice' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Alice\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),*/
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -77,7 +36,6 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Alice\Controller\Index' => Controller\IndexController::class,
-    //        'Alice\Controller\Url' => Controller\UrlController::class,
         ),
     ),
     'view_manager' => array(

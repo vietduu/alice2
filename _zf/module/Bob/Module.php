@@ -41,27 +41,38 @@ class Module implements AutoloaderProviderInterface
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
-    }
-
- /*   public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'Bob\Model\DataMapper\ProductTypeMapper' => function($sm) {
-                    $tableGateway = $sm->get('ProductTypeGateway');
-                    $table = new ProductTypeMapper($tableGateway);
-                    return $table;
-                },
-                'ProductTypeGateway' => function ($sm) {
-                    $adapter = $dm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new ProductType());
-                    return new TableGateway('product_type', $adapter, null, $resultSetPrototype);
-                },
+        $config = include __DIR__ . '/config/module.config.php';
+        $config['router'] = array(
+            'routes' => array(
+            'bob' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                   'route'    => '/bob',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Bob\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
                 ),
-            );
-    }*/
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'product' => array(
+                        'type' => 'Zend\Mvc\Router\Http\Regex',
+                        'options' => array(
+                            'regex' => '/product#(?<id>[a-zA-Z0-9_-]+)\.html',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Bob\Controller',
+                                'controller' => 'Index',
+                                'action' => 'product',
+                            ),
+                            'spec' => '/product#%id%.html',
+                        ),
+                    ),
+                ),
+            ),
+        ));
+        return $config;
+    }
 
     public function onBootstrap(MvcEvent $e)
     {
