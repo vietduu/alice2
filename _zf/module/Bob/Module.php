@@ -59,13 +59,13 @@ class Module implements AutoloaderProviderInterface
                     'product' => array(
                         'type' => 'Zend\Mvc\Router\Http\Regex',
                         'options' => array(
-                            'regex' => '/product#(?<id>[a-zA-Z0-9_-]+)\.html',
+                            'regex' => '(?<id>[a-zA-Z0-9_-]+)\.html',
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Bob\Controller',
                                 'controller' => 'Index',
                                 'action' => 'product',
                             ),
-                            'spec' => '/product#%id%.html',
+                            'spec' => '%id%.html',
                         ),
                     ),
                 ),
