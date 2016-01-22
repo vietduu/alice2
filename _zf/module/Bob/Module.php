@@ -44,10 +44,10 @@ class Module implements AutoloaderProviderInterface
         $config = include __DIR__ . '/config/module.config.php';
         $config['router'] = array(
             'routes' => array(
-            'bob' => array(
+            'pet' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                   'route'    => '/bob',
+                   'route'    => '/pet/',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Bob\Controller',
                         'controller'    => 'Index',

@@ -4,7 +4,10 @@
 			<span class="item">
 				<span class="label">Catalog</span>
 				<span class="sub-menu">
-					<a href="/">PET</a>
+					<a href="<?php echo $this->url('pet', array(
+                            'controller' => 'index',
+                            'action' => 'index'
+                        )); ?>">PET</a>
 					<a href="/">Categories</a>
 				</span>
 			</span>

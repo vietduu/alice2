@@ -128,3 +128,33 @@ tr:nth-child(even) {
 
 }
 
+
+/*
+ * PET content
+ */
+#sku {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+#general-name {
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+#description textarea{
+  width: 450px;
+  height: 150px;
+}
+
+label {
+  margin-top: 15px;
+  font-weight: 700;
+  display: block;
+}

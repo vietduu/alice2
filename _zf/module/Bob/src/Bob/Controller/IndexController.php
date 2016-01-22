@@ -26,9 +26,9 @@ class IndexController extends AbstractActionController
 		$view = new ViewModel();
 		$request = $this->getRequest();
 		$url = $request->getUri();
-		$params = substr($url, strripos($url,'#')+1);
-		$product_id = substr($params, strripos($params,'.')-1);
-		$view->product_id = $product_id;		
+		$params = substr($url, strripos($url,'/')+1);
+		$product_id = substr($params, 0, -5);
+		$view->product_id = $product_id;
 		$product_info = $this->getFullInformationById($product_id);
 		$view->currentProduct = $product_info;
 		$images = $this->getImagesFromProductId($product_id);

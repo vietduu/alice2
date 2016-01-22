@@ -4,3 +4,21 @@
     $this->headTitle($this->title);
     $images = $this->images;
 ?>
+<h1 id="title">Administration PET</h1>
+<div id="dashboard">
+<div id="sku">SKU: <?php echo $product['sku'] ?></div>
+<div id="general-name"><?php echo $product['general_name'] ?></div>
+<?php if () ?>
+<span><?php echo $product['invoice_flag'] ?></span>
+<label>Name:</label>
+<input type="text" value="<?php echo $product['name'] ?>" />
+<span><?php echo $product['source'] ?></span>
+<span><?php echo $product['alt_tag'] ?></span>
+<span><?php echo $product['title'] ?></span>
+<span><?php echo $product['is_default'] ?></span>
+<span><?php echo $product['invoice_type_name'] ?></span>
+<div id="description">
+	<label>Description: </label>
+	<textarea><?php echo $product['description_content'] ?></textarea>
+</div>
+</div>
