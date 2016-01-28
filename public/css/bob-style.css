@@ -173,12 +173,16 @@ input[type=text], select, textarea {
     box-sizing: border-box;
 }
 
-button {
+#submission button {
     width: 30%;
     padding: 14px 20px;
     margin: 8px 30px;
 }
 
+.add-btn {
+    margin-bottom: 5px;
+    float: right;
+}
 
 /*
  * images gallery
