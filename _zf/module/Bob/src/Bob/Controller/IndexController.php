@@ -33,6 +33,8 @@ class IndexController extends AbstractActionController
 		$view->currentProduct = $product_info;
 		$images = $this->getImagesFromProductId($product_id);
 		$view->images = $images;
+		$view->all_product_types = $this->fetchAllProductTypes();
+		$view->invoiceType = $this->fetchAllInvoiceTypes();
 
 		return $view;
 	}

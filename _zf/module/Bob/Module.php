@@ -47,7 +47,7 @@ class Module implements AutoloaderProviderInterface
             'pet' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                   'route'    => '/pet/',
+                   'route'    => '/pet/product/',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Bob\Controller',
                         'controller'    => 'Index',
