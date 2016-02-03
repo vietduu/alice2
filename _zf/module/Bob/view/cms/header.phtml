@@ -15,7 +15,10 @@
 			<span class="item">
 				<span class="label">Content</span>
 				<span class="sub-menu">
-					<a href="/">CMS</a>
+					<a href="<?php echo $this->url('cms', array(
+                            'controller' => 'cms',
+                            'action' => 'cms'
+                        )); ?>">CMS</a>
 				</span>
 			</span>
 

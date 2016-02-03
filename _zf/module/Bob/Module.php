@@ -70,6 +70,17 @@ class Module implements AutoloaderProviderInterface
                     ),
                 ),
             ),
+            'cms' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                   'route'    => '/cms',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Bob\Controller',
+                        'controller'    => 'Cms',
+                        'action'        => 'cms',
+                    ),
+                ),
+            ),
         ));
         return $config;
     }

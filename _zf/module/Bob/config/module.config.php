@@ -2,8 +2,8 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Bob\Controller\Index' => 
-            'Bob\Controller\IndexController',
+            'Bob\Controller\Index' => 'Bob\Controller\IndexController',
+            'Bob\Controller\Cms' => 'Bob\Controller\CmsController',
         ),
     ),
     'view_manager' => array(
@@ -14,7 +14,6 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'bobadmin/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'bob/index/index' => __DIR__ . '/../view/bob/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/bob/header' => __DIR__ . '/../view/cms/header.phtml',

@@ -7,6 +7,11 @@ use Bob\Helper\ConcreteServiceConfig;
 
 class IndexController extends AbstractActionController
 {
+	public function cmsAction()
+	{
+		return array();
+	}
+
 	public function indexAction()
 	{
 		$view = new ViewModel(array(

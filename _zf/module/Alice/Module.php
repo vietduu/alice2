@@ -46,6 +46,7 @@ class Module
                     'defaults' => array(
                         'controller' => 'Alice\Controller\Index',
                         'action'     => 'index',
+                        'cache'      => true
                     ),
                 ),
                 'may_terminate' => true,
