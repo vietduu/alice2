@@ -1,7 +1,11 @@
 <?php
 namespace Bob\Model\DataObject;
 
-class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+
+class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface, InputFilterAwareInterface
 {
 	public $id_cms_folder;
 	public $fk_cms_folder_type;
@@ -9,8 +13,9 @@ class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface
 	public $description;
 	public $is_active;
 	public $revision;
-	public $create_at;
+	public $created_at;
 	public $is_published;
+	protected $inputFilter;
 
 	public function exchangeArray($data)
 	{
@@ -20,7 +25,49 @@ class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface
 		$this->description = (!empty($data['description'])) ? $data['description'] : null;
 		$this->is_active = (!empty($data['is_active'])) ? $data['is_active'] : null;
 		$this->revision = (!empty($data['revision'])) ? $data['revision'] : null;
-		$this->create_at = (!empty($data['create_at'])) ? $data['create_at'] : null;
+		$this->created_at = (!empty($data['created_at'])) ? $data['created_at'] : null;
 		$this->is_published = (!empty($data['is_published'])) ? $data['is_published'] : null;
+	}
+
+	public function setInputFilter(InputFilterInterface $inputFilter){
+		throw new \Exception("Not used");
+	}
+
+	public function getInputFilter()
+	{
+		if (!$this->inputFilter) {
+			$inputFilter = new InputFilter();
+
+			$inputFilter->add(array(
+				'name'     => 'id_cms_folder',
+                 'required' => true,
+                 'filters'  => array(
+                     array('name' => 'Int'),
+                 ),
+			));
+
+			$inputFilter->add(array(
+                 'name'     => 'key',
+                 'required' => true,
+                 'filters'  => array(
+                     array('name' => 'StripTags'),
+                     array('name' => 'StringTrim'),
+                 ),
+                 'validators' => array(
+                     array(
+                         'name'    => 'StringLength',
+                         'options' => array(
+                             'encoding' => 'UTF-8',
+                             'min'      => 1,
+                             'max'      => 255,
+                         ),
+                     ),
+                 ),
+            ));
+
+            $this->inputFilter = $inputFilter;
+		}
+
+		return $this->inputFilter;
 	}
 }

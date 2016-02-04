@@ -77,7 +77,19 @@ class Module implements AutoloaderProviderInterface
                     'defaults' => array(
                         '__NAMESPACE__' => 'Bob\Controller',
                         'controller'    => 'Cms',
-                        'action'        => 'cms',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'add' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/add',
+                            'defaults' => array(
+                                'action' => 'add',
+                            ),
+                        ),
                     ),
                 ),
             ),

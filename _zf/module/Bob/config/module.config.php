@@ -17,7 +17,8 @@ return array(
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/bob/header' => __DIR__ . '/../view/cms/header.phtml',
-            'cms/bob/footer' => __DIR__ . '/../view/cms/footer.phtml',
+            'bob/cms/index' => __DIR__ . '/../view/cms/index.phtml',
+            'bob/cms/add' => __DIR__ . '/../view/cms/add-cms.phtml',
         ),
         'template_path_stack' => array(
             'bobadmin' => __DIR__ . '/../view',
