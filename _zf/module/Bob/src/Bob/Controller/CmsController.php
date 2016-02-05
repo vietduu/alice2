@@ -17,7 +17,9 @@ class CmsController extends AbstractActionController
 	}
 
 	public function addAction(){
-		$form = new CmsForm();
+		$view = new ViewModel();
+		$adapter = ServiceConfigHelper::getAdapter($this);
+		$form = new CmsForm($adapter);
 		$form->get('submit')->setValue('Add');
 
 		$request = $this->getRequest();
@@ -33,12 +35,24 @@ class CmsController extends AbstractActionController
 				return $this->redirect()->toRoute('cms');
 			}
 		}
-		return array('form' => $form);
+
+		$view->form = $form;
+		$view->cmsFolderType = $this->getAllCmsFolderTypes();
+
+		return $view;
+
+	//	return array('form' => $form);
 	}
 
 	public function saveCmsFolder($entity)
 	{
 		$cmsFolder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
 		return $cmsFolder->save($entity);
+	}
+
+	public function getAllCmsFolderTypes()
+	{
+		$folderType = ConcreteServiceConfig::getCmsFolderTypeServiceConfig($this);
+		return $folderType->fetchAll();
 	}
 }

@@ -7,10 +7,12 @@ $this->headTitle($title);
 
 <div id="dashboard">
 <?php
+$form = $this->form;
 $form->setAttribute('action', $this->url('cms/add', array('action' => 'add')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
+echo $this->formSelect($form->get('cms_folder_type'));
 echo $this->formHidden($form->get('id_cms_folder'));
 echo $this->formRow($form->get('cms_folder'));
 echo $this->formSubmit($form->get('submit'));

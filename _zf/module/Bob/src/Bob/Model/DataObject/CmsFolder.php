@@ -65,6 +65,21 @@ class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface, InputFilte
                  ),
             ));
 
+            $inputFilter->add(array(
+                'name'     => 'fk_cms_folder_type',
+                'validators' => array(
+                    array(
+                        'name'    => 'InArray',
+                        'options' => array(
+                            'haystack' => array(2,3),
+                            'messages' => array(
+                                'notInArray' => 'Please select folder type!' 
+                            ),
+                        ),
+                    ),
+            	)
+            ));
+
             $this->inputFilter = $inputFilter;
 		}
 

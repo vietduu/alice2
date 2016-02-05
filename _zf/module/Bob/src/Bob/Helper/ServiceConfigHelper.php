@@ -3,10 +3,15 @@ namespace Bob\Helper;
 
 class ServiceConfigHelper
 {
-	public static function getServiceConfig($owner, $modelName, $table, $mapper)
-	{
+	public static function getAdapter($owner){
 		$serviceLocator = $owner->getServiceLocator();
 		$adapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
+		return $adapter;
+	}
+
+	public static function getServiceConfig($owner, $modelName, $table, $mapper)
+	{
+		$adapter = static::getAdapter($owner);
 		$resultSet = new \Zend\Db\ResultSet\ResultSet();
 		$resultSet->setArrayObjectPrototype(new $modelName);
 
