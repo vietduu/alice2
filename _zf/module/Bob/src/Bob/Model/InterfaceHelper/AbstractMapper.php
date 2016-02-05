@@ -35,7 +35,7 @@ abstract class AbstractMapper
 		$set = $this->getTableGateway()->select(array('id' => $id));
 		$row = $set->current();
 		if (!$row){
-			throw new \Exception('Could not find the product type ID$id');
+			throw new \Exception('Could not find ID$id');
 		}	
 
 		return (array)$row;
@@ -64,7 +64,7 @@ abstract class AbstractMapper
 			if ($this->getById($id)){
 				$this->getTableGateway()->update($data, array('id' => $id));
 		} else {
-			throw new \Exception('Product type ID does not exist');
+			throw new \Exception('ID does not exist');
 			}
 		}
 	}

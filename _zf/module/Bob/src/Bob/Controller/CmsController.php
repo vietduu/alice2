@@ -22,15 +22,23 @@ class CmsController extends AbstractActionController
 
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			$cms = new CmsFolder();
-			$form->setInputFilter($cms->getInputFilter());
+			$cmsFolder = new CmsFolder();
+			$form->setInputFilter($cmsFolder->getInputFilter());
 			$form->setData($request->getPost());
 
 			if ($form->isValid()){
-				$cms->exchangeArray($form->getData());
+				$cmsFolder->exchangeArray($form->getData());
+				$this->saveCmsFolder($cmsFolder);
 
+				return $this->redirect()->toRoute('cms');
 			}
 		}
 		return array('form' => $form);
+	}
+
+	public function saveCmsFolder($entity)
+	{
+		$cmsFolder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
+		return $cmsFolder->save($entity);
 	}
 }

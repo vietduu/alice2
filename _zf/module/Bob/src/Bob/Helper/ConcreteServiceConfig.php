@@ -35,4 +35,33 @@ class ConcreteServiceConfig
 			'images',
 			'Bob\Model\DataMapper\ImagesMapper');
 	}
+
+	// CMS
+	public static function getCmsFolderServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\CmsFolder',
+			'cms_folder',
+			'Bob\Model\DataMapper\CmsFolderMapper');
+	}
+
+	public static function getCmsFolderTypeServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\CmsFolderType',
+			'cms_folder_type',
+			'Bob\Model\DataMapper\CmsFolderTypeMapper');
+	}
+
+	public static function getCmsItemServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\CmsItem',
+			'cms_item',
+			'Bob\Model\DataMapper\CmsItemMapper');
+	}
+
+	public static function getCmsItemTypeServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\CmsItemType',
+			'cms_item_type',
+			'Bob\Model\DataMapper\CmsItemTypeMapper');
+	}
 }

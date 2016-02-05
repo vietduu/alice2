@@ -6,7 +6,7 @@ use Bob\Model\DataObject\CmsFolder;
 class CmsForm extends Form 
 {
 	public function __construct($name = null) {
-		parent::__construct('CmsFolder');
+		parent::__construct('Cms');
 
 		$this->add(array(
 			'name' => 'id_cms_folder',

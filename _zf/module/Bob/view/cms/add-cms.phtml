@@ -3,7 +3,9 @@ $title = "Add new cms";
 $this->headTitle($title);
 ?>
 
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+<h1 id="title"><?php echo $this->escapeHtml($title); ?></h1>
+
+<div id="dashboard">
 <?php
 $form->setAttribute('action', $this->url('cms/add', array('action' => 'add')));
 $form->prepare();
@@ -14,3 +16,4 @@ echo $this->formRow($form->get('cms_folder'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
 ?>
+</div>

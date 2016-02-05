@@ -11,7 +11,6 @@ class CmsFolderType implements \Bob\Model\InterfaceHelper\ModelInterface
 	public function exchangeArray($data)
 	{
 		$this->id_cms_folder_type = (!empty($data['id_cms_folder_type'])) ? $data['id_cms_folder_type'] : null;
-		$this->fk_cms_folder_type = (!empty($data['fk_cms_folder_type'])) ? $data['fk_cms_folder_type'] : null;
 		$this->key = (!empty($data['key'])) ? $data['key'] : null;
 		$this->label = (!empty($data['label'])) ? $data['label'] : null;
 		$this->description = (!empty($data['description'])) ? $data['description'] : null;
