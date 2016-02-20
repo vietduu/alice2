@@ -2,6 +2,7 @@
 namespace Bob\Model\DataObject;
 
 use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
@@ -37,16 +38,17 @@ class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface, InputFilte
 	{
 		if (!$this->inputFilter) {
 			$inputFilter = new InputFilter();
+            $factory = new InputFactory();
 
-			$inputFilter->add(array(
+			$inputFilter->add($factory->createInput(array(
 				'name'     => 'id_cms_folder',
                  'required' => true,
                  'filters'  => array(
                      array('name' => 'Int'),
                  ),
-			));
+			)));
 
-			$inputFilter->add(array(
+			$inputFilter->add($factory->createInput(array(
                  'name'     => 'key',
                  'required' => true,
                  'filters'  => array(
@@ -63,22 +65,41 @@ class CmsFolder implements \Bob\Model\InterfaceHelper\ModelInterface, InputFilte
                          ),
                      ),
                  ),
-            ));
+            )));
 
-            $inputFilter->add(array(
+            $inputFilter->add($factory->createInput(array(
+                 'name'     => 'description',
+                 'required' => true,
+                 'filters'  => array(
+                     array('name' => 'StripTags'),
+                     array('name' => 'StringTrim'),
+                 ),
+                 'validators' => array(
+                     array(
+                         'name'    => 'StringLength',
+                         'options' => array(
+                             'encoding' => 'UTF-8',
+                             'min'      => 1,
+                             'max'      => 255,
+                         ),
+                     ),
+                 ),
+            )));
+
+       /*     $inputFilter->add($factory->createInput(array(
                 'name'     => 'fk_cms_folder_type',
                 'validators' => array(
                     array(
                         'name'    => 'InArray',
                         'options' => array(
-                            'haystack' => array(2,3),
+                            'haystack' => array(1,3),
                             'messages' => array(
                                 'notInArray' => 'Please select folder type!' 
                             ),
                         ),
                     ),
             	)
-            ));
+            )));*/
 
             $this->inputFilter = $inputFilter;
 		}

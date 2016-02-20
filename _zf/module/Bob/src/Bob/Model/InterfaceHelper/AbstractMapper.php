@@ -32,7 +32,7 @@ abstract class AbstractMapper
 	public function getById($id)
 	{
 		$id = (int) $id;
-		$set = $this->getTableGateway()->select(array('id' => $id));
+		$set = $this->getTableGateway()->select(array(0 => $id));
 		$row = $set->current();
 		if (!$row){
 			throw new \Exception('Could not find ID$id');
@@ -43,7 +43,7 @@ abstract class AbstractMapper
 
 	public function deleteById($id)
 	{
-		$this->getTableGateway()->delete(array('id' => (int) $id));
+		$this->getTableGateway()->delete(array(0 => (int) $id));
 	}
 
 
@@ -51,18 +51,20 @@ abstract class AbstractMapper
 
 	public abstract function getModelObject();
 
+
 	public function save($entity)
 	{
 		$data = $this->getModelData($entity);
 
-		$id = (int) $data['id'];
+		settype(array_values($data)[0], "int");
+		$id = array_values($data)[0];
 
 		if (0 == $id)
 		{
 			$this->getTableGateway()->insert($data);
 		} else {
 			if ($this->getById($id)){
-				$this->getTableGateway()->update($data, array('id' => $id));
+				$this->getTableGateway()->update($data, array(0 => $id));
 		} else {
 			throw new \Exception('ID does not exist');
 			}

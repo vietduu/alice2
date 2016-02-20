@@ -13,7 +13,7 @@ class CmsForm extends Form
 	protected $adapter;
 
 	public function __construct(AdapterInterface $adapter) {
-		parent::__construct('Cms');
+		parent::__construct('cms');
 		$this->adapter = $adapter;
 
 		$this->setAttribute('method','post');
@@ -25,12 +25,13 @@ class CmsForm extends Form
 			),
 		));
 
+
 		$this->add(array(
+			'name' => 'fk_cms_folder_type',
 			'type' => 'Zend\Form\Element\Select',
-			'name' => 'cms_folder_type',
 			'options' => array(
-				'label' => 'CMS folder type: ',
-				'empty_option' => 'Please select',
+				'label' => 'CMS folder type:',
+			//	'empty_option' => 'Please select',
 				'value_options' => $this->getAllCmsFolderTypes(),
 			),
 			'attributes' => array(
@@ -39,22 +40,59 @@ class CmsForm extends Form
 		));
 
 
+
 		$this->add(array(
-			'name' => 'cms_folder',
+			'name' => 'key',
 			'type' => 'Text',
 			'options' => array(
-				'label' => 'Folder name: ',
+				'label' => 'Key:',
 			),
-			'attributes' => array(
-                'required' => 'required',
-                'class' => 'cms_entity',
-            )
 		));
 
 		$this->add(array(
+			'name' => 'description',
+			'type' => 'Text',
+			'options' => array(
+				'label' => 'Description:',
+			),
+		));
+
+		$this->add(array(
+			'name' => 'is_active',
+			'type' => 'Checkbox',
+			'options' => array(
+				'label' => 'Is active',
+				'checked_value' => '1',
+				'unchecked_value' => '0'
+				),
+			'attributes' => array(
+         		'value' => '1'
+    		)
+		));
+
+		$this->add(array(
+			'name' => 'is_published',
+			'type' => 'Checkbox',
+			'options' => array(
+				'label' => 'Is published',
+				'checked_value' => '1',
+				'unchecked_value' => '0'
+				),
+			'attributes' => array(
+         		'value' => '1'
+    		)
+		));
+
+		$this->add(array(
+            'type' => 'Csrf',
+            'name' => 'csrf'
+        ));
+
+
+		$this->add(array(
              'name' => 'submit',
-             'type' => 'Submit',
              'attributes' => array(
+             	 'type' => 'submit',
                  'value' => 'Save',
                  'id' => 'submit_btn',
              ),
@@ -73,26 +111,18 @@ class CmsForm extends Form
         parent::populateValues($data);
     }
 
-
-//	public function getAllCmsFolderTypes()
-//	{
-	//	$folderType = ConcreteServiceConfig::getCmsFolderTypeServiceConfig($this);
-	//	return $folderType->fetchAll();
-//	}
-
     public function getAllCmsFolderTypes(){
     	$adapter = $this->adapter;
-    	$sql = "SELECT `key` FROM cms_folder_type";
+    	$sql = "SELECT * FROM cms_folder_type";
     	$statement = $adapter->query($sql);
         $result    = $statement->execute();
+        $types 	   = $result->getResource()->fetchAll();
 
-   //     $selectData = array();
+        $selectData = array();
+        foreach ($types as $type) {
+            $selectData[] = $type[2];
+        }
 
-    /*    foreach ($result as $res) {
-            $selectData[$res['id']] = $res['name'];
-        }*/
-
-        return $result->getResource()->fetchAll();
-   //    return $selectData;
+        return $selectData;
     }
 }

@@ -34,6 +34,21 @@
         <?php echo $this->partial('cms/header'); ?>
 
         <div class="container">
+            <?php
+            $children = $this->viewModel()
+                 ->getCurrent()
+                 ->getChildren();
+ 
+            $currentView = $children[0];
+ 
+            if (isset($currentView->flashMessenger) && count($currentView->flashMessenger)) : ?>
+                <ul class="flashMessages">
+                <?php foreach ($currentView->flashMessenger as $flashMessenger) : ?>
+                    <li><?php echo $flashMessenger; ?></li>
+                <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
             <?php echo $this->content; ?>
         </div>
 
