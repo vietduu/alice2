@@ -21,6 +21,7 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
     ),
     'translator' => array(
@@ -36,8 +37,16 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Alice\Controller\Index' => Controller\IndexController::class,
+            'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'requestHandler' => 'Alice\View\Helper\RequestHandler',
+            'Alice\Controller\Cms' => Controller\CmsController::class,
+        ),
+    ),
+
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -48,6 +57,7 @@ return array(
             'admin/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'dictionary' => __DIR__ . '/../view/layout/dictionary.php',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
+            'alice/cms/index' => __DIR__ . '/../view/alice/index/cms-template.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'cms/alice/header' => __DIR__ . '/../view/cms/header.phtml',

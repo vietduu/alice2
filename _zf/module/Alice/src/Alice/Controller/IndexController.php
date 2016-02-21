@@ -63,9 +63,8 @@ class IndexController extends AbstractActionController
             }
         }
     }
- //   echo implode("", $array);
 
-		return implode("", $array);
+	return implode("", $array);
 	}
 
 	public function indexAction()

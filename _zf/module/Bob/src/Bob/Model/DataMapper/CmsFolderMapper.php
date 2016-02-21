@@ -47,4 +47,16 @@ class CmsFolderMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		$result = $statement->execute();
 		return $result->getResource()->fetchAll();
 	}
+
+	public function getById($id)
+	{
+		$id = (int) $id;
+		$set = $this->getTableGateway()->select(array('id_cms_folder' => $id));
+		$row = $set->current();
+		if (!$row){
+			throw new \Exception('Could not find the cms folder ID $id');
+		}	
+
+		return (array)$row;
+	}
 }

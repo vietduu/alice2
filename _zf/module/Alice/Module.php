@@ -39,6 +39,7 @@ class Module
         $dictionary = 'Dictionary';
         $config['router'] = array(
             'routes' => array(
+            
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -50,11 +51,22 @@ class Module
                     ),
                 ),
                 'may_terminate' => true,
-                'child_routes' => array(
+                'child_routes' => array(           
+                    'cms-template' => array(
+                        'type'    => 'Regex',
+                        'options' => array(
+                            'regex' => '(?<key>([[a-zA-Z0-9_-]+]*))\.html',
+                            'defaults' => array(
+                                'controller' => 'Alice\Controller\Cms',
+                                'action' => 'index',
+                            ),
+                            'spec' => '%key%.html',
+                        ),
+                    ),
                     'product' => array(
                         'type' => 'Zend\Mvc\Router\Http\Regex',
                         'options' => array(
-                            'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[a-zA-Z0-9_-]+)\.html',
+                            'regex' => '(?<productname>([[a-zA-Z0-9_-]+]*))-(?<id>[0-9_-]+)\.html',
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Alice\Controller',
                                 'controller' => 'Index',
@@ -63,10 +75,12 @@ class Module
                             'spec' => $dictionary::formatUrl('%productname%') . '-%id%.html',
                         ),
                     ),
+                    
                 ),
             ),
            
-            'alice' => array(
+           
+        /*    'alice' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/',
@@ -76,7 +90,9 @@ class Module
                         'action'        => 'index',
                     ),
                 ),
-            ),
+            ),*/
+            
+
         ));
         return $config;
     }
