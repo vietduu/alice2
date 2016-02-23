@@ -17,7 +17,7 @@ class CmsController extends AbstractActionController
 		$view = new ViewModel();
 		$request = $this->getRequest();
 		$url = $request->getUri();
-		$view->request = $this->getHelper()->customizeRequest($url,12);
+	//	$view->request = $this->getHelper()->customizeRequest($url,12);
 
 	/*	$params = substr($url, strripos($url,'/')+1);
 
@@ -32,9 +32,10 @@ class CmsController extends AbstractActionController
 	}
 
 	public function getHelper(){
-		$viewHelperManager = $this->getServiceLocator()->get('ViewHelperManager');
-		$helper = $viewHelperManager->get('requestHandler');
-		return $helper;
+	//	$viewHelperManager = $this->getServiceLocator()->get('ViewHelperManager');
+	//	$helper = $viewHelperManager->get('requestHandler');
+	//	return $helper;
+		return null;
 	}
 
 

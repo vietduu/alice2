@@ -21,7 +21,6 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
-            'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
     ),
     'translator' => array(
@@ -40,12 +39,11 @@ return array(
             'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
     ),
-    'view_helpers' => array(
+/*    'view_helpers' => array(
         'invokables' => array(
             'requestHandler' => 'Alice\View\Helper\RequestHandler',
-            'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
-    ),
+    ),*/
 
     'view_manager' => array(
         'display_not_found_reason' => true,

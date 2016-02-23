@@ -14,8 +14,9 @@ class RequestHandler extends AbstractHelper {
 
 	public function getFolderKeyById($id=12)
 	{
-		$cmsController = new CmsController();
-		return $cmsController->getFolderKeyById($id);
+	//	$cmsController = new CmsController();
+	//	return $cmsController->getFolderKeyById($id);
+		return "bang-gia-hoa-don";
 	}
 
 

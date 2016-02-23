@@ -14,12 +14,8 @@
 			<li><a href="<?php echo $this->url('home/cms-template', array(
                             'controller' => 'cms',
                             'action' => 'index',
-                            'key' => $this->requestHandler()->getFolderKeyById(12),
-                        )); ?>"><?php echo $this->requestHandler()->customizeRequest($this->url('home/cms-template', array(
-                            'controller' => 'cms',
-                            'action' => 'index',
-                            'key' => $this->requestHandler()->getFolderKeyById(12),
-                        )), 12); ?>Bảng giá</a></li>
+                            'key' => "bang-gia-hoa-don",
+                        )); ?>">Bảng giá</a></li>
 			<li><a href="<?php echo $this->url('home'); ?>">Tin tức</a></li>
 			<li><a href="<?php echo $this->url('home'); ?>">Liên hệ</a></li>
 		</ul>
