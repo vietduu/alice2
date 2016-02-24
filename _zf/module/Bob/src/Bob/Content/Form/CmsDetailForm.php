@@ -21,9 +21,6 @@ class CmsDetailForm extends Form
 				'label' => 'CMS item type:',
 			//	'empty_option' => 'Please select',
 				'value_options' => $this->getAllCmsItemTypes(),
-			),
-			'attributes' => array(
-				'value' => '1'
 			)
 		));
 

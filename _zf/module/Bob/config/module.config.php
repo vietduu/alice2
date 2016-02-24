@@ -20,6 +20,8 @@ return array(
             'bob/cms/index' => __DIR__ . '/../view/cms/index.phtml',
             'bob/cms/add' => __DIR__ . '/../view/cms/add-cms.phtml',
             'bob/cms/edit' => __DIR__ . '/../view/cms/edit-cms.phtml',
+            'cms/detail' => __DIR__ . '/../view/cms/detail-cms.phtml',
+            'cms/item' => __DIR__ . '/../view/cms/item-cms.phtml',
         ),
         'template_path_stack' => array(
             'bobadmin' => __DIR__ . '/../view',

@@ -1,0 +1,11 @@
+<?php
+$form1 = $this->itemForm;
+$form1->setAttribute('action', $this->url('cms/edit', array('action' => 'edit')));
+$form1->prepare();
+
+echo $this->form()->openTag($form1);
+echo $this->formCollection($form1);
+
+echo $this->form()->closeTag();
+
+?>

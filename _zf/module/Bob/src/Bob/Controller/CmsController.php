@@ -51,24 +51,31 @@ class CmsController extends AbstractActionController
 		$view = new ViewModel();
 		$request = $this->getRequest();
 		$url = $request->getUri();
+		$view->url = $url;
 		$id = substr($url, strripos($url,'/')+1);
 
 		$adapter = ServiceConfigHelper::getAdapter($this);
-		$detailForm = new CmsDetailForm($adapter);
-		$detailForm->get('submit')->setValue('Create');
 
-		$request = $this->getRequest();
+		$form = new CmsDetailForm($adapter);
+		$form->get('submit')->setValue('Create');
+
+		$view->detailForm = $form;
 
 		if ($request->isPost()) {
 			$itemTypeEntity = $request->getPost();
 			
-			$itemForm = new CmsItemForm($adapter);
-			$item = $this->getItemTypeById($itemTypeEntity->fk_cms_item_type);
+			$form = new CmsItemForm($adapter);
+			$cmsItem = new CmsItem();
+			$form->setInputFilter($cmsItem->getInputFilter());
+			$form->setData($request->getPost());
+			$item = $this->getItemTypeById($itemTypeEntity->fk_cms_item_type + 1);
 			$view->item = $item["label"];
-			$itemForm->get('content')->setLabel($item["label"].": ");
+			$form->get('content')->setLabel($item["label"].": ");
 
-			$view->itemForm = $itemForm;
-			return $this->redirect()->toRoute($url);
+			$view->itemForm = $form;
+
+			
+		//	return $this->redirect()->toRoute($url);
 		}
 
 		if (0 == $id) {
@@ -79,7 +86,6 @@ class CmsController extends AbstractActionController
 			throw new \Exception("Can't create/edit this cms item");
 		}
 
-		$view->detailForm = $detailForm;
 		return $view;
 	}
 

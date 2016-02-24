@@ -33,14 +33,14 @@ class CmsItemForm extends Form
 			),
 		));
 		
-		$this->add(array(
+	/*	$this->add(array(
              'name' => 'submit',
              'attributes' => array(
              	 'type' => 'submit',
                  'value' => 'Save',
                  'id' => 'submit_btn',
              ),
-        ));
+        ));*/
 	}
 
 	public function populateValues($data)
