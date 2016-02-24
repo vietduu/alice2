@@ -9,6 +9,15 @@ class ImagesMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		parent::__construct($tableGateway);
 	}
 
+	public function settype(&$entity){
+		settype($entity->image_id, "int");
+		settype($entity->source, "string");
+		settype($entity->alt_tag, "string");
+		settype($entity->general_product_fk, "int");
+		settype($entity->title, "string");
+		settype($entity->is_default, "bool");
+	}
+
 	public function getModelData($entity)
 	{
 		$this->settype($entity, 'Images');

@@ -19,6 +19,7 @@ return array(
             'cms/bob/header' => __DIR__ . '/../view/cms/header.phtml',
             'bob/cms/index' => __DIR__ . '/../view/cms/index.phtml',
             'bob/cms/add' => __DIR__ . '/../view/cms/add-cms.phtml',
+            'bob/cms/edit' => __DIR__ . '/../view/cms/edit-cms.phtml',
         ),
         'template_path_stack' => array(
             'bobadmin' => __DIR__ . '/../view',

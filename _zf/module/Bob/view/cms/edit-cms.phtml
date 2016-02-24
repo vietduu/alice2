@@ -1,0 +1,30 @@
+<?php
+$title = "CMS Modification";
+$this->headTitle($title);
+?>
+
+<h1 id="title"><?php echo $this->escapeHtml($title); ?></h1>
+
+<div id="dashboard">
+<?php
+$detailForm = $this->detailForm;
+$detailForm->setAttribute('action', $this->url('cms/edit', array('action' => 'edit')));
+$detailForm->prepare();
+
+echo $this->form()->openTag($detailForm);
+echo $this->formCollection($detailForm);
+
+?>
+<?php echo $this->form()->closeTag();?>
+
+
+<?php //$this->partial('form.phtml', array('form' => $this->itemForm));
+$itemForm = $this->itemForm;
+$itemForm->setAttribute('action', $this->url('cms/edit', array('action' => 'edit')));
+$itemForm->prepare();
+
+echo $this->form()->openTag($itemForm);
+echo $this->formCollection($itemForm);
+echo $this->form()->closeTag();
+?>
+</div>

@@ -13,6 +13,11 @@ class InvoiceTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		parent::__construct($tableGateway);
 	}
 
+	public function settype(&$entity){
+		settype($entity->invoice_type_id, "int");
+		settype($entity->invoice_type_name, "string");
+	}
+
 	public function getModelData($entity)
 	{
 		$this->settype($entity, 'InvoiceType');

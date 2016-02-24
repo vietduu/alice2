@@ -91,6 +91,18 @@ class Module implements AutoloaderProviderInterface
                             ),
                         ),
                     ),
+                    'edit' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/edit[/:id]',
+                            'constraints' => array(
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'edit',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ));

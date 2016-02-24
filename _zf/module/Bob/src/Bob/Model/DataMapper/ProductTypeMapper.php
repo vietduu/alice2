@@ -13,6 +13,11 @@ class ProductTypeMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		parent::__construct($tableGateway);
 	}
 
+	public function settype(&$entity){
+		settype($entity->id, "int");
+		settype($entity->name, "string");
+	}
+
 	public function getModelData($entity)
 	{
 		$this->settype($entity, 'ProductType');

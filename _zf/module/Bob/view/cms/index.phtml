@@ -36,9 +36,10 @@
 	        <td><?php echo $folder['is_active']; ?></td>
 	        <td><?php echo $folder['is_published']; ?></td>
 	        <td>
-	        	<a href="<?php echo $this->url('cms/add', array(
+	        	<a href="<?php echo $this->url('cms/edit', array(
                             'controller' => 'cms',
-                            'action' => 'add'
+                            'action' => 'edit',
+                            'id' => $folder['id_cms_folder'],
                         )); ?>"><img src="<?php echo $this->basePath('/img/icon/1455974233_Settings.png'); ?>" alt="edit" /></a>
         		<a href="<?php echo $this->url('cms/add', array(
                             'controller' => 'cms',

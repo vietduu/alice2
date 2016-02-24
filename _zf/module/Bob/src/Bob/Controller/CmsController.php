@@ -4,11 +4,11 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Bob\Helper\ServiceConfigHelper;
 use Bob\Helper\ConcreteServiceConfig;
-
 use Bob\Model\DataObject\CmsFolder;
 use Bob\Content\Form\CmsForm;
-use Bob\Model\DataObject\Album;
-use Bob\Content\Form\AlbumForm;
+use Bob\Model\DataObject\CmsItem;
+use Bob\Content\Form\CmsDetailForm;
+use Bob\Content\Form\CmsItemForm;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 class CmsController extends AbstractActionController
@@ -47,6 +47,42 @@ class CmsController extends AbstractActionController
 		return $view;
 	}
 
+	public function editAction(){
+		$view = new ViewModel();
+		$request = $this->getRequest();
+		$url = $request->getUri();
+		$id = substr($url, strripos($url,'/')+1);
+
+		$adapter = ServiceConfigHelper::getAdapter($this);
+		$detailForm = new CmsDetailForm($adapter);
+		$detailForm->get('submit')->setValue('Create');
+
+		$request = $this->getRequest();
+
+		if ($request->isPost()) {
+			$itemTypeEntity = $request->getPost();
+			
+			$itemForm = new CmsItemForm($adapter);
+			$item = $this->getItemTypeById($itemTypeEntity->fk_cms_item_type);
+			$view->item = $item["label"];
+			$itemForm->get('content')->setLabel($item["label"].": ");
+
+			$view->itemForm = $itemForm;
+			return $this->redirect()->toRoute($url);
+		}
+
+		if (0 == $id) {
+			$this->createCmsItem();
+		} else if (0 < $id) {
+			$this->editCmsItem();
+		} else {
+			throw new \Exception("Can't create/edit this cms item");
+		}
+
+		$view->detailForm = $detailForm;
+		return $view;
+	}
+
 	public function saveCmsFolder($entity)
 	{
 		$cmsFolder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
@@ -67,5 +103,56 @@ class CmsController extends AbstractActionController
 	public function getFullCmsFolder(){
 		$folder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
 		return $folder->getFullCmsFolder();
+	}
+
+	public function getAllCmsItemsOfFolder($id){
+		$items = ConcreteServiceConfig::getCmsItemServiceConfig($this);
+		return $items->getAllCmsItemsOfFolder($id);
+	}
+
+	public function getAllCmsItemTypes(){
+		$itemTypes = ConcreteServiceConfig::getCmsItemTypeServiceConfig($this);
+		return $itemTypes->fetchAll();
+	}
+
+	public function countCmsItemsOfFolder($id){
+		$items = ConcreteServiceConfig::getCmsItemServiceConfig($this);
+		$result = $items->getAllCmsItemsOfFolder($id);
+		$count = 0;
+		foreach($result as $value){
+			$count++;
+		}
+		return $count;
+	}
+
+	public function getItemTypeById($id){
+		$itemType = ConcreteServiceConfig::getCmsItemTypeServiceConfig($this);
+		return $itemType->getById($id);
+	}
+
+
+	public function createCmsItem() {
+	/*	$adapter = ServiceConfigHelper::getAdapter($this);
+		$form = new CmsItemForm($adapter);
+		$form->get('submit')->setValue('Add');
+
+		$request = $this->getRequest();
+
+		if ($request->isPost()) {
+			$cmsItem = new CmsItem();
+			$form->setInputFilter($cmsFolder->getInputFilter());
+			$form->setData($request->getPost());
+
+			if ($form->isValid()){
+				$cmsFolder->exchangeArray($form->getData());
+				$this->saveCmsFolder($cmsFolder);
+				$this->flashMessenger()->addMessage('CMS key is created successfully!');
+				return $this->redirect()->toRoute('cms');
+			}
+		}*/
+	}
+
+	public function editCmsItem() {
+
 	}
 }

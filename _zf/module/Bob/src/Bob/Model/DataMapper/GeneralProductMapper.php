@@ -9,6 +9,16 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		parent::__construct($tableGateway);
 	}
 
+	public function settype(&$entity){
+		settype($entity->general_id, "int");
+		settype($entity->general_name, "string");
+		settype($entity->sku, "string");
+		settype($entity->description_fk, "int");
+		settype($entity->product_type_fk, "int");
+		settype($entity->invoice_flag, "bool");
+		settype($entity->invoice_type_fk, "int");
+	}
+
 	public function getModelData($entity)
 	{
 		$this->settype($entity, 'GeneralProduct');
