@@ -228,3 +228,31 @@ text-align: center;
 vertical-align: auto;
   z-index: 1;
 }
+
+
+/*
+ * CMS style
+ */
+.ui-formCol1 {
+  margin-top: 10px;
+}
+
+.checkbox > .ui-formCol1, .checkbox > .ui-formCol2 {
+  display: inline-block;
+}
+
+.ui-submit-field input {
+  margin-top: 10px;
+  width: 100px;
+  padding: 2px 0;
+}
+
+.error-msg ul{
+  color: red;
+  list-style-type: none;
+  -webkit-margin-before: -4px;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+}

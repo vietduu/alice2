@@ -1,11 +1,20 @@
 <?php
-$form = $this->detailForm;
-$form->setAttribute('action', $this->url('cms/edit', array('action' => 'edit')));
-$form->prepare();
+$form = $this->form;
 
-echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+echo $this->form()->openTag($form); ?>
 
+<div class="ui-fieldset">
+	<div class="ui-formRow">
+		<?php $fk_cms_item_type = $form->get('fk_cms_item_type'); ?>
+		<div class="ui-formCol1"><?php echo $this->formLabel($fk_cms_item_type); ?></div>
+		<div class="ui-formCol2"><?php echo $this->formSelect($fk_cms_item_type); ?></div>
+	</div>
+	<div class="ui-formRow">
+		<?php echo $this->formElement($form->get('submit')); ?>
+	</div>
+</div>
+
+<?php
 echo $this->item;
 echo $this->url;
 echo $this->form()->closeTag();

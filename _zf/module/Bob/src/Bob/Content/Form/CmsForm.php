@@ -85,7 +85,11 @@ class CmsForm extends Form
 
 		$this->add(array(
             'type' => 'Csrf',
-            'name' => 'csrf'
+            'name' => 'csrf',
+            'options' => array(
+            'csrf_options' => array(
+                'timeout' => 600
+            ))
         ));
 
 

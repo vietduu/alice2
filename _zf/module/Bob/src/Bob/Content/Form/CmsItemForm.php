@@ -2,18 +2,14 @@
 namespace Bob\Content\Form;
 use Zend\Form\Form;
 use Zend\Form\Element;
-use Bob\Model\DataObject\CmsItem;
-//use Bob\Model\DataMapper\CmsFolderTypeMapper;
 use Zend\Db\Adapter\AdapterInterface;
-use Bob\Helper\ConcreteServiceConfig;
-use Zend\Db\Adapter\Adapter;
 
 class CmsItemForm extends Form 
 {
 	protected $adapter;
 
 	public function __construct(AdapterInterface $adapter) {
-		parent::__construct('cms-item');
+		parent::__construct('cms-item-page');
 		$this->adapter = $adapter;
 
 		$this->setAttribute('method','post');
@@ -32,15 +28,33 @@ class CmsItemForm extends Form
 				'label' => 'Key:',
 			),
 		));
+
+		$this->add(array(
+			'name' => 'fk_cms_folder',
+			'type' => 'Text',
+			'options' => array(
+				'label' => 'fk_cms_folder:',
+			),
+		));
+
+		$this->add(array(
+			'name' => 'fk_cms_item_type',
+			'type' => 'Zend\Form\Element\Select',
+			'options' => array(
+				'label' => 'CMS item type:',
+			//	'empty_option' => 'Please select',
+				'value_options' => $this->getAllCmsItemTypes(),
+			)
+		));
 		
-	/*	$this->add(array(
+		$this->add(array(
              'name' => 'submit',
              'attributes' => array(
              	 'type' => 'submit',
                  'value' => 'Save',
                  'id' => 'submit_btn',
              ),
-        ));*/
+        ));
 	}
 
 	public function populateValues($data)
@@ -55,7 +69,7 @@ class CmsItemForm extends Form
         parent::populateValues($data);
     }
 
-    public function getAllCmsFolderTypes(){
+    public function getAllCmsItemTypes(){
     	$adapter = $this->adapter;
     	$sql = "SELECT * FROM cms_item_type";
     	$statement = $adapter->query($sql);
@@ -68,5 +82,15 @@ class CmsItemForm extends Form
         }
 
         return $selectData;
+    }
+
+    public function getItemTypeById($id){
+    	
+    }
+
+
+
+    public function createConcreteElement($id){
+
     }
 }

@@ -19,7 +19,7 @@ class CmsDetailForm extends Form
 			'type' => 'Zend\Form\Element\Select',
 			'options' => array(
 				'label' => 'CMS item type:',
-			//	'empty_option' => 'Please select',
+				'empty_option' => 'Please select...',
 				'value_options' => $this->getAllCmsItemTypes(),
 			)
 		));
