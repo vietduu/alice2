@@ -42,19 +42,20 @@ echo $this->form()->openTag($form);
 	</div>
 	<div class="ui-formRow checkbox">
 		<?php $is_active = $form->get('is_active'); ?>
-		<div class="ui-formCol1"><?php echo $this->formCheckbox($is_active); ?></div>
-		<div class="ui-formCol2"><?php echo $this->formLabel($is_active); ?></div>
+		<div class="ui-formCol1"><?php echo $this->formLabel($is_active); ?></div>
+		<div class="ui-formCol2"><?php echo $this->formCheckbox($is_active); ?></div>
 	</div>
 	<div class="ui-formRow checkbox">
 		<?php $is_published = $form->get('is_published'); ?>
-		<div class="ui-formCol1"><?php echo $this->formCheckbox($is_published); ?></div>
-		<div class="ui-formCol2"><?php echo $this->formLabel($is_published); ?></div>
+		<div class="ui-formCol1"><?php echo $this->formLabel($is_published); ?></div>
+		<div class="ui-formCol2"><?php echo $this->formCheckbox($is_published); ?></div>
 	</div>
 
 	<?php echo $this->formElement($form->get('csrf')); ?>
 
 	<div class="ui-formRow ui-submit-field">
-		<?php echo $this->formElement($form->get('submit')); ?>
+		<div class="ui-formCol1"></div>
+		<div class="ui-formCol2"><?php echo $this->formElement($form->get('submit')); ?></div>
 	</div>
 </div>
 

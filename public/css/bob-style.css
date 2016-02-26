@@ -157,33 +157,6 @@ tr:nth-child(even) {
   margin-top: 15px;
 }
 
-#description textarea{
-  height: 150px;
-}
-
-label {
-  font-weight: 700;
-  display: block;
-}
-
-input[type=text], select, textarea {
-    width: 80%;
-    padding: 5px 5px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-#submission button {
-    width: 30%;
-    padding: 14px 20px;
-    margin: 8px 30px;
-}
-
-.add-btn {
-    margin-bottom: 5px;
-    float: right;
-}
-
 /*
  * images gallery
  */
@@ -218,26 +191,69 @@ input[type=text], select, textarea {
 
 
 #product-thumbnail {
-width:100%;
-height:100%;
-display:none;
-position:fixed;
-background-color:rgba(0,0,0,0.8);
-overflow:visible;
-text-align: center;
-vertical-align: auto;
+  width:100%;
+  height:100%;
+  display:none;
+  position:fixed;
+  background-color:rgba(0,0,0,0.8);
+  overflow:visible;
+  text-align: center;
+  vertical-align: auto;
   z-index: 1;
+}
+
+#description textarea{
+  height: 150px;
+}
+
+
+input[type=text], select {
+    padding: 5px 5px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 100%;
+}
+
+textarea {
+    padding: 5px 5px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 100%;
+}
+
+#submission button {
+    width: 30%;
+    padding: 14px 20px;
+    margin: 8px 30px;
+}
+
+.add-btn {
+    margin-bottom: 5px;
+    float: right;
 }
 
 
 /*
  * CMS style
  */
-.ui-formCol1 {
-  margin-top: 10px;
+.ui-formRow {
+  margin-top: 15px;
 }
 
-.checkbox > .ui-formCol1, .checkbox > .ui-formCol2 {
+.ui-formCol1 {
+  width: 15%;
+}
+
+.ui-formCol2 {
+  width: 60%;
+}
+
+.ui-formCol3 {
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+.ui-formCol1, .ui-formCol2, .ui-formCol3 {
   display: inline-block;
 }
 
@@ -255,4 +271,8 @@ vertical-align: auto;
   -webkit-margin-start: 0;
   -webkit-margin-end: 0;
   -webkit-padding-start: 0;
+}
+
+.off {
+  display: none;
 }
