@@ -61,23 +61,9 @@ class CmsController extends AbstractActionController
 
 		$view->form = $form;
 
-
-/*		if ($request->isPost()) {
-			$itemTypeEntity = $request->getPost();
+	//	if ($request->isPost()) {
 			
-			$form = new CmsItemForm($adapter);
-			$cmsItem = new CmsItem();
-			$form->setInputFilter($cmsItem->getInputFilter());
-		//	$form->setData($request->getPost());
-			$item = $this->getItemTypeById($itemTypeEntity->fk_cms_item_type + 1);
-			$view->item = $item["label"];
-			$form->get('content')->setLabel($item["label"].": ");
-
-			$view->form = $form;
-
-			
-		//	return $this->redirect()->toRoute($url);
-		}*/
+	//	}
 
 		if (0 == $id) {
 			$this->createCmsItem();

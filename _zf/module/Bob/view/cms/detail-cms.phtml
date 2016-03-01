@@ -4,12 +4,12 @@ $form = $this->form;
 echo $this->form()->openTag($form); ?>
 
 <div class="ui-fieldset">
-	<div class="ui-formRow">
+	<div class="ui-formRow ui-summary">
 		<?php $fk_cms_item_type = $form->get('fk_cms_item_type'); ?>
 		<div class="ui-formCol1"><?php echo $this->formLabel($fk_cms_item_type); ?></div>
 		<div class="ui-formCol2"><?php echo $this->formSelect($fk_cms_item_type); ?></div>
 	</div>
-	<div class="ui-formRow">
+	<div class="ui-formRow ui-submit-field">
 		<?php echo $this->formElement($form->get('submit')); ?>
 	</div>
 </div>

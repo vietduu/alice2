@@ -22,7 +22,7 @@ $(document).ready(function(){
 			case 21:
 			case 27:
 				$(this).find("option:selected").addClass("off");
-				$("#cms-detail-page").append(createTextbox(selectedIdx, name));
+				$("#cms-detail-page .ui-summary").append(createTextbox(selectedIdx, name));
 				break;
 			case 1:
 			case 2:
@@ -43,16 +43,29 @@ $(document).ready(function(){
 			case 28:
 			case 29:
 				$(this).find("option:selected").addClass("off");
-				$("#cms-detail-page").append(createTextarea(selectedIdx, name));
+				$("#cms-detail-page .ui-summary").append(createTextarea(selectedIdx, name));
 				break;
 			case 11:
 			case 16:
 				$(this).find("option:selected").addClass("off");
-				$("#cms-detail-page").append(createCheckbox(selectedIdx, name));
+				$("#cms-detail-page .ui-summary").append(createCheckbox(selectedIdx, name));
 				break;	
 			default:
 			
 		}
+	});
+
+
+
+	$("#cms-detail-page #submit_btn").click(function(){
+		$("#cms-detail-page").load();
+		var href = window.location.href;
+		var generalFolder = href.substr(href.lastIndexOf('/')+1);
+		$("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").each(function(){
+			var fk_cms_folder = generalFolder;
+			var fk_cms_item_type = $(this).attr("data-id");
+			var content = $(this).children(".ui-formCol2").children().val();
+		});
 	});
 });
 
