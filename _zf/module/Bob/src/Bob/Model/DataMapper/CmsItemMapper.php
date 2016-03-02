@@ -45,6 +45,16 @@ class CmsItemMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		return $result;
 	}
 
+	public function getFullCmsItemOfFolder($id)
+	{
+		$sql = "SELECT * FROM cms_item ci JOIN cms_item_type cit "
+				. "ON (ci.fk_cms_item_type = cit.id_cms_item_type) "				
+				. "WHERE ci.fk_cms_folder = ?";
+		$statement = $this->getAdapter()->query($sql);
+		$result = $statement->execute(array($id));
+		return $result->getResource()->fetchAll();
+	}
+
 	public function getById($id)
 	{
 		$id = (int) $id;

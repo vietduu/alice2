@@ -59,10 +59,8 @@ class CmsController extends AbstractActionController
 		$form->get('submit')->setValue('Create');
 
 		$view->form = $form;
-
 		$view->count = $this->countCmsItemsOfFolder($id);
-
-		$items = $this->getAllCmsItemsOfFolder($id);
+		$view->items = $this->getFullCmsItemOfFolder($id);
 
 		if (0 == $this->countCmsItemsOfFolder($id)) {
 			$this->createCmsItem($request);
@@ -100,6 +98,11 @@ class CmsController extends AbstractActionController
 	public function getAllCmsItemsOfFolder($id){
 		$items = ConcreteServiceConfig::getCmsItemServiceConfig($this);
 		return $items->getAllCmsItemsOfFolder($id);
+	}
+
+	public function getFullCmsItemOfFolder($id){
+		$items = ConcreteServiceConfig::getCmsItemServiceConfig($this);
+		return $items->getFullCmsItemOfFolder($id);
 	}
 
 	public function getAllCmsItemTypes(){

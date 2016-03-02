@@ -73,10 +73,17 @@ $(document).ready(function(){
 			var fk_cms_folder = generalFolder;
 			var fk_cms_item_type = $(this).attr("data-id");
 			var content = $(this).children(".ui-formCol2").children().val();
-			var row = 'fk_cms_folder=' + fk_cms_folder + '&fk_cms_item_type=' + fk_cms_item_type + '&content=' + content;
 			if (fk_cms_folder == '' || fk_cms_item_type == '' || content == ''){
 				alert("Please fill the text...");
 			}
+			if (fk_cms_item_type == "11" || fk_cms_item_type == "16"){
+				if ($(this).children(".ui-formCol2").children().prop("checked")){
+					content = "checked";
+				} else {
+					content = "";
+				}
+			}
+			var row = 'fk_cms_folder=' + fk_cms_folder + '&fk_cms_item_type=' + fk_cms_item_type + '&content=' + content;
 			array.push(row);
 		});
 
@@ -91,7 +98,6 @@ $(document).ready(function(){
 			data: ({array:arrayString}),
 			cache: false,
 			success: function(data){
-			//	$("#cms-detail-page").load();
 				array = [];
 				var url = window.location.href;
 				window.location=url.substring(url.lastIndexOf("/edit"), 0);
