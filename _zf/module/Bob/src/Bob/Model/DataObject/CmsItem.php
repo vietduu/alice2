@@ -14,6 +14,12 @@ class CmsItem implements \Bob\Model\InterfaceHelper\ModelInterface, InputFilterA
 	public $created_at;
 	protected $inputFilter;
 
+/*	public function __construct($fk_cms_folder, $fk_cms_item_type, $content){
+		$this->fk_cms_folder = $fk_cms_folder;
+		$this->fk_cms_item_type = $fk_cms_item_type;
+		$this->content = $content;
+	}*/
+
 	public function exchangeArray($data)
 	{
 		$this->id_cms_item = (!empty($data['id_cms_item'])) ? $data['id_cms_item'] : null;

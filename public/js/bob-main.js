@@ -56,16 +56,50 @@ $(document).ready(function(){
 	});
 
 
-
-	$("#cms-detail-page #submit_btn").click(function(){
+	var array = [];
+	$("#cms-detail-page #submit_btn").click(function(e){
 		$("#cms-detail-page").load();
+		e.preventDefault();
 		var href = window.location.href;
 		var generalFolder = href.substr(href.lastIndexOf('/')+1);
+		if ($("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").length == 0){
+			$("#cms-detail-page").append("<span id='notification'>*Please select at least one item</span>");
+		//	return false;
+		} else {
+		/*	if (!$.trim($("#notification").html())){
+				$(this).remove();
+			}*/
 		$("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").each(function(){
 			var fk_cms_folder = generalFolder;
 			var fk_cms_item_type = $(this).attr("data-id");
 			var content = $(this).children(".ui-formCol2").children().val();
+			var row = 'fk_cms_folder=' + fk_cms_folder + '&fk_cms_item_type=' + fk_cms_item_type + '&content=' + content;
+			if (fk_cms_folder == '' || fk_cms_item_type == '' || content == ''){
+				alert("Please fill the text...");
+			}
+			array.push(row);
 		});
+
+		var arrayString = array[0];
+		for (var i=1; i<array.length; i++){
+			arrayString = arrayString + ',' + array[i];
+		}
+
+		$.ajax({
+			type: "POST",
+			url: window.location.href,
+			data: ({array:arrayString}),
+			cache: false,
+			success: function(data){
+			//	$("#cms-detail-page").load();
+				array = [];
+				var url = window.location.href;
+				window.location=url.substring(url.lastIndexOf("/edit"), 0);
+			}
+		});
+	}
+
+	//	return false;
 	});
 });
 

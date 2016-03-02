@@ -9,13 +9,19 @@ echo $this->form()->openTag($form); ?>
 		<div class="ui-formCol1"><?php echo $this->formLabel($fk_cms_item_type); ?></div>
 		<div class="ui-formCol2"><?php echo $this->formSelect($fk_cms_item_type); ?></div>
 	</div>
+
+	<?php if (0 == $this->count): 
+			echo "create";
+		else:
+			echo "edit";
+		endif;
+	?>
+
 	<div class="ui-formRow ui-submit-field">
 		<?php echo $this->formElement($form->get('submit')); ?>
 	</div>
 </div>
 
 <?php
-echo $this->item;
-echo $this->url;
 echo $this->form()->closeTag();
 ?>

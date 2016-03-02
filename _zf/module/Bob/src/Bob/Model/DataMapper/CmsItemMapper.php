@@ -26,7 +26,6 @@ class CmsItemMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 			'fk_cms_folder' => $entity->fk_cms_folder,
 			'fk_cms_item_type' => $entity->fk_cms_item_type + 1,
 			'content' => $entity->content,
-			'created_at' => $entity->created_at,
 		);
 	}
 
