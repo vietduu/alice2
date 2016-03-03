@@ -51,10 +51,16 @@ $(document).ready(function(){
 				$("#cms-detail-page .ui-summary").append(createCheckbox(selectedIdx, name));
 				break;	
 			default:
-			
 		}
 	});
 
+	$("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").each(function(i,e){
+		$("select[name='fk_cms_item_type']").children().each(function(){
+			if ($(e).attr("data-id") == $(this).attr("value")){
+				$(this).addClass("off");
+			}
+		});
+	});
 
 	var array = [];
 	$("#cms-detail-page #submit_btn").click(function(e){
@@ -64,15 +70,16 @@ $(document).ready(function(){
 		var generalFolder = href.substr(href.lastIndexOf('/')+1);
 		if ($("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").length == 0){
 			$("#cms-detail-page").append("<span id='notification'>*Please select at least one item</span>");
-		//	return false;
 		} else {
-		/*	if (!$.trim($("#notification").html())){
-				$(this).remove();
-			}*/
 		$("#cms-detail-page .ui-formRow:not(.ui-summary,.ui-submit-field)").each(function(){
 			var fk_cms_folder = generalFolder;
+			var id_cms_item = "";
 			var fk_cms_item_type = $(this).attr("data-id");
 			var content = $(this).children(".ui-formCol2").children().val();
+			if ($.trim($(this).children("input[type='hidden']").html()) != ""){
+				id_cms_item = $(this).children("input[type='hidden']").val();
+			}
+
 			if (fk_cms_folder == '' || fk_cms_item_type == '' || content == ''){
 				alert("Please fill the text...");
 			}
@@ -83,7 +90,7 @@ $(document).ready(function(){
 					content = "";
 				}
 			}
-			var row = 'fk_cms_folder=' + fk_cms_folder + '&fk_cms_item_type=' + fk_cms_item_type + '&content=' + content;
+			var row = 'id_cms_item=' + id_cms_item +'&fk_cms_folder=' + fk_cms_folder + '&fk_cms_item_type=' + fk_cms_item_type + '&content=' + content;
 			array.push(row);
 		});
 
@@ -104,8 +111,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-
-	//	return false;
 	});
 });
 

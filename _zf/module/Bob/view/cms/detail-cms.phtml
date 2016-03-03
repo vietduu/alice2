@@ -14,9 +14,9 @@ echo $this->form()->openTag($form); ?>
 			echo "create";
 		else: // edit cms key
 			$items = $this->items;
-			foreach ($items as $item): 
-				var_dump($item); ?>
+			foreach ($items as $item): ?>
 				<div class="ui-formRow" data-id="<?php echo intval($item['fk_cms_item_type'])-1; ?>">
+					<input type="hidden" value="<?php echo $item['id_cms_item']; ?>">
 					<div class="ui-formCol1"><label><?php echo $item['label']; ?></label></div>
 					<div class="ui-formCol2">
 						<?php if ("text" == $item['xtype']): ?>

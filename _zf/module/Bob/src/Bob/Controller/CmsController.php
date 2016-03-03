@@ -62,10 +62,8 @@ class CmsController extends AbstractActionController
 		$view->count = $this->countCmsItemsOfFolder($id);
 		$view->items = $this->getFullCmsItemOfFolder($id);
 
-		if (0 == $this->countCmsItemsOfFolder($id)) {
+		if (0 <= $this->countCmsItemsOfFolder($id)) {
 			$this->createCmsItem($request);
-		} else if (0 < $this->countCmsItemsOfFolder($id)) {
-			$this->editCmsItem();
 		} else {
 			throw new \Exception("Can't create/edit this cms item");
 		}
@@ -149,9 +147,7 @@ class CmsController extends AbstractActionController
 				$cmsItem->exchangeArray($array2);
 				$this->saveCmsItem($cmsItem);
 			}
-			$this->flashMessenger()->addMessage('CMS items are created successfully!');
-				
-		//	return $this->redirect()->toRoute('cms');	
+			$this->flashMessenger()->addMessage('CMS items are created successfully!');	
 		}
 	}
 
@@ -161,7 +157,35 @@ class CmsController extends AbstractActionController
 		return $cmsItem->save($entity);
 	}
 
-	public function editCmsItem() {
+	public function editCmsItem($request, $id) {
+		if($request->isXmlHttpRequest())
+      	{
+      		$itemList = $this->getFullCmsItemOfFolder($id);
+			$item1 = explode(",", $_POST['array']);
 
+			$array1 = [];
+			foreach($item1 as $item){
+				$item2 = explode("&", $item);
+				array_push($array1, $item2);
+			}
+
+			$array2 = [];
+			$array3 = [];
+		/*	foreach($itemList as $item) {
+				$array2['id_cms_item'] = $item['id_cms_item'];
+			}*/
+
+			foreach($array1 as $sub_array){
+				foreach($sub_array as $small_array){
+					$item = explode("=", $small_array, 2);
+					$array2[$item[0]] = $item[1];
+				}
+				array_push($array3, $array2);
+				$cmsItem = new CmsItem();
+				$cmsItem->exchangeArray($array2);
+				$this->saveCmsItem($cmsItem);
+			}
+			$this->flashMessenger()->addMessage('CMS items are created successfully!');
+		}
 	}
 }
