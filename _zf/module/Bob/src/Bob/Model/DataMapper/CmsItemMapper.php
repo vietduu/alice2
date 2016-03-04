@@ -66,4 +66,23 @@ class CmsItemMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 		return (array)$row;
 	}
+
+	public function save($entity)
+	{
+		$data = $this->getModelData($entity);
+
+		settype(array_values($data)[0], "int");
+		$id = array_values($data)[0];
+
+		if (0 == $id)
+		{
+		//	$this->getTableGateway()->insert($data);
+		} else {
+			if ($this->getById($id)){
+				$this->getTableGateway()->update($data, array('id_cms_item' => $id));
+		} else {
+			throw new \Exception('ID does not exist');
+			}
+		}
+	}
 }
