@@ -20,6 +20,7 @@ return array(
             'bob/cms/index' => __DIR__ . '/../view/cms/index.phtml',
             'bob/cms/add' => __DIR__ . '/../view/cms/add-cms.phtml',
             'bob/cms/edit' => __DIR__ . '/../view/cms/edit-cms.phtml',
+            'bob/cms/delete' => __DIR__ . '/../view/cms/delete-cms.phtml',
             'cms/detail' => __DIR__ . '/../view/cms/detail-cms.phtml',
             'cms/item' => __DIR__ . '/../view/cms/item-cms.phtml',
         ),

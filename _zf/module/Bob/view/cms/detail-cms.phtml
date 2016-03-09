@@ -10,9 +10,7 @@ echo $this->form()->openTag($form); ?>
 		<div class="ui-formCol2"><?php echo $this->formSelect($fk_cms_item_type); ?></div>
 	</div>
 
-	<?php if (0 == $this->count): // create a new cms key
-			echo "create";
-		else: // edit cms key
+	<?php if (0 < $this->count):
 			$items = $this->items;
 			foreach ($items as $item): ?>
 				<div class="ui-formRow" data-id="<?php echo intval($item['fk_cms_item_type'])-1; ?>">
@@ -34,6 +32,7 @@ echo $this->form()->openTag($form); ?>
 						</div>
 				</div>
 	<?php		endforeach;
+	//	var_dump($this->item);
 		endif;
 	?>
 

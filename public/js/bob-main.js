@@ -76,8 +76,8 @@ $(document).ready(function(){
 			var id_cms_item = "";
 			var fk_cms_item_type = $(this).attr("data-id");
 			var content = $(this).children(".ui-formCol2").children().val();
-			if ($.trim($(this).children("input[type='hidden']").html()) != ""){
-				id_cms_item = $(this).children("input[type='hidden']").val();
+			if ($(this).children("input").length != 0){
+				id_cms_item = $(this).children("input").val();
 			}
 
 			if (fk_cms_folder == '' || fk_cms_item_type == '' || content == ''){

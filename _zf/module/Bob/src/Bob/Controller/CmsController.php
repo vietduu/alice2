@@ -9,6 +9,7 @@ use Bob\Content\Form\CmsForm;
 use Bob\Model\DataObject\CmsItem;
 use Bob\Content\Form\CmsDetailForm;
 use Bob\Content\Form\CmsItemForm;
+use Bob\Content\Form\CmsRemovalForm;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 class CmsController extends AbstractActionController
@@ -63,7 +64,35 @@ class CmsController extends AbstractActionController
 		$view->items = $this->getFullCmsItemOfFolder($id);
 
 		if (0 <= $this->countCmsItemsOfFolder($id)) {
-			$this->createCmsItem($request);
+		//	$this->createCmsItem($request);
+			if($request->isXmlHttpRequest())
+      	{
+			$item1 = explode(",", $_POST['array']);
+
+			$array1 = [];
+			foreach($item1 as $item){
+				$item2 = explode("&", $item);
+				array_push($array1, $item2);
+			}
+
+			$array2 = [];
+			$array3 = [];
+			foreach($array1 as $sub_array){
+				foreach($sub_array as $small_array){
+					$item = explode("=", $small_array, 2);
+					$array2[$item[0]] = $item[1];
+				}
+				array_push($array3, $array2);
+				$cmsItem = new CmsItem();
+				$cmsItem->exchangeArray($array2);
+				$this->saveCmsItem($cmsItem);
+			}
+		//	$view->item = $array3;
+			$this->flashMessenger()->addMessage('CMS items are created successfully!');
+		}
+
+
+
 		} else {
 			throw new \Exception("Can't create/edit this cms item");
 		}
@@ -71,10 +100,42 @@ class CmsController extends AbstractActionController
 		return $view;
 	}
 
+	public function deleteAction(){
+		$view = new ViewModel();
+		$request = $this->getRequest();
+		$url = $request->getUri();
+		$view->url = $url;
+		$id = substr($url, strripos($url,'/')+1);
+
+		$form = new CmsRemovalForm();
+		$form->get('submit')->setValue("Yes, I'm sure");
+		$form->get('cancel')->setValue("No");
+		$view->form = $form;
+		$view->key = $this->getCmsFolderById($id)['key'];
+
+		return $view;
+	}
+
+
+	public function deleteCmsFolder($id){
+		$itemService = ConcreteServiceConfig::getCmsItemServiceConfig($this);
+		$items = $this->getAllCmsItemsOfFolder($id);
+		foreach ($items as $item) {
+			$itemService->delete($item->id_cms_item);
+		}
+		$folder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
+		$folder->delete($id);
+	}
+
 	public function saveCmsFolder($entity)
 	{
 		$cmsFolder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
 		return $cmsFolder->save($entity);
+	}
+
+	public function getCmsFolderById($id){
+		$folder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
+		return $folder->getById($id);
 	}
 
 	public function getAllCmsFolderTypes()

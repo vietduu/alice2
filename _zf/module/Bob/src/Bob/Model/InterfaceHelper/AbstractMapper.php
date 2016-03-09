@@ -64,7 +64,7 @@ abstract class AbstractMapper
 			$this->getTableGateway()->insert($data);
 		} else {
 			if ($this->getById($id)){
-				$this->getTableGateway()->update($data, array(0 => $id));
+				$this->getTableGateway()->update($data, array(array_keys($data)[0] => $id));
 		} else {
 			throw new \Exception('ID does not exist');
 			}

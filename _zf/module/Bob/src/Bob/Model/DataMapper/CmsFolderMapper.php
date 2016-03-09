@@ -59,4 +59,10 @@ class CmsFolderMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 		return (array)$row;
 	}
+
+
+	public function deleteById($id)
+	{
+		$this->getTableGateway()->delete(array('id_cms_folder' => $id));
+	}
 }
