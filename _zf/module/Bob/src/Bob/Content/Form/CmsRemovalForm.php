@@ -7,7 +7,7 @@ class CmsRemovalForm extends Form
 {
 	protected $adapter;
 
-	public function __construct() {
+	public function __construct($id) {
 		parent::__construct('cms');
 
 		$this->setAttribute('method','post');
@@ -16,6 +16,7 @@ class CmsRemovalForm extends Form
 			'name' => 'id_cms_folder',
 			'attributes' => array(
 				'type' => 'hidden',
+                'value' => $id,
 			),
 		));
 

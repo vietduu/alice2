@@ -17,6 +17,7 @@ echo $this->form()->openTag($form);
 
 <div class="ui-fieldset">
 	<div class="content">
+		<?php echo $this->formHidden($form->get('id_cms_folder')); ?>
 		<span>Are you sure to remove the CMS key "<?php echo $this->key; ?>"?</span>
 		<span>All items from this CMS key will be removed!</span>
 	</div>

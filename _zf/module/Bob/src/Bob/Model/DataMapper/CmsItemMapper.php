@@ -69,6 +69,6 @@ class CmsItemMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 
 	public function deleteById($id)
 	{
-		$this->getTableGateway()->delete(array('id_cms_type' => $id));
+		$this->getTableGateway()->delete(array('id_cms_item' => $id));
 	}
 }

@@ -112,6 +112,12 @@ $(document).ready(function(){
 		});
 	}
 	});
+
+	$("#cancel_btn").click(function(e){
+		e.preventDefault();
+		var url = window.location.href;
+		window.location=url.substring(url.lastIndexOf("/delete"), 0);
+	});
 });
 
 

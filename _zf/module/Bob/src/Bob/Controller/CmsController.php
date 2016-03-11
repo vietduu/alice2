@@ -64,8 +64,7 @@ class CmsController extends AbstractActionController
 		$view->items = $this->getFullCmsItemOfFolder($id);
 
 		if (0 <= $this->countCmsItemsOfFolder($id)) {
-		//	$this->createCmsItem($request);
-			if($request->isXmlHttpRequest())
+		if($request->isXmlHttpRequest())
       	{
 			$item1 = explode(",", $_POST['array']);
 
@@ -76,18 +75,17 @@ class CmsController extends AbstractActionController
 			}
 
 			$array2 = [];
-			$array3 = [];
 			foreach($array1 as $sub_array){
 				foreach($sub_array as $small_array){
 					$item = explode("=", $small_array, 2);
 					$array2[$item[0]] = $item[1];
 				}
-				array_push($array3, $array2);
+
 				$cmsItem = new CmsItem();
 				$cmsItem->exchangeArray($array2);
 				$this->saveCmsItem($cmsItem);
 			}
-		//	$view->item = $array3;
+
 			$this->flashMessenger()->addMessage('CMS items are created successfully!');
 		}
 
@@ -107,11 +105,23 @@ class CmsController extends AbstractActionController
 		$view->url = $url;
 		$id = substr($url, strripos($url,'/')+1);
 
-		$form = new CmsRemovalForm();
+		$form = new CmsRemovalForm($id);
 		$form->get('submit')->setValue("Yes, I'm sure");
 		$form->get('cancel')->setValue("No");
 		$view->form = $form;
-		$view->key = $this->getCmsFolderById($id)['key'];
+		if (intval($id) != 0){
+			$view->key = $this->getCmsFolderById($id)['key'];
+		}
+		
+		if ($request->isPost()) {
+			$folderId = $request->getPost()['id_cms_folder'];
+			$view->folderId = $folderId;
+
+			$this->deleteCmsFolder($folderId);
+
+			$this->flashMessenger()->addMessage('CMS key is deleted totally!');
+			return $this->redirect()->toRoute('cms');
+		}
 
 		return $view;
 	}
@@ -121,10 +131,11 @@ class CmsController extends AbstractActionController
 		$itemService = ConcreteServiceConfig::getCmsItemServiceConfig($this);
 		$items = $this->getAllCmsItemsOfFolder($id);
 		foreach ($items as $item) {
-			$itemService->delete($item->id_cms_item);
+			$itemService->deleteById($item['id_cms_item']);
 		}
+
 		$folder = ConcreteServiceConfig::getCmsFolderServiceConfig($this);
-		$folder->delete($id);
+		$folder->deleteById($id);
 	}
 
 	public function saveCmsFolder($entity)
