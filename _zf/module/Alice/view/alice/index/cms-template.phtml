@@ -1,1 +1,10 @@
-AAAA
+<?php foreach($this->items as $item): ?>
+	<?php switch($item['fk_cms_item_type']): 
+		case 1: ?>
+			<?php
+				$title = $item['content'];
+				$this->headTitle($title);
+			?>
+		<?php break; ?>
+	<?php endswitch; ?>
+<?php endforeach; ?>

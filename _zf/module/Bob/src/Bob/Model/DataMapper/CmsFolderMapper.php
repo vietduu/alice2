@@ -60,6 +60,17 @@ class CmsFolderMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		return (array)$row;
 	}
 
+	public function getByKey($key)
+	{
+		$set = $this->getTableGateway()->select(array('key' => $key));
+		$row = $set->current();
+		if (!$row){
+			throw new \Exception('Could not find the cms folder $key');
+		}	
+
+		return (array)$row;
+	}
+
 
 	public function deleteById($id)
 	{
