@@ -4,9 +4,13 @@
 			$title = $item['content'];
 			$this->headTitle($title);
 			break;
-
 		case 2:
-			echo $item['content'];
-			break; ?>
+			echo str_ireplace("[MEDIA_BASE_URL]",$this->basePath(),$item['content']);
+			break; 
+		case 24: 
+			$this->headStyle()->appendStyle($item['content']);
+			break; 
+			?>
+
 	<?php endswitch; ?>
 <?php endforeach; ?>
