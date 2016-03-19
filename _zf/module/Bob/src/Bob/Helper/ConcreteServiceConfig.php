@@ -64,4 +64,11 @@ class ConcreteServiceConfig
 			'cms_item_type',
 			'Bob\Model\DataMapper\CmsItemTypeMapper');
 	}
+
+	public static function getAclServiceConfig($owner){
+		return ServiceConfigHelper::getServiceConfig($owner,
+			'Bob\Model\DataObject\AclUser',
+			'acl_user',
+			'Bob\Model\DataMapper\AclUserMapper');
+	}
 }

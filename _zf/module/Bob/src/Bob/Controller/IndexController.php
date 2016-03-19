@@ -4,10 +4,40 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Bob\Helper\ServiceConfigHelper;
 use Bob\Helper\ConcreteServiceConfig;
+use Bob\Content\Form\LoginForm;
+use Bob\Model\DataObject\AclUser;
 
 class IndexController extends AbstractActionController
 {
-	public function indexAction()
+	public function indexAction(){
+		$view = new ViewModel();
+		$form = new LoginForm();
+		$form->get('submit')->setValue('Login');
+
+		$request = $this->getRequest();
+
+		if ($request->isPost()) {
+			$aclUser = new AclUser();
+			$form->setInputFilter($aclUser->getInputFilter());
+			$form->setData($request->getPost());
+			if ($form->isValid()){
+				$aclUser = $form->getData();
+				$authen = $this->authenticateUser($aclUser['username'], $aclUser['password']);
+				if (-1 == $authen){
+					$this->flashMessenger()->addMessage('This user doesn\'t exist.');
+				} else if (0 == $authen){
+					$this->flashMessenger()->addMessage('Wrong password.');
+				} else if (1 == $authen){
+					return $this->redirect()->toRoute('pet');
+				}
+			}
+		}
+
+		$view->form = $form;
+		return $view;
+	}
+
+	public function petAction()
 	{
 		$view = new ViewModel(array(
 			'all_product_types' => $this->fetchAllProductTypes(),
@@ -96,5 +126,10 @@ class IndexController extends AbstractActionController
 	{
 		$images = ConcreteServiceConfig::getImagesServiceConfig($this);
 		return $images->getImagesFromProductId($id);
+	}
+
+	public function authenticateUser($name, $pwd){
+		$user = ConcreteServiceConfig::getAclServiceConfig($this);
+		return $user->authenticateUser($name, $pwd);
 	}
 }

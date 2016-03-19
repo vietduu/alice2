@@ -44,6 +44,17 @@ class Module implements AutoloaderProviderInterface
         $config = include __DIR__ . '/config/module.config.php';
         $config['router'] = array(
             'routes' => array(
+            'bob' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                   'route'    => '/bob',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Bob\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
             'pet' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -51,7 +62,7 @@ class Module implements AutoloaderProviderInterface
                     'defaults' => array(
                         '__NAMESPACE__' => 'Bob\Controller',
                         'controller'    => 'Index',
-                        'action'        => 'index',
+                        'action'        => 'pet',
                     ),
                 ),
                 'may_terminate' => true,

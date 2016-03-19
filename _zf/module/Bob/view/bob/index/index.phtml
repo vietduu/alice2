@@ -1,32 +1,38 @@
-<h1 id="title">Administration PET</h1>
+<h1 id="title">Administration</h1>
 
 <div id="dashboard">
-    <div class="add-btn">
-        <button type="submit" value="add">Add</button>
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('bob', array('action' => 'index')));
+$form->setAttribute('method', 'post');
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="ui-fieldset">
+    <div class="ui-formRow">
+        <?php $username = $form->get('username'); ?>
+        <div class="ui-formCol1"><?php echo $this->formLabel($username); ?></div>
+        <div class="ui-formCol2">
+            <?php echo $this->formInput($username); ?>
+            <span class="error-msg"><?php echo $this->formElementErrors($username); ?></span>
+        </div>
     </div>
-    <table>
-        <tr>
-        	<th>Category</th>
-        	<th>SKU</th>
-        	<th>Name</th>
-        	<th>Image</th>
-        </tr>
-    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
-            <?php foreach ($this->products_by_invoice_type as $pite): ?>
-                <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
-                    <tr>
-                    <td><a class="product-card" href="<?php echo $this->url('pet/product', array(
-                            'controller' => 'index',
-                            'action' => 'product',
-                            'id' => $pite['general_id']
-                        )); ?>"><?php echo $pite['invoice_type_name']; ?></a></td>
-                    <td><?php echo $pite['sku']; ?></td>
-                    <td><?php echo $pite['general_name']; ?></td>
-                    <td><?php echo (strlen($pite['source']) > 0) ? $pite['source'] : ''; ?></td>
-                    </tr>
-                    </a>
-                <?php endif; ?>
-            <?php endforeach; ?>
-    <?php endforeach; ?>
-	</table>
+    <div class="ui-formRow">
+        <?php $password = $form->get('password'); ?>
+        <div class="ui-formCol1"><?php echo $this->formLabel($password); ?></div>
+        <div class="ui-formCol2">
+            <?php echo $this->formInput($password); ?>
+            <span class="error-msg"><?php echo $this->formElementErrors($password); ?></span>
+        </div>
+    </div>
+
+    <div class="ui-formRow ui-submit-field">
+        <div class="ui-formCol1"></div>
+        <div class="ui-formCol2"><?php echo $this->formElement($form->get('submit')); ?></div>
+    </div>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
 </div>

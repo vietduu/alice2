@@ -1,0 +1,32 @@
+<h1 id="title">Administration PET</h1>
+
+<div id="dashboard">
+    <div class="add-btn">
+        <button type="submit" value="add">Add</button>
+    </div>
+    <table>
+        <tr>
+        	<th>Category</th>
+        	<th>SKU</th>
+        	<th>Name</th>
+        	<th>Image</th>
+        </tr>
+    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
+            <?php foreach ($this->products_by_invoice_type as $pite): ?>
+                <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
+                    <tr>
+                    <td><a class="product-card" href="<?php echo $this->url('pet/product', array(
+                            'controller' => 'index',
+                            'action' => 'product',
+                            'id' => $pite['general_id']
+                        )); ?>"><?php echo $pite['invoice_type_name']; ?></a></td>
+                    <td><?php echo $pite['sku']; ?></td>
+                    <td><?php echo $pite['general_name']; ?></td>
+                    <td><?php echo (strlen($pite['source']) > 0) ? $pite['source'] : ''; ?></td>
+                    </tr>
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+    <?php endforeach; ?>
+	</table>
+</div>
