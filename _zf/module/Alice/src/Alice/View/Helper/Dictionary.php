@@ -1,4 +1,6 @@
 <?php
+namespace Alice\View\Helper;
+
 class Dictionary 
 {
 	static $_dictionary = array('à' => 'a','á' => 'a','ả' => 'a','ã' => 'a','ạ' => 'a',

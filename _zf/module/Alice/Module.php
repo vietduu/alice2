@@ -35,7 +35,8 @@ class Module
     public function getConfig()
     {
         $config = include __DIR__ . '/config/module.config.php';
-    //    $dictionary = 'Dictionary';
+        require_once(__DIR__ . '/view/alice/index/dictionary.php');
+        $dictionary = 'Dictionary';
         $config['router'] = array(
             'routes' => array(
             
@@ -71,27 +72,12 @@ class Module
                                 'controller' => 'Index',
                                 'action' => 'product',
                             ),
-                            'spec' => '%productname%' . '-%id%.html',
+                            'spec' => $dictionary::formatUrl('%productname%') . '-%id%.html',
                         ),
                     ),
                     
                 ),
             ),
-           
-           
-        /*    'alice' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Alice\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-            ),*/
-            
-
         ));
         return $config;
     }

@@ -1,8 +1,10 @@
 <?php
     $this->title = "Trang chủ";
     $this->headTitle($this->title);
-    require_once(dirname(dirname(__DIR__)) . '/layout/dictionary.php');
+    require_once(dirname(__FILE__) . '/dictionary.php');
+//    include('../layout/dictionary.php');
     $dictionary = 'Dictionary';
+
 ?>
 <div class="home-floor-layout-container">
 <div class="left-sidebar">
@@ -52,6 +54,7 @@
                         <span class="button-order-text"><a id="detail-link" href="<?php echo $this->url('home/product', array(
                             'controller' => 'index',
                             'action' => 'product',
+                        //    'productname' => $pite['general_name'],
                             'productname' => $dictionary::formatUrl(str_ireplace(' ', '-', strtolower($pite['general_name']))),
                             'id' => $pite['general_id']
                         )); ?>">Chi tiết</a></span>
