@@ -7,10 +7,12 @@
 		case 2:
 			echo str_ireplace("[MEDIA_BASE_URL]",$this->basePath(),$item['content']);
 			break; 
+		case 23:
+			$this->inlineScript()->appendScript($item['content']);
+			break;
 		case 24: 
 			$this->headStyle()->appendStyle($item['content']);
 			break; 
 			?>
-
 	<?php endswitch; ?>
 <?php endforeach; ?>

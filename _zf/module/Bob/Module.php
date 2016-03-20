@@ -20,8 +20,30 @@ class Module implements AutoloaderProviderInterface
     {
         $mm->getEventManager()->getSharedManager()->attach(__NAMESPACE__,
         'dispatch', function($e) {
-            $e->getTarget()->layout('bobadmin/layout');
-        });
+            $config = $e->getApplication()->getServiceManager()->get('config');
+            $routeMatch = $e->getRouteMatch();
+            $namespace = array_shift(explode('\\', $routeMatch->getParam('controller')));
+            $controller = $e->getTarget();
+            $controllerName = array_pop(explode('\\', $routeMatch->getParam('controller')));
+            $actionName = strtolower($routeMatch->getParam('action'));
+
+            // Use the layout assigned to the action
+            if(isset($config['layouts'][$namespace]['controllers'][$controllerName]['actions'][$actionName]))
+            {
+                $controller->layout($config['layouts'][$namespace]['controllers'][$controllerName]['actions'][$actionName]);
+            }
+            // Use the controller default layout
+            elseif(isset($config['layouts'][$namespace]['controllers'][$controllerName]['default']))
+            {
+                $controller->layout($config['layouts'][$namespace]['controllers'][$controllerName]['default']);
+            }
+            // Use the module default layout
+            elseif(isset($config['layouts'][$namespace]['default']))
+            {
+                $controller->layout($config['layouts'][$namespace]['default']);
+            }
+
+        }, 10);
     }
 
     public function getAutoloaderConfig()

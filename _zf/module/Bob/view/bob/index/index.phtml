@@ -34,5 +34,8 @@ echo $this->form()->openTag($form);
     </div>
 </div>
 
-<?php echo $this->form()->closeTag(); ?>
+<?php echo $this->form()->closeTag(); 
+if ($this->errorMessage != ''): 
+    echo "<script type='text/javascript'>alert(\"" . $this->errorMessage . "\")</script>";
+endif; ?>
 </div>

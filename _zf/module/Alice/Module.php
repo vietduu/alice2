@@ -13,8 +13,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\ModuleManager;
 
-//require_once(dirname(dirname(dirname(__FILE__))).'\layout\dictionary.php');
-require_once(__DIR__ . '\view\layout\dictionary.php');
+//require_once(__DIR__ . '/view/layout/dictionary.php');
 
 class Module
 {
@@ -36,7 +35,7 @@ class Module
     public function getConfig()
     {
         $config = include __DIR__ . '/config/module.config.php';
-        $dictionary = 'Dictionary';
+    //    $dictionary = 'Dictionary';
         $config['router'] = array(
             'routes' => array(
             
@@ -72,7 +71,7 @@ class Module
                                 'controller' => 'Index',
                                 'action' => 'product',
                             ),
-                            'spec' => $dictionary::formatUrl('%productname%') . '-%id%.html',
+                            'spec' => '%productname%' . '-%id%.html',
                         ),
                     ),
                     

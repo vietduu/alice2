@@ -8,7 +8,6 @@ use Bob\Model\DataObject\CmsFolder;
 use Bob\Content\Form\CmsForm;
 use Bob\Model\DataObject\CmsItem;
 use Bob\Content\Form\CmsDetailForm;
-use Bob\Content\Form\CmsItemForm;
 use Bob\Content\Form\CmsRemovalForm;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
@@ -57,40 +56,14 @@ class CmsController extends AbstractActionController
 		$adapter = ServiceConfigHelper::getAdapter($this);
 
 		$form = new CmsDetailForm($adapter);
-		$form->get('submit')->setValue('Create');
+		$form->get('submit')->setValue('Save');
 
 		$view->form = $form;
 		$view->count = $this->countCmsItemsOfFolder($id);
 		$view->items = $this->getFullCmsItemOfFolder($id);
 
 		if (0 <= $this->countCmsItemsOfFolder($id)) {
-		if($request->isXmlHttpRequest())
-      	{
-			$item1 = explode(",", $_POST['array']);
-
-			$array1 = [];
-			foreach($item1 as $item){
-				$item2 = explode("&", $item);
-				array_push($array1, $item2);
-			}
-
-			$array2 = [];
-			foreach($array1 as $sub_array){
-				foreach($sub_array as $small_array){
-					$item = explode("=", $small_array, 2);
-					$array2[$item[0]] = $item[1];
-				}
-
-				$cmsItem = new CmsItem();
-				$cmsItem->exchangeArray($array2);
-				$this->saveCmsItem($cmsItem);
-			}
-
-			$this->flashMessenger()->addMessage('CMS items are created successfully!');
-		}
-
-
-
+			$this->createCmsItem($request);
 		} else {
 			throw new \Exception("Can't create/edit this cms item");
 		}
@@ -219,7 +192,7 @@ class CmsController extends AbstractActionController
 				$cmsItem->exchangeArray($array2);
 				$this->saveCmsItem($cmsItem);
 			}
-			$this->flashMessenger()->addMessage('CMS items are created successfully!');	
+			$this->flashMessenger()->addMessage('CMS items are saved successfully!');	
 		}
 	}
 
@@ -227,37 +200,5 @@ class CmsController extends AbstractActionController
 	{
 		$cmsItem = ConcreteServiceConfig::getCmsItemServiceConfig($this);
 		return $cmsItem->save($entity);
-	}
-
-	public function editCmsItem($request, $id) {
-		if($request->isXmlHttpRequest())
-      	{
-      		$itemList = $this->getFullCmsItemOfFolder($id);
-			$item1 = explode(",", $_POST['array']);
-
-			$array1 = [];
-			foreach($item1 as $item){
-				$item2 = explode("&", $item);
-				array_push($array1, $item2);
-			}
-
-			$array2 = [];
-			$array3 = [];
-		/*	foreach($itemList as $item) {
-				$array2['id_cms_item'] = $item['id_cms_item'];
-			}*/
-
-			foreach($array1 as $sub_array){
-				foreach($sub_array as $small_array){
-					$item = explode("=", $small_array, 2);
-					$array2[$item[0]] = $item[1];
-				}
-				array_push($array3, $array2);
-				$cmsItem = new CmsItem();
-				$cmsItem->exchangeArray($array2);
-				$this->saveCmsItem($cmsItem);
-			}
-			$this->flashMessenger()->addMessage('CMS items are created successfully!');
-		}
 	}
 }

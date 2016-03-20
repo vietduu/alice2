@@ -24,7 +24,6 @@ $(document).ready(function(){
 				$(this).find("option:selected").addClass("off");
 				$("#cms-detail-page .ui-summary").append(createTextbox(selectedIdx, name));
 				break;
-			case 1:
 			case 2:
 			case 3:
 			case 5:
@@ -35,13 +34,8 @@ $(document).ready(function(){
 			case 12:
 			case 14:
 			case 20:
-			case 22:
-			case 23:
 			case 24:
 			case 25:
-			case 26:
-			case 28:
-			case 29:
 				$(this).find("option:selected").addClass("off");
 				$("#cms-detail-page .ui-summary").append(createTextarea(selectedIdx, name));
 				break;
@@ -49,7 +43,16 @@ $(document).ready(function(){
 			case 16:
 				$(this).find("option:selected").addClass("off");
 				$("#cms-detail-page .ui-summary").append(createCheckbox(selectedIdx, name));
-				break;	
+				break;
+			case 1:
+			case 22:
+			case 23:
+			case 26:
+			case 28:
+			case 29:
+				$(this).find("option:selected").addClass("off");
+				$("#cms-detail-page .ui-summary").append(createTextarea(selectedIdx, name, "10"));
+				break;
 			default:
 		}
 	});
@@ -137,13 +140,13 @@ function createTextbox(id, name) {
 	return data;
 }
 
-function createTextarea(id, name) {
+function createTextarea(id, name, rows="4") {
 	var data = 	"<div class='ui-formRow' data-id=" + id + ">"
 			+		"<div class='ui-formCol1'>"
 			+			"<label>" + name + " </label>"
 			+		"</div>"
 			+		"<div class='ui-formCol2'>"
-			+			"<textarea></textarea>"
+			+			"<textarea rows='" + rows + "'></textarea>"
 			+		"</div>"
 			+		"<div class='ui-formCol3'>"
 			+ 			"<a class='remove' onClick='removeField(this,"+ id + ")'><img src='/alice2/public/img/icon/circle-delete.png')' alt='delete' /></a>"

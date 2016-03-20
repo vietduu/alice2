@@ -11,6 +11,7 @@ class IndexController extends AbstractActionController
 {
 	public function indexAction(){
 		$view = new ViewModel();
+
 		$form = new LoginForm();
 		$form->get('submit')->setValue('Login');
 
@@ -24,10 +25,11 @@ class IndexController extends AbstractActionController
 				$aclUser = $form->getData();
 				$authen = $this->authenticateUser($aclUser['username'], $aclUser['password']);
 				if (-1 == $authen){
-					$this->flashMessenger()->addMessage('This user doesn\'t exist.');
+					$view->errorMessage = 'This user doesn\'t exist.';
 				} else if (0 == $authen){
-					$this->flashMessenger()->addMessage('Wrong password.');
+					$view->errorMessage = 'Wrong password.';
 				} else if (1 == $authen){
+					$view->errorMessage = '';
 					return $this->redirect()->toRoute('pet');
 				}
 			}
