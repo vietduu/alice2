@@ -39,11 +39,6 @@ return array(
             'Alice\Controller\Cms' => Controller\CmsController::class,
         ),
     ),
-/*    'view_helpers' => array(
-        'invokables' => array(
-            'requestHandler' => 'Alice\View\Helper\RequestHandler',
-        ),
-    ),*/
 
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -53,11 +48,13 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'admin/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/block' => __DIR__ . '/../view/layout/block.phtml',
             'dictionary' => __DIR__ . '/../view/layout/dictionary.php',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
             'alice/cms/index' => __DIR__ . '/../view/alice/index/cms-template.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'alice/cms/static-block' => __DIR__ . '/../view/alice/index/cms-template.phtml',
+            'error/404' => __DIR__ . '/../view/error/404.phtml',
+            'error/index' => __DIR__ . '/../view/error/index.phtml',
             'cms/alice/header' => __DIR__ . '/../view/cms/header.phtml',
             'cms/alice/footer' => __DIR__ . '/../view/cms/footer.phtml',
             'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
@@ -81,4 +78,17 @@ return array(
             ],
         ],
     ],
+    'layouts' => array(
+        'Alice' => array(
+            'controllers' => array(
+                'Cms' => array(
+                    'actions' => array(
+                        'staticBlock' => 'layout/block'
+                    ),
+                    'default' => 'admin/layout'
+                )
+            ),
+            'default' => 'admin/layout'
+        )
+    ),
 );

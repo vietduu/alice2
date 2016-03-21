@@ -166,6 +166,8 @@ ul {
   position: absolute;
   display: none;
   top: 0;
+  border-radius: 10px;
+  transform: translate3d(0,0,0);
 }
 
 .banner-scroll img.active {
@@ -176,7 +178,7 @@ ul {
   position: absolute;
   top: 210px;
   z-index: 1;
-  left: 0;  
+  left: 5px;  
   cursor: pointer;
   display: block;
   width: 40px;
@@ -196,7 +198,7 @@ ul {
   position: absolute;
   top: 210px;
   z-index: 1;
-  left: 740px;
+  left: 732px;
   cursor: pointer;
   display: block;
   width: 40px;

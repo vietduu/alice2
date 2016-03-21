@@ -71,6 +71,18 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".banner-scroll > img:gt(0)").hide();
+
+	setInterval(function(){
+		$(".banner-scroll > img:first")
+			.fadeOut(800)
+			.next()
+			.fadeIn(800)
+			.end()
+			.appendTo(".banner-scroll");
+	}, 3000);
+
+
 	/*
 	 * image gallery
 	 */
