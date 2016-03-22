@@ -1,10 +1,10 @@
 <?php
-    $this->title = "Trang chủ";
-    $this->headTitle($this->title);
     require_once(dirname(__FILE__) . '/dictionary.php');
 //    include('../layout/dictionary.php');
     $dictionary = 'Dictionary';
-
+    $this->headMeta()->appendName('description', 'In hóa đơn VAT, cardvist và bao thư với chất lượng và giá cả tốt')
+            ->appendName('keywords', 'hóa đơn VAT, hóa đơn GTGT')
+            ->appendName('robots', 'index, nofollow');
 ?>
 <div class="home-floor-layout-container">
 <div class="left-sidebar">
