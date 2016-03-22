@@ -71,22 +71,24 @@ header a {
 }
 
 footer {
-  background-color: #000033;
+  background-color: #FDFDFD;
   display: block;
   margin-top: 20px;
-  color: #ffffff;
-  line-height: 20px;
-  padding: 5px;
+  line-height: 17px;
   clear: both;
 }
 
-footer div{
+footer .footer-main {
   width: 1200px; 
   margin: 0 auto 0 auto; 
 }
 
 footer .footer-info {
   text-align: center;
+  background-color: #587185;
+  color: #ffffff;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 ul {
