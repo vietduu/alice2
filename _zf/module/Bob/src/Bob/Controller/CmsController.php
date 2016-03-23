@@ -99,6 +99,10 @@ class CmsController extends AbstractActionController
 		return $view;
 	}
 
+	public function imageAction(){
+		$view = new ViewModel();
+		return $view;
+	}
 
 	public function deleteCmsFolder($id){
 		$itemService = ConcreteServiceConfig::getCmsItemServiceConfig($this);
