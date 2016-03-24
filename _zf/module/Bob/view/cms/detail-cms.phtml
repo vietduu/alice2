@@ -58,10 +58,8 @@ echo $this->form()->openTag($form); ?>
 		<?php echo $this->formElement($form->get('submit')); ?>
 	</div>
 	<div>
-		<a href="<?php echo $this->url('cms/image-manager', array(
-                            'controller' => 'cms',
-                            'action' => 'imageManager'
-                        )); ?>">Image search</a</span>
+		<div id="open-btn">Image search</div>
+        <?php echo $this->partial('cms/image'); ?>
 	</div>
 </div>
 

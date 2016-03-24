@@ -121,6 +121,21 @@ $(document).ready(function(){
 		var url = window.location.href;
 		window.location=url.substring(url.lastIndexOf("/delete"), 0);
 	});
+
+
+	resizeImageManager();
+	$(window).resize(function(){
+		resizeImageManager();
+	});
+
+
+	$("#open-btn").on("click", function(){
+		document.getElementById('image-manager-container').style.display = "block";
+	});
+
+	$("#image-close").on("click", function(){
+		document.getElementById('image-manager-container').style.display = "none";
+	});
 });
 
 
@@ -139,6 +154,35 @@ function createTextbox(id, name) {
 
 	return data;
 }
+
+function resizeImageManager(){
+	var screenHeight = window.innerHeight;
+	var screenWidth = window.innerWidth;
+
+	$("#image-manager-popup").width(screenWidth * 8/10);
+	$("#image-manager-popup").height(screenHeight * 7.5/10);
+	var popupWidth = $("#image-manager-popup").width();
+	var popupHeight = $("#image-manager-popup").height();
+
+	var popupTop = (screenHeight - popupHeight) * 1.0/2;
+	var popupLeft = (screenWidth - popupWidth) * 1.0/2;
+
+	$("#image-manager-popup").css("top", popupTop);
+	$("#image-manager-popup").css("left", popupLeft);
+
+	$("#image-menu-bar").width(popupWidth * 3/10);
+	$("#image-menu-bar").height(popupHeight);
+
+	$("#image-list").width(popupWidth - $("#image-menu-bar").width() - 5);
+	$("#image-list").height(popupHeight * 5.5/10);
+
+	$("#image-preview").width($("#image-list").width());
+	$("#image-preview").height(popupHeight - $("#image-list").height() - 5);
+
+	$("#image-close").css("top", popupTop-8);
+	$("#image-close").css("left", popupLeft + popupWidth - 7);
+}
+
 
 function createTextarea(id, name, rows="4") {
 	var data = 	"<div class='ui-formRow' data-id=" + id + ">"
