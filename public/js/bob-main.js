@@ -181,6 +181,8 @@ function resizeImageManager(){
 
 	$("#image-close").css("top", popupTop-8);
 	$("#image-close").css("left", popupLeft + popupWidth - 7);
+
+//	$("#image-menu-bar").jstree();
 }
 
 

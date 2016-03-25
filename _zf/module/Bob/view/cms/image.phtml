@@ -1,7 +1,30 @@
+<?php 
+	$dir = $_SERVER['DOCUMENT_ROOT'].'/alice2/public/img/';
+	function scanDirectory($dir) {
+		$parentDir = scandir($dir); ?>
+		
+		<?php
+		foreach ($parentDir as $key => $value){
+			if (!in_array($value, array(".",".."))){
+				if (is_dir($dir . $value)){ ?>
+					<ul><?php echo $value; ?>
+				<?php	scanDirectory($dir . $value); ?>
+				</ul>
+				<?php }
+				else { ?>
+				<li>
+					<?php echo $value; ?>
+				</li>
+			<?php	}
+			}
+		}
+	}
+?>
+
 <div id="image-manager-container">
 <div id="image-manager-popup">
 	<div id="image-menu-bar">
-
+		<?php var_dump(scanDirectory($dir)); ?>
 	</div>
 	<div id="image-list">
 

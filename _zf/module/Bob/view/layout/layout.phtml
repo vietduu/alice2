@@ -12,12 +12,14 @@
 
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/png/favicon16.ico'))
                         ->prependStylesheet($this->basePath('css/bob-style.css'))
+                        ->prependStylesheet("https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css");
                     //    ->prependStylesheet($this->basePath('css/lightbox.css'))
                     //    ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
                     //    ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+            ->prependFile('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js')
             ->prependFile($this->basePath('js/bob-main.js'))
             ->prependFile($this->basePath('js/main.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
