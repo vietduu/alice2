@@ -136,6 +136,24 @@ $(document).ready(function(){
 	$("#image-close").on("click", function(){
 		document.getElementById('image-manager-container').style.display = "none";
 	});
+
+
+	$("#image-menu-bar ul").each(function(){
+		$(this).children("img.folder-name").click(function(){
+			if ($(this).siblings("li").css("display") == "block"){
+				$(this).attr("src", "../../public/img/icon/close-folder.png");
+				$(this).siblings(":not(span)").slideUp("50");
+				$(this).parent().children("span").css("font-weight", "normal");
+			}
+			if ($(this).siblings("li").css("display") == "none"){
+				$(this).attr("src", "../../public/img/icon/open-folder.png");
+				$(this).siblings(":not(span)").slideDown("50");
+				$(this).css("font-weight", "700");
+				$(this).parent().children("span").css("font-weight", "700");
+			}
+		});
+	});
+	
 });
 
 
@@ -182,7 +200,7 @@ function resizeImageManager(){
 	$("#image-close").css("top", popupTop-8);
 	$("#image-close").css("left", popupLeft + popupWidth - 7);
 
-//	$("#image-menu-bar").jstree();
+
 }
 
 

@@ -319,7 +319,7 @@ textarea {
   -webkit-border-top-right-radius: 7px;
   -moz-border-radius-topright: 7px;
   border-top-right-radius: 7x;
-  overflow: auto;
+  overflow: scroll;
   float: right;
 }
 
@@ -329,7 +329,7 @@ textarea {
   -webkit-border-bottom-right-radius: 7px;
   -moz-border-radius-bottomright: 7px;
   border-bottom-right-radius: 7x;
-  overflow: auto;
+  overflow: scroll;
   float: right;
   margin-top: 4px;
 }
@@ -339,3 +339,40 @@ textarea {
   cursor: pointer;
 }
 
+#image-menu-bar ul {
+  list-style-type: none;
+  -webkit-padding-start: 20px;
+  cursor: pointer;
+}
+
+#image-menu-bar ul .folder-name {
+  margin-right: 7px;
+  position: relative;
+  top: 3px;
+}
+
+#image-menu-bar ul.close-folder .folder-name {
+  margin-right: 7px;
+  position: relative;
+  top: 3px;
+}
+
+#image-menu-bar ul li::before {
+  content: url("../img/icon/file.png");
+  margin-right: 3px;
+  position: relative;
+  top: 3px;
+}
+
+
+
+#image-menu-bar ul li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 2em;
+  display: block;
+}
+
+.menu-collapse li {
+  visibility: collapse;
+}

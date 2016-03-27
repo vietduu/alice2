@@ -12,10 +12,7 @@
 
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/png/favicon16.ico'))
                         ->prependStylesheet($this->basePath('css/bob-style.css'))
-                        ->prependStylesheet("https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css");
-                    //    ->prependStylesheet($this->basePath('css/lightbox.css'))
-                    //    ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                    //    ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet("https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"); ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -50,7 +47,8 @@
                 </ul>
             <?php endif; ?>
 
-            <?php echo $this->content; ?>
+            <?php 
+            echo $this->content; ?>
         </div>
 
         <?php echo $this->inlineScript() ?>

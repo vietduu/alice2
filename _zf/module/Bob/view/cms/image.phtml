@@ -1,35 +1,78 @@
-<?php 
-	$dir = $_SERVER['DOCUMENT_ROOT'].'/alice2/public/img/';
-	function scanDirectory($dir) {
-		$parentDir = scandir($dir); ?>
-		
-		<?php
+<?php
+	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ? "https://" : "http://";  
+    $publicFolder = $protocol . $_SERVER['HTTP_HOST'].'/alice2/public/';
+	$root = $_SERVER['DOCUMENT_ROOT'].'/alice2/public/';
+
+	function scanDirectory($dir, $host) {
+		$_SLASH = "/";
+		$directoryTree = [];
+
+		$parentDir = scandir($dir);				
 		foreach ($parentDir as $key => $value){
-			if (!in_array($value, array(".",".."))){
-				if (is_dir($dir . $value)){ ?>
-					<ul><?php echo $value; ?>
-				<?php	scanDirectory($dir . $value); ?>
-				</ul>
-				<?php }
-				else { ?>
-				<li>
-					<?php echo $value; ?>
-				</li>
-			<?php	}
+			if (!in_array($value, array("css","fonts","js"))){
+				if (!in_array($value, array(".",".."))){
+					if (is_dir($dir . $value . $_SLASH)){
+						$directoryTree[$value] = scanDirectory($dir . $value . $_SLASH, $host . $value . $_SLASH);
+					}
+				else {
+					$directoryTree[$value] = $dir.$value . "|" . $host.$value;
+					}
+				}
 			}
 		}
+		return $directoryTree;
 	}
 ?>
+
 
 <div id="image-manager-container">
 <div id="image-manager-popup">
 	<div id="image-menu-bar">
-		<?php var_dump(scanDirectory($dir)); ?>
+	<?php	
+
+	function displayDirectory($dir, $baseUrl) {
+		foreach ($dir as $key => $value){
+			if (is_array($value)){ ?>		
+				<ul><img class="folder-name" src="<?php echo $baseUrl . '/img/icon/open-folder.png'; ?>"/><span onClick='listFolder(<?php echo json_encode($value); ?>)'><?php echo $key; ?></span>
+					<?php displayDirectory($value, $baseUrl); ?>
+				</ul>
+			<?php }
+				else { 
+					$compositeArray = explode("|", $value); ?>
+					<li onClick="viewFile('<?php echo $compositeArray[1]; ?>')">
+					<?php
+						echo $key;
+					?>
+					</li>
+			<?php }
+		}
+	}
+
+	displayDirectory(scanDirectory($root, $publicFolder), $this->basePath());
+?>
+
 	</div>
 	<div id="image-list">
 
 	</div>
-	<div id="image-preview"></div>
+	<div id="image-preview">
+		<img src=""/>
+
+	</div>
 </div>
 <img id="image-close" src="<?php echo $this->basePath('/img/icon/circle-delete.png'); ?>" />
 </div>
+
+<script type="text/javascript">
+	function listFolder(array){
+		var formatArray = "\"" + array + "\"";
+		var decodeArray = JSON.parse(formatArray);
+
+		console.debug(decodeArray);
+	}
+
+	function viewFile(path){
+		$("#image-preview img").attr("src", path);
+	}
+
+</script>
