@@ -27,9 +27,12 @@
 
 <div id="image-manager-container">
 <div id="image-manager-popup">
+	<div id="image-url-text">
+		<span id="image-url__display"></span> |
+		<span id="image__open" onClick="openFile()">Add</span>
+	</div>
 	<div id="image-menu-bar">
-	<?php	
-
+	<?php
 	function displayDirectory($dir, $baseUrl) {
 		foreach ($dir as $key => $value){
 			if (is_array($value)){ ?>		
@@ -53,6 +56,7 @@
 
 	</div>
 	<div id="image-list">
+		
 
 	</div>
 	<div id="image-preview">
@@ -61,18 +65,95 @@
 	</div>
 </div>
 <img id="image-close" src="<?php echo $this->basePath('/img/icon/circle-delete.png'); ?>" />
+	<div id="open-file-container">
+	<div id="open-file-popup">
+		<div>Please choose an image to upload:</div>
+		<input type="file" name="file-open" />
+		<div class="submit-container">
+			<button type="reset" name="cancel">Cancel</button>
+			<button type="button" name="upload">Upload</button>
+		</div>
+	</div>
+	</div>
+
 </div>
 
 <script type="text/javascript">
 	function listFolder(array){
 		var formatArray = "\"" + array + "\"";
 		var decodeArray = JSON.parse(formatArray);
+		var imageList = [];
+		getArray(imageList, array);
+		$("#image-list").empty();
+		$("#image-preview img").attr("src", "");
 
-		console.debug(decodeArray);
+		imageList = $.map(imageList, function(url){
+			return url.substring(url.lastIndexOf('|')+1);
+		});
+
+		var container = document.getElementById("image-list");
+		for (var i in imageList){
+			createImageElement(container, imageList[i]);
+		}
+		
+		$("#image-list img").each(function(){
+			$(this).click(function(){
+				$("#image-preview img").attr("src", $(this).attr("src"));
+			});
+		});
+		$("#image-preview").css("display", "block");
+		console.log(imageList);
+	}
+
+	function getArray(arr, array){
+		for(var x in array){
+			if (array[x] instanceof Object){
+				getArray(arr, array[x]);
+			} else {
+				arr.push(array[x]);
+			}
+		}
+	}
+
+	
+
+	function createImageElement(container, imageUrl){
+		var imageContainer = document.createElement("img");
+		imageContainer.setAttribute("src", imageUrl);
+		imageContainer.onload = function(){
+		console.log("image size = " + imageContainer.width);
+		console.log("container size = " + container.offsetWidth);
+		if (imageContainer.width >= container.offsetWidth*2.0/5){
+			imageContainer.setAttribute("width", "20%");
+		}
+		};
+		container.appendChild(imageContainer);
+
+		
 	}
 
 	function viewFile(path){
+		$("#image-preview").css("display", "block");
 		$("#image-preview img").attr("src", path);
+		$("#image-url-text > span#image-url__display").text(path);
 	}
 
+	function openFile(){
+		var screenHeight = window.innerHeight;
+		var screenWidth = window.innerWidth;
+		$("#open-file-container").width(screenWidth);
+		$("#open-file-container").height(screenHeight);
+
+		$("#open-file-container").css("display", "block");
+		
+
+		var popupWidth = $("#open-file-popup").width();
+		var popupHeight = $("#open-file-popup").height();
+
+		var popupTop = (screenHeight - popupHeight) * 1.0/2;
+		var popupLeft = (screenWidth - popupWidth) * 1.0/2;
+
+		$("#open-file-popup").css("top", popupTop);
+		$("#open-file-popup").css("left", popupLeft);
+	}
 </script>

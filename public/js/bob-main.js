@@ -126,6 +126,7 @@ $(document).ready(function(){
 	resizeImageManager();
 	$(window).resize(function(){
 		resizeImageManager();
+		openFile();
 	});
 
 
@@ -153,7 +154,22 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+
+	$(".submit-container button[type='reset']").click(function(e){
+		e.stopPropagation();
+		$("#open-file-container").css("display", "none");
+	});
+
+	$(".submit-container button[type='button']").click(function(e){
+		e.stopPropagation();
+		if ($("#open-file-popup input[type='file']").val() == ""){
+			$("#open-file-popup").append("<div class='notification'>Please select image...</div>");
+		} 
+		if ($("#open-file-popup input[type='file']").val() != ""){
+			$(".notification").remove();
+			$("#open-file-container").css("display", "none");
+		}
+	});
 });
 
 
@@ -189,18 +205,16 @@ function resizeImageManager(){
 	$("#image-manager-popup").css("left", popupLeft);
 
 	$("#image-menu-bar").width(popupWidth * 3/10);
-	$("#image-menu-bar").height(popupHeight);
+	$("#image-menu-bar").height(popupHeight - $("#image-url-text").height());
 
 	$("#image-list").width(popupWidth - $("#image-menu-bar").width() - 5);
 	$("#image-list").height(popupHeight * 5.5/10);
 
 	$("#image-preview").width($("#image-list").width());
-	$("#image-preview").height(popupHeight - $("#image-list").height() - 5);
+	$("#image-preview").height(popupHeight - $("#image-list").height() - $("#image-url-text").height() - 5);
 
 	$("#image-close").css("top", popupTop-8);
 	$("#image-close").css("left", popupLeft + popupWidth - 7);
-
-
 }
 
 

@@ -376,3 +376,77 @@ textarea {
 .menu-collapse li {
   visibility: collapse;
 }
+
+#image-list {
+  
+}
+
+#image-list img {
+  cursor: pointer;
+  margin-right: 5px;
+  display: inline-table;
+}
+
+#image-url-text {
+  line-height: 30px;
+  height: 30px;
+  background-color: #D8D8D8;
+  vertical-align: middle;
+  text-align: right;
+  padding-right: 10em;
+  -webkit-border-top-right-radius: 7px;
+  -moz-border-radius-topright: 7px;
+  border-top-right-radius: 7x;
+  -webkit-border-top-left-radius: 7px;
+  -moz-border-radius-topleft: 7px;
+  border-top-left-radius: 7x;
+}
+
+#image-preview {
+  display: none;
+  float: right;
+}
+
+#image__open{
+  cursor: pointer;
+}
+
+#open-file-container {
+  display: none;
+}
+
+#open-file-popup {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5x;
+  background-color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+}
+
+#open-file-popup input[type=file] {
+  margin-top: 7px;
+  margin-bottom: 2em;
+}
+
+.submit-container{
+  border-top: 1px solid #D8D8D8;
+  padding-top: 1em;
+}
+
+.submit-container button {
+  width: 7em;
+}
+
+#open-file-popup button[type=reset] {
+  margin-right: 7em;
+}
+
+#open-file-container{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0.4)
+}
