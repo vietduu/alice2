@@ -167,7 +167,28 @@ $(document).ready(function(){
 		} 
 		if ($("#open-file-popup input[type='file']").val() != ""){
 			$(".notification").remove();
-			$("#open-file-container").css("display", "none");
+		//	$("#open-file-container").css("display", "none");
+			var input = document.getElementById("file");
+			var file = input.files[0];
+			var data = new FormData();
+			data.append("image", file);
+		//	$localFilePath = $("#open-file-popup input[type='file']").val();
+		//	$searchKey = "fakepath";
+		//	$searchIndex = $localFilePath.indexOf($searchKey) + $searchKey.length + 1;
+		//	$localFilePath.substring($searchIndex);
+			$.ajax({
+				url: "http://localhost/alice2/public/js/upload.php",
+				type: "POST",
+				data: data,
+				processData: false,
+				contentType: false
+			}).done(function(data){
+				console.log(data);
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(errorThrown);
+			}).always(function(){
+				console.log("Complete");
+			});
 		}
 	});
 });

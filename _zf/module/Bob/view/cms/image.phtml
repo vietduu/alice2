@@ -67,12 +67,14 @@
 <img id="image-close" src="<?php echo $this->basePath('/img/icon/circle-delete.png'); ?>" />
 	<div id="open-file-container">
 	<div id="open-file-popup">
-		<div>Please choose an image to upload:</div>
-		<input type="file" name="file-open" />
-		<div class="submit-container">
-			<button type="reset" name="cancel">Cancel</button>
-			<button type="button" name="upload">Upload</button>
-		</div>
+		<form name="uploadImage" method="POST" action="">
+			<div>Please choose an image to upload:</div>
+			<input type="file" name="file-open" id="file" />
+			<div class="submit-container">
+				<button type="reset" name="cancel">Cancel</button>
+				<button type="button" name="upload">Upload</button>
+			</div>
+		</form>
 	</div>
 	</div>
 
@@ -114,8 +116,6 @@
 			}
 		}
 	}
-
-	
 
 	function createImageElement(container, imageUrl){
 		var imageContainer = document.createElement("img");
