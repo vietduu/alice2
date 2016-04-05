@@ -12,9 +12,9 @@
 			if (!in_array($value, array("css","fonts","js"))){
 				if (!in_array($value, array(".",".."))){
 					if (is_dir($dir . $value . $_SLASH)){
-						$directoryTree[$value] = scanDirectory($dir . $value . $_SLASH, $host . $value . $_SLASH);
+						$directoryTree[$dir.$value . "|" . $host.$value] = scanDirectory($dir . $value . $_SLASH, $host . $value . $_SLASH);
 					}
-				else {
+					else {
 					$directoryTree[$value] = $dir.$value . "|" . $host.$value;
 					}
 				}
@@ -36,7 +36,12 @@
 	function displayDirectory($dir, $baseUrl) {
 		foreach ($dir as $key => $value){
 			if (is_array($value)){ ?>		
-				<ul><img class="folder-name" src="<?php echo $baseUrl . '/img/icon/open-folder.png'; ?>"/><span onClick='listFolder(<?php echo json_encode($value); ?>)'><?php echo $key; ?></span>
+				<ul><img class="folder-name" src="<?php echo $baseUrl . '/img/icon/open-folder.png'; ?>"/><span onClick='listFolder("<?php echo $key; ?>", <?php echo json_encode($value); ?>)'>
+						<?php $folderCompositeName = explode("|", $key);
+						$folderUrl = $folderCompositeName[1];
+						$folderName = substr($folderUrl, strripos($folderUrl, "/")+1);
+						echo $folderName; ?>
+					</span>
 					<?php displayDirectory($value, $baseUrl); ?>
 				</ul>
 			<?php }
@@ -81,9 +86,14 @@
 </div>
 
 <script type="text/javascript">
-	function listFolder(array){
+	function listFolder(key, array){
+		var folderCompositeName = key.split("|");
+		var folderUrl = folderCompositeName[1];
+		$("#image-url-text > span#image-url__display").text(folderUrl + "/");
+
 		var formatArray = "\"" + array + "\"";
 		var decodeArray = JSON.parse(formatArray);
+		console.log(array);
 		var imageList = [];
 		getArray(imageList, array);
 		$("#image-list").empty();
@@ -104,7 +114,7 @@
 			});
 		});
 		$("#image-preview").css("display", "block");
-		console.log(imageList);
+	//	console.log(imageList);
 	}
 
 	function getArray(arr, array){
@@ -121,11 +131,9 @@
 		var imageContainer = document.createElement("img");
 		imageContainer.setAttribute("src", imageUrl);
 		imageContainer.onload = function(){
-		console.log("image size = " + imageContainer.width);
-		console.log("container size = " + container.offsetWidth);
-		if (imageContainer.width >= container.offsetWidth*2.0/5){
-			imageContainer.setAttribute("width", "20%");
-		}
+			if (imageContainer.width >= container.offsetWidth*2.0/5){
+				imageContainer.setAttribute("width", "20%");
+			}
 		};
 		container.appendChild(imageContainer);
 

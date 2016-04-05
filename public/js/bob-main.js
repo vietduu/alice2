@@ -126,7 +126,9 @@ $(document).ready(function(){
 	resizeImageManager();
 	$(window).resize(function(){
 		resizeImageManager();
-		openFile();
+		if (document.getElementById("open-file-container").style.display == "block"){
+			openFile();
+		}
 	});
 
 
@@ -167,15 +169,18 @@ $(document).ready(function(){
 		} 
 		if ($("#open-file-popup input[type='file']").val() != ""){
 			$(".notification").remove();
-		//	$("#open-file-container").css("display", "none");
 			var input = document.getElementById("file");
 			var file = input.files[0];
+			
+			var imageUrl = $("#image-url-text > span#image-url__display").text();
+			var firstImagePosition = imageUrl.indexOf("public/") + 7;
+			var lastImagePosition = imageUrl.lastIndexOf("/");
+			var compactImageUrl = imageUrl.substring(firstImagePosition, lastImagePosition+1);
+
 			var data = new FormData();
+			data.append("url", compactImageUrl);
 			data.append("image", file);
-		//	$localFilePath = $("#open-file-popup input[type='file']").val();
-		//	$searchKey = "fakepath";
-		//	$searchIndex = $localFilePath.indexOf($searchKey) + $searchKey.length + 1;
-		//	$localFilePath.substring($searchIndex);
+			
 			$.ajax({
 				url: "http://localhost/alice2/public/js/upload.php",
 				type: "POST",
@@ -184,6 +189,7 @@ $(document).ready(function(){
 				contentType: false
 			}).done(function(data){
 				console.log(data);
+				$("#open-file-container").css("display", "none");
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(errorThrown);
 			}).always(function(){

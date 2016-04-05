@@ -413,6 +413,10 @@ textarea {
 
 #open-file-container {
   display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0.4);
 }
 
 #open-file-popup {
@@ -442,11 +446,4 @@ textarea {
 
 #open-file-popup button[type=reset] {
   margin-right: 7em;
-}
-
-#open-file-container{
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0,0,0,0.4)
 }
