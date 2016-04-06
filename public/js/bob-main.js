@@ -171,14 +171,9 @@ $(document).ready(function(){
 			$(".notification").remove();
 			var input = document.getElementById("file");
 			var file = input.files[0];
-			
-			var imageUrl = $("#image-url-text > span#image-url__display").text();
-			var firstImagePosition = imageUrl.indexOf("public/") + 7;
-			var lastImagePosition = imageUrl.lastIndexOf("/");
-			var compactImageUrl = imageUrl.substring(firstImagePosition, lastImagePosition+1);
 
 			var data = new FormData();
-			data.append("url", compactImageUrl);
+			data.append("url", getRelativeImagePath($("#image-url-text > span#image-url__display").text()));
 			data.append("image", file);
 			
 			$.ajax({
@@ -188,7 +183,10 @@ $(document).ready(function(){
 				processData: false,
 				contentType: false
 			}).done(function(data){
-				console.log(data);
+			//	console.log(data);
+			//	$("#image-manager-popup").load($("#image-manager-popup").html());
+			//	console.log($("#image-manager-popup").html());
+			//	$("#image-manager-popup").html(data);
 				$("#open-file-container").css("display", "none");
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(errorThrown);

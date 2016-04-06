@@ -89,7 +89,7 @@
 	function listFolder(key, array){
 		var folderCompositeName = key.split("|");
 		var folderUrl = folderCompositeName[1];
-		$("#image-url-text > span#image-url__display").text(folderUrl + "/");
+		$("#image-url-text > span#image-url__display").text(changeImagePath(folderUrl + "/"));
 
 		var formatArray = "\"" + array + "\"";
 		var decodeArray = JSON.parse(formatArray);
@@ -111,10 +111,10 @@
 		$("#image-list img").each(function(){
 			$(this).click(function(){
 				$("#image-preview img").attr("src", $(this).attr("src"));
+				$("#image-url-text > span#image-url__display").text(changeImagePath($(this).attr("src")));
 			});
 		});
 		$("#image-preview").css("display", "block");
-	//	console.log(imageList);
 	}
 
 	function getArray(arr, array){
@@ -143,7 +143,7 @@
 	function viewFile(path){
 		$("#image-preview").css("display", "block");
 		$("#image-preview img").attr("src", path);
-		$("#image-url-text > span#image-url__display").text(path);
+		$("#image-url-text > span#image-url__display").text(changeImagePath(path));
 	}
 
 	function openFile(){
@@ -163,5 +163,17 @@
 
 		$("#open-file-popup").css("top", popupTop);
 		$("#open-file-popup").css("left", popupLeft);
+	}
+
+	function changeImagePath(imageUrl, initText="public", replaceText="[BASE_MEDIA_URL]"){
+		var firstImagePosition = imageUrl.indexOf(initText) + initText.length;
+		var eliminatedText = imageUrl.substring(0, firstImagePosition);
+		return imageUrl.replace(eliminatedText, replaceText);
+	}
+
+	function getRelativeImagePath(imageUrl, redundantString="[BASE_MEDIA_URL]"){
+		var firstImagePosition = imageUrl.indexOf(redundantString) + redundantString.length;
+		var lastImagePosition = imageUrl.lastIndexOf("/");
+		return imageUrl.substring(firstImagePosition, lastImagePosition+1);
 	}
 </script>
