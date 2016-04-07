@@ -1,0 +1,18 @@
+<?php foreach($this->items as $item): ?>
+	<?php switch($item['fk_cms_item_type']): 
+		case 1:
+			$title = $item['content'];
+			$this->headTitle($title);
+			break;
+		case 2:
+			echo str_ireplace("[MEDIA_BASE_URL]",$this->basePath(),$item['content']);
+			break; 
+		case 23:
+			$this->inlineScript()->appendScript($item['content']);
+			break;
+		case 24: 
+			$this->headStyle()->appendStyle($item['content']);
+			break; 
+			?>
+	<?php endswitch; ?>
+<?php endforeach; ?>

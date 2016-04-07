@@ -4,6 +4,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Bob\Helper\ServiceConfigHelper;
 use Bob\Helper\ConcreteServiceConfig;
+use Zend\Http\Request;
+use Zend\Uri\Http;
 
 class IndexController extends AbstractActionController
 {
@@ -25,10 +27,19 @@ class IndexController extends AbstractActionController
 	{
 		$view = new ViewModel();
 		$request = $this->getRequest();
-		$product_id = (int)$this->params()->fromQuery('id');
+		$url = $request->getUri();
+
+		$params = substr($url, strripos($url,'/')+1);
+
+		$product_id = substr($params, strripos($params,'-')+1);
+
 		$view->product_id = $product_id;
+		
 		$product_info = $this->getFullInformationById($product_id);
 		$view->currentProduct = $product_info;
+
+		$images = $this->getImagesFromProductId($product_id);
+		$view->images = $images;
 
 		return $view;
 	}
@@ -84,5 +95,11 @@ class IndexController extends AbstractActionController
 	{
 		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $products->getProductInformationByInvoiceTypeId($id);
+	}
+
+	public function getImagesFromProductId($id)
+	{
+		$images = ConcreteServiceConfig::getImagesServiceConfig($this);
+		return $images->getImagesFromProductId($id);
 	}
 }

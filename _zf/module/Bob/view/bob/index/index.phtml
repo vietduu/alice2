@@ -1,36 +1,41 @@
-<a href="/bob/index/index">Bob system</a>
-<h2><?php echo $this->product_type->name ?></h2>
+<h1 id="title">Administration</h1>
 
-<div>
-	<?php echo var_dump($this->products_by_type_id); ?>
+<div id="dashboard">
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('bob', array('action' => 'index')));
+$form->setAttribute('method', 'post');
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="ui-fieldset">
+    <div class="ui-formRow">
+        <?php $username = $form->get('username'); ?>
+        <div class="ui-formCol1"><?php echo $this->formLabel($username); ?></div>
+        <div class="ui-formCol2">
+            <?php echo $this->formInput($username); ?>
+            <span class="error-msg"><?php echo $this->formElementErrors($username); ?></span>
+        </div>
+    </div>
+    <div class="ui-formRow">
+        <?php $password = $form->get('password'); ?>
+        <div class="ui-formCol1"><?php echo $this->formLabel($password); ?></div>
+        <div class="ui-formCol2">
+            <?php echo $this->formInput($password); ?>
+            <span class="error-msg"><?php echo $this->formElementErrors($password); ?></span>
+        </div>
+    </div>
+
+    <div class="ui-formRow ui-submit-field">
+        <div class="ui-formCol1"></div>
+        <div class="ui-formCol2"><?php echo $this->formElement($form->get('submit')); ?></div>
+    </div>
 </div>
 
-
-<table>
-<tr>
-<th>Name</th>
-</tr>
-	<?php foreach ($this->all_general_products as $entity): ?>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->general_product_id); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->sku); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->general_name); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->description_fk); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->product_type_fk); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->invoice_flag); ?></td>
-</tr>
-<tr>
-	<td><?php echo $this->escapeHtml($entity->invoice_type_fk); ?></td>
-</tr>
-	<?php endforeach;?>
-</table>
+<?php echo $this->form()->closeTag(); 
+if ($this->errorMessage != ''): 
+    echo "<script type='text/javascript'>alert(\"" . $this->errorMessage . "\")</script>";
+endif; ?>
+</div>

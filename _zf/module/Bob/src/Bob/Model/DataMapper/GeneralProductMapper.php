@@ -9,6 +9,16 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		parent::__construct($tableGateway);
 	}
 
+	public function settype(&$entity){
+		settype($entity->general_id, "int");
+		settype($entity->general_name, "string");
+		settype($entity->sku, "string");
+		settype($entity->description_fk, "int");
+		settype($entity->product_type_fk, "int");
+		settype($entity->invoice_flag, "bool");
+		settype($entity->invoice_type_fk, "int");
+	}
+
 	public function getModelData($entity)
 	{
 		$this->settype($entity, 'GeneralProduct');
@@ -33,11 +43,8 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 		$sql = "SELECT * FROM general_product gp LEFT JOIN product_type pt "
 				. "ON (gp.product_type_fk = pt.id) "
 				. "WHERE pt.id = ?";
-		$params = array(
-			':id' => $id,
-			);
 		$statement = $this->getAdapter()->query($sql);		
-		$result = $statement->execute(array(1));
+		$result = $statement->execute(array($id));
 		return $result->getResource()->fetchAll();
 	}
 
@@ -60,7 +67,7 @@ class GeneralProductMapper extends \Bob\Model\InterfaceHelper\AbstractMapper
 				. "LEFT JOIN images ON (gp.general_id = images.general_product_fk) "
 				. "LEFT JOIN description ON (description.description_id = gp.description_fk) "
 	//			. "WHERE gp.invoice_flag = 1 AND it.invoice_type_id = " . $id;
-				. "WHERE gp.invoice_flag = 1";
+				. "WHERE gp.invoice_flag = 1 AND images.is_default = 1";
 		$statement = $this->getAdapter()->query($sql);
 		$result = $statement->execute();
 

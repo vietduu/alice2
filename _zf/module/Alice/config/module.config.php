@@ -9,66 +9,11 @@
 
 namespace Alice;
 
+use Bob\Model\DataMapper\UrlReferenceMapper;
+use Bob\Helper\UrlRouteFactory;
+use Bob\Helper\UrlRoute;
+
 return array(
-    'router' => array(
-        'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Alice\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-           /*       'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),*/
-                    'product' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '[:action[?id=:id]]',
-                            'constraints' => array(
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '[0-9]+',
-                            ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Alice\Controller',
-                                'controller'    => 'Index',
-                                'action'    => 'product',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'alice' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Alice\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -90,8 +35,11 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Alice\Controller\Index' => Controller\IndexController::class,        ),
+            'Alice\Controller\Index' => Controller\IndexController::class,
+            'Alice\Controller\Cms' => Controller\CmsController::class,
+        ),
     ),
+
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -99,22 +47,23 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'admin/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/block' => __DIR__ . '/../view/layout/block.phtml',
+            'dictionary' => __DIR__ . '/../view/layout/dictionary.php',
             'alice/index/index' => __DIR__ . '/../view/alice/index/index.phtml',
-//            'alice/index/product' => __DIR__ . '/../view/alice/index/product.phtml',
-//            'base_path' => '/path/',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
-            'cms/header' => __DIR__ . '/../view/cms/header.phtml',
-            'cms/footer' => __DIR__ . '/../view/cms/footer.phtml',
+            'alice/cms/index' => __DIR__ . '/../view/alice/index/cms-template.phtml',
+            'alice/cms/static-block' => __DIR__ . '/../view/alice/index/cms-template.phtml',
+            'error/404' => __DIR__ . '/../view/error/404.phtml',
+            'error/index' => __DIR__ . '/../view/error/index.phtml',
+            'cms/alice/header' => __DIR__ . '/../view/cms/header.phtml',
+            'cms/alice/footer' => __DIR__ . '/../view/cms/footer.phtml',
             'cms/ups' => __DIR__ . '/../view/cms/ups.phtml',
+            'cms/contact' => __DIR__ . '/../view/cms/contact.phtml',
         ),
-//        'base_path' => 'public/',
         'template_path_stack' => array(
-            __DIR__ . '/../view',
+            'admin' => __DIR__ . '/../view',
         ),
     ),
-    // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(
@@ -129,4 +78,17 @@ return array(
             ],
         ],
     ],
+    'layouts' => array(
+        'Alice' => array(
+            'controllers' => array(
+                'Cms' => array(
+                    'actions' => array(
+                        'staticBlock' => 'layout/block'
+                    ),
+                    'default' => 'admin/layout'
+                )
+            ),
+            'default' => 'admin/layout'
+        )
+    ),
 );

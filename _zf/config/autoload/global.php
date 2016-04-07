@@ -34,11 +34,3 @@ return array(
         'base_path' => '/alice2/public/',
     ),
 );
-
-/*'Zend\Db\Adapter\Adapter' => function ($sm)
-            {
-                $adapterFactory = new Zend\Db\Adapter\AdapterServiceFactory();
-                $adapter = $adapterFactory->createService($sm);
-                \Zend\Db\TableGateway\Feature\GlobalAdapterFeature::setStaticAdapter($adapter);
-                return $adapter;
-            }*/
