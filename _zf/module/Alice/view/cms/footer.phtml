@@ -1,3 +1,4 @@
+
 <footer>
 	<div class="footer-main">
 	<?php 
@@ -19,7 +20,10 @@
 	                            'controller' => 'cms',
 	                            'action' => 'staticBlock',
 	                            'key' => "footer-social",
-	                        )); 
+	                        ),
+			array(
+				'force_canonical' => true
+				)); 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
