@@ -109,7 +109,19 @@ class Module
                             'spec' => $dictionary::formatUrl('%productname%') . '-%id%.html',
                         ),
                     ),
-                    
+
+
+                    'product-url' => array(
+                        'type' => 'Regex',
+                        'options' => array(
+                            'regex' => '(?<producturl>([[a-zA-Z0-9_-]+]*))',
+                            'defaults' => array(
+                                'controller' => 'Alice\Controller\Index',
+                                'action' => 'productUrl',
+                            ),
+                            'spec' => '%producturl%',
+                        ),
+                    ),
                 ),
             ),
         ));

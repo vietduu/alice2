@@ -8,19 +8,7 @@
 <div class="product-detail-page">
 	<div class="header-breadcrumb">
 	<ul>
-		<li>
-			<span class="header-breadcrumb-element">
-				<a href="<?php echo $this->escapeHtml($this->serverUrl() . $this->basePath().'/'.$product['product_type_url']); ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a>
-
-			</span>
-		</li>
-		<?php if (1 == $product['invoice_flag']): ?>
-		<li>
-			<span class="header-breadcrumb-element">
-				<a href="<?php echo $this->escapeHtml($this->serverUrl() . $this->basePath().'/'.$product['product_type_url'].'/'.$product['invoice_type_url']); ?>" title="<?php echo $product['invoice_type_name']; ?>"><?php echo $product['invoice_type_name']; ?></a>
-			</span>
-		</li>
-		<?php endif; ?>
+	
 		<li>
 			<span class="header-breadcrumb-element">
 				<?php echo $product['general_name']; ?>

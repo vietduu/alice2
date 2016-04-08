@@ -44,6 +44,19 @@ class IndexController extends AbstractActionController
 		return $view;
 	}
 
+	public function productUrlAction()
+	{
+		$view = new ViewModel();
+		$request = $this->getRequest();
+		$url = $request->getUri();
+
+		$params = substr($url, strripos($url,'/')+1);
+
+		$view->productUrl = $params;
+		
+		return $view;
+	}
+
 	public function getFullInformationById($id)
 	{
 		$productById = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
@@ -95,6 +108,12 @@ class IndexController extends AbstractActionController
 	{
 		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
 		return $products->getProductInformationByInvoiceTypeId($id);
+	}
+
+	public function getFullInformationByUrl($url)
+	{
+		$products = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
+		return $products->getFullInformationByUrl($url);
 	}
 
 	public function getImagesFromProductId($id)
