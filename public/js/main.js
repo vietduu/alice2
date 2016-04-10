@@ -7,19 +7,6 @@ $(document).ready(function(){
 		$(this).children("a.category-tree").css("color","#000");
 	});
 
-	$(".button-order").click(function(){
-		document.getElementById("detail-link").click();
-	});
-
-	$("#detail-link").click(function(e){
-		e.stopPropagation();
-       	return true;
-	});
-
-//	$(".homepage-banner").css("width", "62%");
-//	$(".header-navigation").css("line-height", $("header").css("height"));
-//	$(".header-title").css("line-height", $("header").css("height"));
-
 	var screenHeight = window.innerHeight - 30;
 
 	var ratio = $("#product-image img").width() * 1.0 / $("#product-image img").height();
@@ -29,11 +16,6 @@ $(document).ready(function(){
 	$("#product-thumbnail img").css("width",
 		$("#product-thumbnail img").css("height") * ratio);
 
-	var height = screenHeight * ratio;
-
-	var screenWidth = window.innerWidth;
-//|| document.documentElement.clientWidth
-//|| document.body.clientWidth;
 	var left = 0;
 	var top = 0;
 
@@ -61,29 +43,73 @@ $(document).ready(function(){
 	/*
 	 * scroll the homepage banner
 	 */
-/*	var numberOfBanner = $(".homepage-banner img").length;
-	
-	for (var i = 0; i < numberOfBanner; i++){
-		$(".homepage-banner img").click(function(){
-			$(".homepage-banner img").next().css("display", "block");
-			$(".homepage-banner img").css("display", "none");
-		});
+	var currentBanner;
 
-		if (numberOfBanner == i){
-			i = 0;
-		}
-	}*/
-/*	var currentBanner = $("#first-banner");
-	
-	currentBanner.click(function(){
-		if (!currentBanner.next().length){
-			currentBanner.css("display","none");
-			currentBanner = $("#first-banner");
-			currentBanner.css("display","block");
+	$("#right-arrow").click(function(){
+		currentBanner = $(".banner-scroll img.active");
+		if (currentBanner.next().length > 0){
+			currentBanner.removeClass("active");
+			currentBanner = currentBanner.next();
+			currentBanner.addClass("active");
+			if (0 == currentBanner.next().length){
+				$(this).addClass("inactive");
+			}
+			$("#left-arrow").removeClass("inactive");
 		}
 	});
 
-	currentBanner.css("display","none");
-	currentBanner = currentBanner.next();*/
+	$("#left-arrow").click(function(){
+		currentBanner = $(".banner-scroll img.active");
+		if (currentBanner.prev().length > 0){
+			currentBanner.removeClass("active");
+			currentBanner = currentBanner.prev();
+			currentBanner.addClass("active");
+			if (0 == currentBanner.prev().length){
+				$(this).addClass("inactive");
+			}
+			$("#right-arrow").removeClass("inactive");
+		}
+	});
 
+	$(".banner-scroll > img:gt(0)").hide();
+
+	setInterval(function(){
+		$(".banner-scroll > img:first")
+			.fadeOut(800)
+			.next()
+			.fadeIn(800)
+			.end()
+			.appendTo(".banner-scroll");
+	}, 3000);
+
+
+	/*
+	 * image gallery
+	 */
+	$(".gallery-image:first").addClass("selected");
+
+	$(".gallery-image").hover(function(){
+		$(this).siblings().removeClass("selected");
+		$(this).addClass("selected");
+		$("#product-image img").attr("src",$(this).children("img").attr("src"));
+		$("#product-thumbnail img").attr("src",$(this).children("img").attr("src"));
+	});
+
+	
+	/*
+	 * scale images on homepage automatically
+	 */
+	var cardWidth;
+	var cardHeight;
+	$(".product-card").each(function(){
+		cardWidth = $(this).css("width")-10;
+		cardHeight = $(this).css("height")-83;
+		if ($(this).find("img").height() * (cardWidth / $(this).find("img").width()) > cardHeight){
+			$(this).find("img").css("max-height", cardHeight);
+			$(this).find("img").css("max-width", ((cardHeight/$(this).find("img").height())*$(this).find("img").width()));
+		} else {
+			$(this).find("img").css("max-width", cardWidth);
+			$(this).find("img").css("max-height", ((cardWidth/$(this).find("img").width())*$(this).find("img").height()));
+		}
+	});
 });
