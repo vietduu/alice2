@@ -8,7 +8,52 @@
 <div class="product-detail-page">
 	<div class="header-breadcrumb">
 	<ul>
-	
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->url('home', array(), array(
+                            'force_canonical' => true
+                        )); ?>"><img src="<?php echo $this->serverUrl() . $this->basePath('/img/icon/1460242836_home_icon.png'); ?>" title="homepage banner" alt="homepage banner" /></a>
+			</span>
+		</li>
+		<li>
+			<span class="header-breadcrumb-element">
+				<?php echo "/"; ?>
+			</span>
+		</li>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->url('home/product-url', array(
+                            'controller' => 'index',
+                            'action' => 'productUrl',
+                            'producturl' => $product['product_type_url']
+                        ), array(
+                            'force_canonical' => true
+                        )); ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a>
+			</span>
+		</li>
+		<?php if (1 == $product['invoice_flag']): ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<?php echo "/"; ?>
+			</span>
+		</li>
+		<li>
+			<span class="header-breadcrumb-element">
+				<a href="<?php echo $this->url('home/product-url', array(
+                            'controller' => 'index',
+                            'action' => 'productUrl',
+                            'producturl' => $product['invoice_type_url']
+                        ), array(
+                            'force_canonical' => true
+                        )); ?>" title="<?php echo $product['invoice_type_name']; ?>"><?php echo $product['invoice_type_name']; ?></a>
+			</span>
+		</li>
+		<?php endif; ?>
+		<li>
+			<span class="header-breadcrumb-element">
+				<?php echo "/"; ?>
+			</span>
+		</li>
 		<li>
 			<span class="header-breadcrumb-element">
 				<?php echo $product['general_name']; ?>

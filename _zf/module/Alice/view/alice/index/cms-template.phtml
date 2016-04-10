@@ -5,8 +5,8 @@
 			$this->headTitle($title);
 			break;
 		case 2:
-			echo str_ireplace("[MEDIA_BASE_URL]",$this->serverUrl() . $this->basePath(),$item['content']);
-			break; 
+			echo str_ireplace(array("[MEDIA_BASE_URL]","[SERVER_URL]"), array($this->serverUrl() . $this->basePath(), $this->serverUrl()), $item['content']);
+			break;
 		case 23:
 			$this->inlineScript()->appendScript($item['content']);
 			break;

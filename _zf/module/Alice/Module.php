@@ -73,7 +73,21 @@ class Module
                     ),
                 ),
                 'may_terminate' => true,
-                'child_routes' => array(           
+                'child_routes' => array(
+                    'product-url' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[:producturl/]',
+                            'constraints' => array(
+                                'producturl' => '[[a-zA-Z0-9_-]+]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Alice\Controller\Index',
+                                'action' => 'productUrl',
+                            ),
+                        ),
+                    ),
+
                     'cms-template' => array(
                         'type'    => 'Regex',
                         'options' => array(
@@ -111,17 +125,7 @@ class Module
                     ),
 
 
-                    'product-url' => array(
-                        'type' => 'Regex',
-                        'options' => array(
-                            'regex' => '(?<producturl>([[a-zA-Z0-9_-]+]*))',
-                            'defaults' => array(
-                                'controller' => 'Alice\Controller\Index',
-                                'action' => 'productUrl',
-                            ),
-                            'spec' => '%producturl%',
-                        ),
-                    ),
+                    
                 ),
             ),
         ));

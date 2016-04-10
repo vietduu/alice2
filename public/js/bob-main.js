@@ -99,7 +99,7 @@ $(document).ready(function(){
 
 		var arrayString = array[0];
 		for (var i=1; i<array.length; i++){
-			arrayString = arrayString + ',' + array[i];
+			arrayString = arrayString + '||' + array[i];
 		}
 
 		$.ajax({

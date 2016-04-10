@@ -1,7 +1,6 @@
 <?php
-	$protocol = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ? "https://" : "http://";  
-    $publicFolder = $protocol . $_SERVER['HTTP_HOST'].'/alice2/public/';
-	$root = $_SERVER['DOCUMENT_ROOT'].'/alice2/public/';
+    $publicFolder = $this->serverUrl() . $this->basePath() . "/";
+	$root = $_SERVER['DOCUMENT_ROOT'] . $this->basePath() . "/";
 
 	function scanDirectory($dir, $host) {
 		$_SLASH = "/";

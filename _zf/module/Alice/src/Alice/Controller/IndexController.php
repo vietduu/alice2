@@ -50,10 +50,30 @@ class IndexController extends AbstractActionController
 		$request = $this->getRequest();
 		$url = $request->getUri();
 
-		$params = substr($url, strripos($url,'/')+1);
+		$actualUrl = substr($url, 0, -1);
+		$params = substr($actualUrl, strripos($actualUrl,'/')+1);
 
-		$view->productUrl = $params;
-		
+		$view->url = $params;
+		$products = $this->getFullInformationByUrl($params);
+		$view->products = $products[0];
+
+		$defaultProduct = $products[0];
+		$view->productName = $defaultProduct['name'];
+		$view->invoiceName = $defaultProduct['invoice_type_name'];
+		$view->productUrl = $defaultProduct['product_type_url'];
+		$view->invoiceUrl = $defaultProduct['invoice_type_url'];
+
+		if ($params === $defaultProduct['product_type_url']){
+			$view->invoiceName = "";
+		}
+
+		$productArray = [];
+		foreach ($products as $product){
+			$productArray[] = $this->getFullInformationById($product['general_id'])[0];
+		}
+
+		$view->productArray = $productArray;
+
 		return $view;
 	}
 

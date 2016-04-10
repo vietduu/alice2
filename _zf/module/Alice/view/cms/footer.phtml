@@ -16,12 +16,13 @@
 		curl_close($ch);
 		echo($response);
     ?>
-
-    <?php 
+    
+    </div>
+	<?php 
 		$url = $this->url('home/block-template', array(
 	                            'controller' => 'cms',
 	                            'action' => 'staticBlock',
-	                            'key' => "footer-social",
+	                            'key' => "footer-info",
 	                        ),
 			array(
 				'force_canonical' => true
@@ -33,14 +34,4 @@
 		curl_close($ch);
 		echo($response);
     ?>
-    
-    </div>
-	<div class="footer-info">
-		<p>
-		CÔNG TY TNHH MỘT THÀNH VIÊN IN ẤN KIẾN ĐÔNG <br>
-		Giấy CNĐKDN số: 0312163271. <br>
-		Địa chỉ: 70D Đường HT18, Phường Hiệp Thành, Quận 12, TP. Hồ Chí Minh. <br>
-		Số điện thoại: 08 6250 7100 - Fax: 08 6250 7101
-		</p>
-    </div>
 </footer>
