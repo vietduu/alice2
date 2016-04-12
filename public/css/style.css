@@ -211,6 +211,8 @@ ul {
   display: block;
   float: left;
   width: 1200px;
+  position: relative;
+  overflow: hidden;
 }
 
 .floor .floor-separater {
@@ -233,12 +235,42 @@ ul {
 /*
  * product card property
  */
+.flex-left-navigator {
+  background: url('../img/icon/icon-arrow-left.png');
+  width: 20px;
+  height: 35px;
+  position: absolute;
+  top: 45%;
+  left: 15px;
+}
+
+.flex-right-navigator {
+  background: url('../img/icon/icon-arrow-right.png');
+  width: 20px;
+  height: 35px;
+  position: absolute;
+  top: 45%;
+  right: 15px;
+}
+
+
+.product-placeholder-content {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.product-list {
+  width: 2000%;
+}
+
 .product-card {
-  border: 2px solid #003366;
+  border: 1px solid #003366;
   cursor: pointer;
   float: left;
   display: table-cell;
-  margin: 10px 16px;
+  margin: 10px 8px 10px 8px;
   padding: 2px;
   text-align: center;
   width: 260px;

@@ -112,4 +112,9 @@ $(document).ready(function(){
 			$(this).find("img").css("max-height", ((cardWidth/$(this).find("img").width())*$(this).find("img").height()));
 		}
 	});
+
+
+	$(".flex-right-navigator").click(function(){
+		
+	});
 });
