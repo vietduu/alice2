@@ -114,7 +114,37 @@ $(document).ready(function(){
 	});
 
 
-	$(".flex-right-navigator").click(function(){
-		
+	var cardTotalWidth = $(".product-card").length * $(".product-card").outerWidth(true);
+
+	$(".product-list").width(cardTotalWidth);
+	console.log(cardTotalWidth);
+
+	var scroller = $(".product-list");
+	$("#flex-right-navigator").click(function(){
+		if (Math.abs(scroller.position().left) + $(".product-placeholder-content").outerWidth() < cardTotalWidth){
+			scroller.animate({left: '-=' + $(".product-placeholder-content").outerWidth()}, 1000, function(){
+				console.log(scroller.position().left);
+			});
+		} else {
+			scroller.css('left','0px');
+		}		
+	});
+
+	$("#flex-left-navigator").click(function(){
+		if (Math.abs(scroller.position().left) - $(".product-placeholder-content").outerWidth() >= 0){
+			scroller.animate({left: '+=' + $(".product-placeholder-content").outerWidth()}, 1000, function(){
+				console.log(scroller.position().left);
+			});
+		} else {
+			scroller.css('left','0px');
+		}
+	});
+
+	$(".product-card").each(function(){
+		$(this).hover(function(){
+			$(this).addClass("border-outline");
+		}, function(){
+			$(this).removeClass("border-outline");
+		});
 	});
 });

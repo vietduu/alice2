@@ -6,7 +6,7 @@
             ->appendName('robots', 'index, nofollow');
 ?>
 <div class="home-floor-layout-container">
-<div class="left-sidebar">
+<!--<div class="left-sidebar">
     <ul>
     <?php foreach ($this->all_product_types as $ptype): ?>
         <li>
@@ -14,7 +14,7 @@
         </li>
     <?php endforeach; ?>
     </ul>
-</div>
+</div>-->
 
 <div class="homepage-banner">
     <div id="left-arrow"></div>
@@ -26,7 +26,7 @@
     <div id="right-arrow"></div>
 </div>
 
-<?php 
+<!-- /*   <?php 
         $url = $this->url('home/block-template', array(
                                 'controller' => 'cms',
                                 'action' => 'staticBlock',
@@ -41,22 +41,20 @@
         $response = curl_exec($ch);
         curl_close($ch);
         echo($response);
-    ?>
+    ?> */-->
 </div>
 
 <div class="main-content">
-    <?php foreach ($this->all_invoice_types as $invoice_type_entity): ?>
     <div class="floor">
         <div class="floor-separater"></div>
         <div class="floor-title">
-            <?php echo $this->escapeHtml($invoice_type_entity->invoice_type_name); ?>
+            <?php echo "Hóa đơn mẫu"; ?>
         </div>
         <div class="product-container">
-        <div class="flex-left-navigator"></div>
+        <div class="navigator" id="flex-left-navigator"></div>
         <div class="product-placeholder-content">
             <div class="product-list">
             <?php foreach ($this->products_by_invoice_type as $pite): ?>
-                <?php if ($invoice_type_entity->invoice_type_id == $pite['invoice_type_fk']): ?>
                 <div class="product-card">
                     <a class="product-card-img" href="<?php echo $this->url('home/product', array(
                             'controller' => 'index',
@@ -80,12 +78,10 @@
                         )); ?>">Chi tiết</a></span>
                     </div>
                 </div>
-            <?php endif; ?>
             <?php endforeach; ?>
             </div>
         </div>
-        <div class="flex-right-navigator"></div>
+        <div class="navigator" id="flex-right-navigator"></div>
         </div>
     </div>
-<?php endforeach; ?>
 </div>

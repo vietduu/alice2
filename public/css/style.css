@@ -152,6 +152,8 @@ ul {
 .homepage-banner {
   float: left;
   position: relative;
+  height: 420px;
+
 }
 
 .homepage-banner img {
@@ -208,6 +210,7 @@ ul {
 }
 
 .floor {
+  clear: both;
   display: block;
   float: left;
   width: 1200px;
@@ -235,47 +238,56 @@ ul {
 /*
  * product card property
  */
-.flex-left-navigator {
-  background: url('../img/icon/icon-arrow-left.png');
+
+.navigator {
   width: 20px;
   height: 35px;
   position: absolute;
+  cursor: pointer;
   top: 45%;
-  left: 15px;
 }
 
-.flex-right-navigator {
+#flex-left-navigator {
+  background: url('../img/icon/icon-arrow-left.png');
+  left: 10px;
+}
+
+#flex-right-navigator {
   background: url('../img/icon/icon-arrow-right.png');
-  width: 20px;
-  height: 35px;
-  position: absolute;
-  top: 45%;
-  right: 15px;
+  right: 10px;
 }
 
 
 .product-placeholder-content {
-  width: 90%;
+  width: 93.5%;
   margin: 0 auto;
   text-align: center;
   overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .product-list {
-  width: 2000%;
+  position: relative;
+  left: 0;
 }
 
 .product-card {
-  border: 1px solid #003366;
   cursor: pointer;
   float: left;
   display: table-cell;
-  margin: 10px 8px 10px 8px;
+  margin: 10px 7px 10px 7px;
   padding: 2px;
   text-align: center;
   width: 260px;
   height: 440px;
   position: relative;
+  border: 1px solid transparent;
+}
+
+.border-outline {
+  border: 1px solid #bdbdbd;
 }
 
 .product-card-img img {
@@ -296,7 +308,6 @@ ul {
 .button-order {
   text-transform: uppercase;
   text-align: center;
-  
 }
 
 .button-order a {
