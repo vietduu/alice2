@@ -124,7 +124,16 @@ class Module
                         ),
                     ),
 
-
+                    'news' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => 'tin-tuc/',
+                            'defaults' => array(
+                                'controller' => 'Alice\Controller\Index',
+                                'action' => 'news',
+                            ),
+                        ),
+                    ),
                     
                 ),
             ),

@@ -10,7 +10,13 @@
 
 		<ul class="header-navigation">
 			<li><a href="<?php echo $this->url('home', array(), array('force_canonical'=>true)); ?>">Giới thiệu</a></li>
-			<li><a href="<?php echo $this->url('home', array(), array('force_canonical'=>true)); ?>">Sản phẩm</a></li>
+			<li><a href="<?php echo $this->url('home/product-url', array(
+                            'controller' => 'index',
+                            'action' => 'productUrl',
+                            'producturl' => "hoa-don"
+                        ), array(
+                            'force_canonical' => true
+                        )); ?>">Sản phẩm</a></li>
 			<li><a href="<?php echo $this->url('home/cms-template', array(
                             'controller' => 'cms',
                             'action' => 'index',
@@ -18,7 +24,12 @@
                         ), array(
                         	'force_canonical' => true
                         )); ?>">Bảng giá</a></li>
-			<li><a href="<?php echo $this->url('home', array(), array('force_canonical'=>true)); ?>">Tin tức</a></li>
+			<li><a href="<?php echo $this->url('home/news', array(
+                            'controller' => 'index',
+                            'action' => 'news',
+                        ), array(
+                        	'force_canonical' => true
+                        )); ?>">Tin tức</a></li>
 			<li><a href="<?php echo $this->url('home', array(), array('force_canonical'=>true)); ?>">Liên hệ</a></li>
 		</ul>
 	</div>

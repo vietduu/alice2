@@ -80,7 +80,7 @@ $(document).ready(function(){
 			.fadeIn(800)
 			.end()
 			.appendTo(".banner-scroll");
-	}, 3000);
+	}, 5000);
 
 
 	/*
@@ -140,11 +140,26 @@ $(document).ready(function(){
 		}
 	});
 
-	$(".product-card").each(function(){
+	addBorderOutline($(".product-card"));
+	addBorderOutline($(".detail-list__product-card"));
+
+	$(".homepage-banner #right-arrow").css("left", $(".container").width() 
+		- $(".homepage-banner #right-arrow").width() - 10);
+
+	// news
+	var pageCounter = $(".news-list > li").length;
+	var pageOffset = 5;
+	for (var i=1; i <= Math.ceil(pageCounter*1.0/pageOffset);i++){
+		$(".paging").append("<div class='page'" + i + "><a href='#'>" + i + "</a></div>");
+	}
+});
+
+function addBorderOutline(element){
+	$(element).each(function(){
 		$(this).hover(function(){
 			$(this).addClass("border-outline");
 		}, function(){
 			$(this).removeClass("border-outline");
 		});
 	});
-});
+}

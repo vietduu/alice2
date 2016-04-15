@@ -77,6 +77,11 @@ class IndexController extends AbstractActionController
 		return $view;
 	}
 
+	public function newsAction(){
+		$view = new ViewModel();
+		return $view;
+	}
+
 	public function getFullInformationById($id)
 	{
 		$productById = ConcreteServiceConfig::getGeneralProductServiceConfig($this);
