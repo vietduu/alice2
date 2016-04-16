@@ -478,6 +478,10 @@ vertical-align: auto;
   -webkit-padding-start: 0px;
 }
 
+.news-list li {
+  display: none;
+}
+
 .news-list-container a {
   text-decoration: none;
   color: #000;
@@ -488,10 +492,33 @@ vertical-align: auto;
   text-align: center;
   margin: 10px;
   overflow: hidden;
+  cursor: pointer;
 
 }
 
 .pager div {
   margin: 0 7px;
   display: inline-flex;
+}
+
+.pager > .hidden {
+  display: none;
+}
+
+.paging a {
+  padding: 5px 8.6px;
+}
+
+.paging a:hover {
+  background-color: #bdbdbd;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.active-page {
+  background-color: #CEE3F6;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }

@@ -150,8 +150,48 @@ $(document).ready(function(){
 	var pageCounter = $(".news-list > li").length;
 	var pageOffset = 5;
 	for (var i=1; i <= Math.ceil(pageCounter*1.0/pageOffset);i++){
-		$(".paging").append("<div class='page'" + i + "><a href='#'>" + i + "</a></div>");
+		$(".paging").append("<div class='page" + i + "'><a>" + i + "</a></div>");
 	}
+
+
+	$(".paging > div").each(function(){
+		$(this).click(function(){
+			$(".news-list > li").css("display", "none");
+			$(".paging a").removeClass("active-page");
+			$pageNumber = parseInt($(this).children("a").text());
+			$("#current-page").text($pageNumber);
+			$startNumber = ($pageNumber-1)*pageOffset+1;
+			$endNumber = $pageNumber * pageOffset;
+			for (var i = $startNumber; i <= $endNumber; i++){
+				$(".news-list > li:nth-child(" + i + ")").css("display", "block");				
+			}
+			$(this).children("a").addClass("active-page");
+		});
+	});
+
+	$(".paging > div:nth-child(1)").click();
+
+	$(".prev-pager-navigator").click(function(){
+		$curPage = parseInt($("#current-page").text());
+		if (1 < $curPage){
+			$(".paging > div:nth-child(" + ($curPage-1) + ")").click();
+		}
+	});
+
+	$(".next-pager-navigator").click(function(){
+		$curPage = parseInt($("#current-page").text());
+		if ($(".paging > div").length > $curPage){
+			$(".paging > div:nth-child(" + ($curPage+1) + ")").click();
+		}
+	});
+
+	$(".start-pager-navigator").click(function(){
+		$(".paging > div:nth-child(1)").click();
+	});
+
+	$(".end-pager-navigator").click(function(){
+		$(".paging > div:nth-child(" + $(".paging > div").length + ")").click();
+	});
 });
 
 function addBorderOutline(element){
