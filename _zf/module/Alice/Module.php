@@ -148,6 +148,7 @@ class Module
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    'Bob'        => __DIR__ . '/src/' . 'Bob',
                 ),
             ),
         );
@@ -157,11 +158,11 @@ class Module
     {
         $sm  = $e->getApplication()->getServiceManager();
      
-        $controller = $e->getRouteMatch()->getParam('controller');
-        if (0 !== strpos($controller, __NAMESPACE__, 0)) {
+    //    $controller = $e->getRouteMatch()->getParam('controller');
+    /*    if (0 !== strpos($controller, __NAMESPACE__, 0)) {
             //if not this module
             return;
-        }
+        }*/
      
         //if this module 
         $exceptionstrategy = $sm->get('ViewManager')->getExceptionStrategy();
