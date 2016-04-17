@@ -44,6 +44,8 @@ $(document).ready(function(){
 	 * scroll the homepage banner
 	 */
 	var currentBanner;
+	$("#left-arrow, #right-arrow").css("top", $(".homepage-banner").height() / 2 - 20);
+
 
 	$("#right-arrow").click(function(){
 		currentBanner = $(".banner-scroll img.active");
@@ -148,7 +150,7 @@ $(document).ready(function(){
 
 	// news
 	var pageCounter = $(".news-list > li").length;
-	var pageOffset = 5;
+	var pageOffset = 10;
 	for (var i=1; i <= Math.ceil(pageCounter*1.0/pageOffset);i++){
 		$(".paging").append("<div class='page" + i + "'><a>" + i + "</a></div>");
 	}

@@ -20,6 +20,7 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager->attach('dispatch', array($this, 'loadConfiguration'), 100);
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
@@ -150,5 +151,20 @@ class Module
                 ),
             ),
         );
+    }
+
+    public function loadConfiguration(MvcEvent $e)
+    {
+        $sm  = $e->getApplication()->getServiceManager();
+     
+        $controller = $e->getRouteMatch()->getParam('controller');
+        if (0 !== strpos($controller, __NAMESPACE__, 0)) {
+            //if not this module
+            return;
+        }
+     
+        //if this module 
+        $exceptionstrategy = $sm->get('ViewManager')->getExceptionStrategy();
+        $exceptionstrategy->setExceptionTemplate('error/error-variation');
     }
 }

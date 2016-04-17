@@ -30,7 +30,13 @@
                         ), array(
                         	'force_canonical' => true
                         )); ?>">Tin tức</a></li>
-			<li><a href="<?php echo $this->url('home', array(), array('force_canonical'=>true)); ?>">Liên hệ</a></li>
+			<li><a href="<?php echo $this->url('home/cms-template', array(
+                            'controller' => 'cms',
+                            'action' => 'index',
+                            'key' => "lien-he",
+                        ), array(
+                            'force_canonical' => true
+                        )); ?>">Liên hệ</a></li>
 		</ul>
 	</div>
 </header>
